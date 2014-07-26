@@ -12,6 +12,7 @@ class EnvironmentProxyFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $factory = new EnvironmentProxyFactory();
         $factory->setServiceManager(Bootstrap::getServiceManager());
+        $factory->setConfig([]);
         $environment = new Environment();
         $environment->setId(1);
         $environment->setName('STABLE');
