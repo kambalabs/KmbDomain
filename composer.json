@@ -1,0 +1,35 @@
+{
+    "name": "kambalabs/kmb-domain",
+    "description": "Kamba core module that handles business logic",
+    "keywords": [
+        "puppet",
+        "kamba",
+        "module"
+    ],
+    "homepage": "http://github.com/kambalabs/KmbDomain",
+    "license": "GPL V2",
+    "authors": [
+        {
+            "name": "Emmanuel Bouton",
+            "email": "goten4@gmail.com",
+            "homepage": "http://github.com/goten4",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "kambalabs/kmb-base": "dev-master"
+    },
+    "require-dev": {
+        "phpunit/PHPUnit": "3.7.*",
+        "satooshi/php-coveralls": "dev-master"
+    },
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-0": {
+            "KmbDomain": "src/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
+    }
+}
