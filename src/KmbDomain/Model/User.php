@@ -34,21 +34,21 @@ class User implements UserInterface
     /** @var string */
     protected $email;
 
-    /** @var string[]|\Rbac\Role\RoleInterface[] */
-    protected $roles;
+    /** @var string */
+    protected $role;
 
     /**
-     * @param string                              $login
-     * @param string                              $name
-     * @param string                              $email
-     * @param string[]|\Rbac\Role\RoleInterface[] $roles
+     * @param string $login
+     * @param string $name
+     * @param string $email
+     * @param string $role
      */
-    public function __construct($login = null, $name = null, $email = null, $roles = null)
+    public function __construct($login = null, $name = null, $email = null, $role = null)
     {
         $this->setLogin($login);
         $this->setName($name);
         $this->setEmail($email);
-        $this->setRoles($roles);
+        $this->setRole($role);
     }
 
     /**
@@ -140,25 +140,25 @@ class User implements UserInterface
     }
 
     /**
-     * Set Roles.
+     * Set Role.
      *
-     * @param \Rbac\Role\RoleInterface[]|\string[] $roles
+     * @param string $role
      * @return User
      */
-    public function setRoles($roles)
+    public function setRole($role)
     {
-        $this->roles = $roles;
+        $this->role = $role;
         return $this;
     }
 
     /**
-     * @param \Rbac\Role\RoleInterface|\string $role
-     * @return User
+     * Get Role.
+     *
+     * @return string
      */
-    public function addRole($role)
+    public function getRole()
     {
-        $this->roles[] = $role;
-        return $this;
+        return $this->role;
     }
 
     /**
@@ -168,6 +168,6 @@ class User implements UserInterface
      */
     public function getRoles()
     {
-        return $this->roles;
+        return [$this->role];
     }
 }

@@ -20,11 +20,13 @@
  */
 namespace KmbDomain\Model;
 
-interface UserRepositoryInterface
+use GtnPersistBase\Model\RepositoryInterface;
+
+interface UserRepositoryInterface extends RepositoryInterface
 {
     /**
      * @param $login
-     * @return User
+     * @return UserInterface
      */
     public function getByLogin($login);
 }

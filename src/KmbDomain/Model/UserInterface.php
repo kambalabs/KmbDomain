@@ -20,10 +20,15 @@
  */
 namespace KmbDomain\Model;
 
+use GtnPersistBase\Model\AggregateRootInterface;
 use ZfcRbac\Identity\IdentityInterface;
 
-interface UserInterface extends IdentityInterface
+interface UserInterface extends IdentityInterface, AggregateRootInterface
 {
+    const ROLE_ROOT  = 'root';
+    const ROLE_ADMIN = 'admin';
+    const ROLE_USER  = 'user';
+
     /**
      * Set Id.
      *
@@ -85,23 +90,17 @@ interface UserInterface extends IdentityInterface
     public function getEmail();
 
     /**
-     * Set Roles.
+     * Set Role.
      *
-     * @param \Rbac\Role\RoleInterface[]|\string[] $roles
+     * @param string $role
      * @return UserInterface
      */
-    public function setRoles($roles);
+    public function setRole($role);
 
     /**
-     * @param \Rbac\Role\RoleInterface|\string $role
-     * @return UserInterface
-     */
-    public function addRole($role);
-
-    /**
-     * Get the list of roles of this identity
+     * Get Role.
      *
-     * @return string[]|\Rbac\Role\RoleInterface[]
+     * @return string
      */
-    public function getRoles();
+    public function getRole();
 }
