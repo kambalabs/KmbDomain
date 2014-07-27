@@ -111,4 +111,36 @@ interface EnvironmentInterface extends AggregateRootInterface
      * @return bool
      */
     public function hasChildWithName($name);
+
+    /**
+     * Set Users.
+     *
+     * @param array $users
+     * @return EnvironmentInterface
+     */
+    public function setUsers($users);
+
+    /**
+     * @param array $users
+     * @return EnvironmentInterface
+     */
+    public function addUsers($users);
+
+    /**
+     * Get Users.
+     *
+     * @return array
+     */
+    public function getUsers();
+
+    /**
+     * @return bool
+     */
+    public function hasUsers();
+
+    /**
+     * @param UserInterface $user
+     * @return bool
+     */
+    public function hasUser($user);
 }

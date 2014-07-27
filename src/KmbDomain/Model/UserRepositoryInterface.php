@@ -25,8 +25,14 @@ use GtnPersistBase\Model\RepositoryInterface;
 interface UserRepositoryInterface extends RepositoryInterface
 {
     /**
-     * @param $login
+     * @param string $login
      * @return UserInterface
      */
     public function getByLogin($login);
+
+    /**
+     * @param EnvironmentInterface $environment
+     * @return array
+     */
+    public function getAllByEnvironment($environment);
 }

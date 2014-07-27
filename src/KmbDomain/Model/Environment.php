@@ -20,6 +20,8 @@
  */
 namespace KmbDomain\Model;
 
+use Zend\Stdlib\ArrayUtils;
+
 class Environment implements EnvironmentInterface
 {
     /** @var int */
@@ -36,6 +38,9 @@ class Environment implements EnvironmentInterface
 
     /** @var array */
     protected $children;
+
+    /** @var array */
+    protected $users;
 
     /**
      * @param int $id
@@ -199,6 +204,63 @@ class Environment implements EnvironmentInterface
             foreach ($this->getChildren() as $child) {
                 /** @var Environment $child */
                 if ($child->getName() === $name) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Set Users.
+     *
+     * @param array $users
+     * @return EnvironmentInterface
+     */
+    public function setUsers($users)
+    {
+        $this->users = $users;
+        return $this;
+    }
+
+    /**
+     * @param array $users
+     * @return EnvironmentInterface
+     */
+    public function addUsers($users)
+    {
+        $this->users = ArrayUtils::merge($this->users, $users);
+        return $this;
+    }
+
+    /**
+     * Get Users.
+     *
+     * @return array
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasUsers()
+    {
+        return count($this->users) > 0;
+    }
+
+    /**
+     * @param UserInterface $user
+     * @return bool
+     */
+    public function hasUser($user)
+    {
+        if ($this->hasUsers()) {
+            foreach ($this->users as $currentUser) {
+                /** @var UserInterface $currentUser */
+                if ($currentUser->getId() === $user->getId()) {
                     return true;
                 }
             }

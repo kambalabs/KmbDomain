@@ -3,6 +3,7 @@ namespace KmbDomainTest\Model;
 
 use KmbDomain\Model\Environment;
 use KmbDomain\Model\EnvironmentProxy;
+use KmbDomain\Model\User;
 
 class EnvironmentProxyTest extends \PHPUnit_Framework_TestCase
 {
@@ -21,15 +22,20 @@ class EnvironmentProxyTest extends \PHPUnit_Framework_TestCase
     /** @var \PHPUnit_Framework_MockObject_MockObject */
     protected $environmentRepository;
 
+    /** @var \PHPUnit_Framework_MockObject_MockObject */
+    protected $userRepository;
+
     protected function setUp()
     {
         $this->environmentRepository = $this->getMock('KmbDomain\Model\EnvironmentRepositoryInterface');
+        $this->userRepository = $this->getMock('KmbDomain\Model\UserRepositoryInterface');
         $this->grandpa = $this->createProxy(1, 'ROOT');
         $this->grandpa->setEnvironmentRepository($this->environmentRepository);
         $this->parent = $this->createProxy(2, 'STABLE');
         $this->parent->setEnvironmentRepository($this->environmentRepository);
         $this->proxy = $this->createProxy(3, 'PF1');
         $this->proxy->setEnvironmentRepository($this->environmentRepository);
+        $this->proxy->setUserRepository($this->userRepository);
         $this->aggregateRoot = $this->proxy->getAggregateRoot();
     }
 
@@ -132,6 +138,71 @@ class EnvironmentProxyTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($children));
 
         $this->assertTrue($this->proxy->hasChildWithName('PROD'));
+    }
+
+    /** @test */
+    public function canGetUsersFromRepository()
+    {
+        $users = [new User('jdoe'), new User('jmiller')];
+        $this->userRepository->expects($this->any())
+            ->method('getAllByEnvironment')
+            ->with($this->equalTo($this->proxy))
+            ->will($this->returnValue($users));
+
+        $this->assertEquals($users, $this->proxy->getUsers());
+    }
+
+    /** @test */
+    public function canAddUsers()
+    {
+        $users = [new User('jdoe'), new User('jmiller')];
+        $this->userRepository->expects($this->any())
+            ->method('getAllByEnvironment')
+            ->with($this->equalTo($this->proxy))
+            ->will($this->returnValue($users));
+
+        $this->proxy->addUsers([new User('psmith'), new User('mcooper')]);
+
+        $users = $this->proxy->getUsers();
+        $this->assertEquals(4, count($users));
+        $this->assertEquals('psmith', $users[2]->getLogin());
+    }
+
+    /** @test */
+    public function canCheckIfNotHasUsers()
+    {
+        $this->assertFalse($this->proxy->hasUsers());
+    }
+
+    /** @test */
+    public function canCheckIfHasUsers()
+    {
+        $users = [new User('jdoe'), new User('jmiller')];
+        $this->userRepository->expects($this->any())
+            ->method('getAllByEnvironment')
+            ->with($this->equalTo($this->proxy))
+            ->will($this->returnValue($users));
+
+        $this->assertTrue($this->proxy->hasUsers());
+    }
+
+    /** @test */
+    public function canCheckIfNotHasUser()
+    {
+        $this->assertFalse($this->proxy->hasUser(new User('jdoe')));
+    }
+
+    /** @test */
+    public function canCheckIfHasUser()
+    {
+        $jane = new User('jmiller');
+        $users = [new User('jdoe'), $jane];
+        $this->userRepository->expects($this->any())
+            ->method('getAllByEnvironment')
+            ->with($this->equalTo($this->proxy))
+            ->will($this->returnValue($users));
+
+        $this->assertTrue($this->proxy->hasUser($jane));
     }
 
     /**

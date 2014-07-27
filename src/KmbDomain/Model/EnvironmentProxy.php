@@ -22,6 +22,7 @@ namespace KmbDomain\Model;
 
 use GtnPersistBase\Model\AggregateRootInterface;
 use GtnPersistZendDb\Model\AggregateRootProxyInterface;
+use Zend\Stdlib\ArrayUtils;
 
 class EnvironmentProxy implements EnvironmentInterface, AggregateRootProxyInterface
 {
@@ -31,11 +32,17 @@ class EnvironmentProxy implements EnvironmentInterface, AggregateRootProxyInterf
     /** @var EnvironmentRepositoryInterface */
     protected $environmentRepository;
 
+    /** @var UserRepositoryInterface */
+    protected $userRepository;
+
     /** @var EnvironmentProxy */
     protected $parent;
 
     /** @var array */
     protected $children;
+
+    /** @var array */
+    protected $users;
 
     /**
      * @param AggregateRootInterface $aggregateRoot
@@ -58,7 +65,7 @@ class EnvironmentProxy implements EnvironmentInterface, AggregateRootProxyInterf
     /**
      * Set EnvironmentRepository.
      *
-     * @param \KmbDomain\Model\EnvironmentRepositoryInterface $environmentRepository
+     * @param EnvironmentRepositoryInterface $environmentRepository
      * @return EnvironmentProxy
      */
     public function setEnvironmentRepository($environmentRepository)
@@ -70,11 +77,33 @@ class EnvironmentProxy implements EnvironmentInterface, AggregateRootProxyInterf
     /**
      * Get EnvironmentRepository.
      *
-     * @return \KmbDomain\Model\EnvironmentRepositoryInterface
+     * @return EnvironmentRepositoryInterface
      */
     public function getEnvironmentRepository()
     {
         return $this->environmentRepository;
+    }
+
+    /**
+     * Set UserRepository.
+     *
+     * @param UserRepositoryInterface $userRepository
+     * @return EnvironmentProxy
+     */
+    public function setUserRepository($userRepository)
+    {
+        $this->userRepository = $userRepository;
+        return $this;
+    }
+
+    /**
+     * Get UserRepository.
+     *
+     * @return UserRepositoryInterface
+     */
+    public function getUserRepository()
+    {
+        return $this->userRepository;
     }
 
     /**
@@ -146,7 +175,7 @@ class EnvironmentProxy implements EnvironmentInterface, AggregateRootProxyInterf
     /**
      * Set Parent.
      *
-     * @param \KmbDomain\Model\EnvironmentInterface $parent
+     * @param EnvironmentInterface $parent
      * @return EnvironmentProxy
      */
     public function setParent($parent)
@@ -158,7 +187,7 @@ class EnvironmentProxy implements EnvironmentInterface, AggregateRootProxyInterf
     /**
      * Get Parent.
      *
-     * @return \KmbDomain\Model\EnvironmentInterface
+     * @return EnvironmentInterface
      */
     public function getParent()
     {
@@ -177,7 +206,7 @@ class EnvironmentProxy implements EnvironmentInterface, AggregateRootProxyInterf
     }
 
     /**
-     * @param \KmbDomain\Model\EnvironmentInterface $environment
+     * @param EnvironmentInterface $environment
      * @return bool
      */
     public function isAncestorOf($environment)
@@ -239,6 +268,66 @@ class EnvironmentProxy implements EnvironmentInterface, AggregateRootProxyInterf
             foreach ($this->getChildren() as $child) {
                 /** @var EnvironmentInterface $child */
                 if ($child->getName() === $name) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Set Users.
+     *
+     * @param array $users
+     * @return EnvironmentProxy
+     */
+    public function setUsers($users)
+    {
+        $this->users = $users;
+        return $this;
+    }
+
+    /**
+     * @param array $users
+     * @return EnvironmentProxy
+     */
+    public function addUsers($users)
+    {
+        $this->users = ArrayUtils::merge($this->getUsers(), $users);
+        return $this;
+    }
+
+    /**
+     * Get Users.
+     *
+     * @return array
+     */
+    public function getUsers()
+    {
+        if ($this->users === null) {
+            $this->setUsers($this->userRepository->getAllByEnvironment($this));
+        }
+        return $this->users;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasUsers()
+    {
+        return count($this->getUsers()) > 0;
+    }
+
+    /**
+     * @param UserInterface $user
+     * @return bool
+     */
+    public function hasUser($user)
+    {
+        if ($this->hasUsers()) {
+            foreach ($this->users as $currentUser) {
+                /** @var UserInterface $currentUser */
+                if ($currentUser->getId() === $user->getId()) {
                     return true;
                 }
             }

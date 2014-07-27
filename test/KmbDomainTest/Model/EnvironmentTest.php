@@ -2,6 +2,7 @@
 namespace KmbDomainTest\Model;
 
 use KmbDomain\Model\Environment;
+use KmbDomain\Model\User;
 
 class EnvironmentTest extends \PHPUnit_Framework_TestCase
 {
@@ -80,6 +81,55 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
         $environment->addChild($child);
 
         $this->assertTrue($environment->hasChildWithName('ITG'));
+    }
+
+    /** @test */
+    public function canAddUsers()
+    {
+        $environment = $this->createEnvironment(1, 'PF1');
+        $environment->setUsers([new User('jdoe'), new User('jmiller')]);
+
+        $environment->addUsers([new User('psmith'), new User('mcooper')]);
+
+        $users = $environment->getUsers();
+        $this->assertEquals(4, count($users));
+        $this->assertEquals('psmith', $users[2]->getLogin());
+    }
+
+    /** @test */
+    public function canCheckIfNotHasUsers()
+    {
+        $environment = $this->createEnvironment(1, 'PF1');
+
+        $this->assertFalse($environment->hasUsers());
+    }
+
+    /** @test */
+    public function canCheckIfHasUsers()
+    {
+        $environment = $this->createEnvironment(1, 'PF1');
+        $environment->setUsers([new User('jdoe'), new User('jmiller')]);
+
+        $this->assertTrue($environment->hasUsers());
+    }
+
+    /** @test */
+    public function canCheckIfNotHasUser()
+    {
+        $environment = $this->createEnvironment(1, 'PF1');
+
+        $this->assertFalse($environment->hasUser(new User('jdoe')));
+    }
+
+    /** @test */
+    public function canCheckIfHasUser()
+    {
+        $user = new User('jmiller');
+        $user->setId(2);
+        $environment = $this->createEnvironment(1, 'PF1');
+        $environment->setUsers([new User('jdoe'), $user]);
+
+        $this->assertTrue($environment->hasUser($user));
     }
 
     /**
