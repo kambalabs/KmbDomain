@@ -25,6 +25,7 @@ use GtnPersistZendDb\Model\AggregateRootProxyInterface;
 use GtnPersistZendDb\Service\AggregateRootProxyFactoryInterface;
 use KmbDomain\Model\EnvironmentProxy;
 use KmbDomain\Model\EnvironmentRepositoryInterface;
+use KmbDomain\Model\UserRepositoryInterface;
 use Zend\ServiceManager\ServiceManager;
 
 class EnvironmentProxyFactory implements AggregateRootProxyFactoryInterface
@@ -46,6 +47,9 @@ class EnvironmentProxyFactory implements AggregateRootProxyFactoryInterface
         /** @var EnvironmentRepositoryInterface $environmentRepository */
         $environmentRepository = $this->serviceManager->get('EnvironmentRepository');
         $proxy->setEnvironmentRepository($environmentRepository);
+        /** @var UserRepositoryInterface $userRepository */
+        $userRepository = $this->serviceManager->get('UserRepository');
+        $proxy->setUserRepository($userRepository);
         return $proxy;
     }
 
