@@ -104,6 +104,19 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
+    public function canRemoveUserById()
+    {
+        $user = new User('jmiller');
+        $user->setId(2);
+        $environment = $this->createEnvironment(1, 'PF1');
+        $environment->setUsers([new User('jdoe'), $user]);
+
+        $environment->removeUserById(2);
+
+        $this->assertEquals(1, count($environment->getUsers()));
+    }
+
+    /** @test */
     public function canCheckIfNotHasUsers()
     {
         $environment = $this->createEnvironment(1, 'PF1');

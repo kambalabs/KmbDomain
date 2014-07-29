@@ -159,7 +159,6 @@ class EnvironmentProxyTest extends \PHPUnit_Framework_TestCase
             (new User('jdoe'))->setId(1),
             (new User('jmiller'))->setId(2)
         ];
-
         $this->userRepository->expects($this->any())
             ->method('getAllByEnvironment')
             ->with($this->equalTo($this->proxy))
@@ -174,6 +173,21 @@ class EnvironmentProxyTest extends \PHPUnit_Framework_TestCase
         $users = $this->proxy->getUsers();
         $this->assertEquals(4, count($users));
         $this->assertEquals('psmith', $users[2]->getLogin());
+    }
+
+    /** @test */
+    public function canRemoveUserById()
+    {
+        $user = (new User('jmiller'))->setId(2);
+        $users = [(new User('jdoe'))->setId(1), $user];
+        $this->userRepository->expects($this->any())
+            ->method('getAllByEnvironment')
+            ->with($this->equalTo($this->proxy))
+            ->will($this->returnValue($users));
+
+        $this->proxy->removeUserById(2);
+
+        $this->assertEquals(1, count($this->proxy->getUsers()));
     }
 
     /** @test */

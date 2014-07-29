@@ -236,6 +236,25 @@ class Environment implements EnvironmentInterface
     }
 
     /**
+     * @param int $userId
+     * @return EnvironmentInterface
+     */
+    public function removeUserById($userId)
+    {
+        if ($this->hasUsers()) {
+            foreach ($this->users as $index => $currentUser) {
+                /** @var UserInterface $currentUser */
+                if ($currentUser->getId() === $userId) {
+                    unset($this->users[$index]);
+                    $this->users = array_values($this->users);
+                    break;
+                }
+            }
+        }
+        return $this;
+    }
+
+    /**
      * Get Users.
      *
      * @return array

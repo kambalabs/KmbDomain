@@ -127,6 +127,12 @@ interface EnvironmentInterface extends AggregateRootInterface
     public function addUsers($users);
 
     /**
+     * @param int $userId
+     * @return EnvironmentInterface
+     */
+    public function removeUserById($userId);
+
+    /**
      * Get Users.
      *
      * @return array
