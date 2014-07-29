@@ -87,9 +87,16 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
     public function canAddUsers()
     {
         $environment = $this->createEnvironment(1, 'PF1');
-        $environment->setUsers([new User('jdoe'), new User('jmiller')]);
+        $environment->setUsers([
+            (new User('jdoe'))->setId(1),
+            (new User('jmiller'))->setId(2)
+        ]);
 
-        $environment->addUsers([new User('psmith'), new User('mcooper')]);
+        $environment->addUsers([
+            (new User('jmiller'))->setId(2),
+            (new User('psmith'))->setId(3),
+            (new User('mcooper'))->setId(4)
+        ]);
 
         $users = $environment->getUsers();
         $this->assertEquals(4, count($users));

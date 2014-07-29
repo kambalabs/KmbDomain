@@ -230,6 +230,8 @@ class Environment implements EnvironmentInterface
     public function addUsers($users)
     {
         $this->users = ArrayUtils::merge($this->users, $users);
+        $this->users = array_map("unserialize", array_unique(array_map("serialize", $this->users)));
+        $this->users = array_values($this->users);
         return $this;
     }
 

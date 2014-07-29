@@ -155,13 +155,21 @@ class EnvironmentProxyTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function canAddUsers()
     {
-        $users = [new User('jdoe'), new User('jmiller')];
+        $users = [
+            (new User('jdoe'))->setId(1),
+            (new User('jmiller'))->setId(2)
+        ];
+
         $this->userRepository->expects($this->any())
             ->method('getAllByEnvironment')
             ->with($this->equalTo($this->proxy))
             ->will($this->returnValue($users));
 
-        $this->proxy->addUsers([new User('psmith'), new User('mcooper')]);
+        $this->proxy->addUsers([
+            (new User('jmiller'))->setId(2),
+            (new User('psmith'))->setId(3),
+            (new User('mcooper'))->setId(4)
+        ]);
 
         $users = $this->proxy->getUsers();
         $this->assertEquals(4, count($users));
