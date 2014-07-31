@@ -30,6 +30,11 @@ interface EnvironmentRepositoryInterface extends RepositoryInterface
     public function getAllRoots();
 
     /**
+     * @return EnvironmentInterface
+     */
+    public function getDefault();
+
+    /**
      * @param string $name
      * @return EnvironmentInterface
      */

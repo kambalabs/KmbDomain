@@ -34,6 +34,13 @@ class EnvironmentRepository extends Memory\Repository implements EnvironmentRepo
     }
 
     /**
+     * @return EnvironmentInterface
+     */
+    public function getDefault()
+    {
+    }
+
+    /**
      * @param string $name
      * @return EnvironmentInterface
      */
