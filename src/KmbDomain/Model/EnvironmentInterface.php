@@ -149,4 +149,15 @@ interface EnvironmentInterface extends AggregateRootInterface
      * @return bool
      */
     public function hasUser($user);
+
+    /**
+     * @param bool $default
+     * @return EnvironmentInterface
+     */
+    public function setDefault($default);
+
+    /**
+     * @return bool
+     */
+    public function isDefault();
 }

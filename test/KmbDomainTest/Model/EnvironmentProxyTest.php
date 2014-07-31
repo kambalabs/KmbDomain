@@ -227,6 +227,22 @@ class EnvironmentProxyTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->proxy->hasUser($jane));
     }
 
+    /** @test */
+    public function canSetDefault()
+    {
+        $this->proxy->setDefault(true);
+
+        $this->assertTrue($this->aggregateRoot->isDefault());
+    }
+
+    /** @test */
+    public function canGetDefault()
+    {
+        $this->proxy->setDefault(true);
+
+        $this->assertTrue($this->proxy->isDefault());
+    }
+
     /**
      * @return array
      */
@@ -249,7 +265,7 @@ class EnvironmentProxyTest extends \PHPUnit_Framework_TestCase
     protected function createEnvironment($id = null, $name = null)
     {
         $environment = new Environment();
-        return $environment->setId($id)->setName($name);
+        return $environment->setId($id)->setName($name)->setDefault(false);
     }
 
     /**

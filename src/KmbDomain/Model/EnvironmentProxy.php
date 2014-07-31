@@ -355,4 +355,22 @@ class EnvironmentProxy implements EnvironmentInterface, AggregateRootProxyInterf
         }
         return false;
     }
+
+    /**
+     * @param bool $default
+     * @return EnvironmentInterface
+     */
+    public function setDefault($default)
+    {
+        $this->aggregateRoot->setDefault($default);
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDefault()
+    {
+        return $this->aggregateRoot->isDefault();
+    }
 }

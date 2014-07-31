@@ -42,6 +42,9 @@ class Environment implements EnvironmentInterface
     /** @var array */
     protected $users;
 
+    /** @var bool */
+    protected $default;
+
     /**
      * @param int $id
      * @return Environment
@@ -287,5 +290,23 @@ class Environment implements EnvironmentInterface
             }
         }
         return false;
+    }
+
+    /**
+     * @param bool $default
+     * @return Environment
+     */
+    public function setDefault($default)
+    {
+        $this->default = $default;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDefault()
+    {
+        return $this->default;
     }
 }
