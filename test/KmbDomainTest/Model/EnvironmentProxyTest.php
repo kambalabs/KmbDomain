@@ -4,6 +4,7 @@ namespace KmbDomainTest\Model;
 use KmbDomain\Model\Environment;
 use KmbDomain\Model\EnvironmentProxy;
 use KmbDomain\Model\User;
+use Zend\Stdlib\ArrayUtils;
 
 class EnvironmentProxyTest extends \PHPUnit_Framework_TestCase
 {
@@ -30,12 +31,8 @@ class EnvironmentProxyTest extends \PHPUnit_Framework_TestCase
         $this->environmentRepository = $this->getMock('KmbDomain\Model\EnvironmentRepositoryInterface');
         $this->userRepository = $this->getMock('KmbDomain\Model\UserRepositoryInterface');
         $this->grandpa = $this->createProxy(1, 'ROOT');
-        $this->grandpa->setEnvironmentRepository($this->environmentRepository);
         $this->parent = $this->createProxy(2, 'STABLE');
-        $this->parent->setEnvironmentRepository($this->environmentRepository);
         $this->proxy = $this->createProxy(3, 'PF1');
-        $this->proxy->setEnvironmentRepository($this->environmentRepository);
-        $this->proxy->setUserRepository($this->userRepository);
         $this->aggregateRoot = $this->proxy->getAggregateRoot();
     }
 
@@ -243,6 +240,22 @@ class EnvironmentProxyTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->proxy->isDefault());
     }
 
+    /** @test */
+    public function canGetDescendants()
+    {
+        $children = $this->getChildren();
+        $this->proxy->setChildren($children);
+        $this->parent->setChildren([$this->proxy]);
+        $this->environmentRepository->expects($this->any())
+            ->method('getAllChildren')
+            ->with($this->equalTo($this->grandpa))
+            ->will($this->returnValue([$this->parent]));
+
+        $descendants = $this->grandpa->getDescendants();
+
+        $this->assertEquals(ArrayUtils::merge([$this->parent, $this->proxy], $children), $descendants);
+    }
+
     /**
      * @return array
      */
@@ -250,9 +263,11 @@ class EnvironmentProxyTest extends \PHPUnit_Framework_TestCase
     {
         $child1 = $this->createProxy(4, 'PRP');
         $child1->setParent($this->proxy);
+        $child1->setChildren([]);
 
         $child2 = $this->createProxy(5, 'PROD');
         $child2->setParent($this->proxy);
+        $child2->setChildren([]);
 
         return [$child1, $child2];
     }
@@ -276,6 +291,8 @@ class EnvironmentProxyTest extends \PHPUnit_Framework_TestCase
     protected function createProxy($id = null, $name = null)
     {
         $proxy = new EnvironmentProxy();
+        $proxy->setEnvironmentRepository($this->environmentRepository);
+        $proxy->setUserRepository($this->userRepository);
         return $proxy->setAggregateRoot($this->createEnvironment($id, $name));
     }
 }

@@ -36,10 +36,10 @@ class Environment implements EnvironmentInterface
     /** @var Environment */
     protected $parent;
 
-    /** @var array */
+    /** @var Environment[] */
     protected $children;
 
-    /** @var array */
+    /** @var UserInterface[] */
     protected $users;
 
     /** @var bool */
@@ -157,9 +157,24 @@ class Environment implements EnvironmentInterface
     }
 
     /**
+     * Get all descendants.
+     *
+     * @return EnvironmentInterface[]
+     */
+    public function getDescendants()
+    {
+        $descendants = [];
+        foreach ($this->getChildren() as $child) {
+            $childDescendants = $child->hasChildren() ? $child->getDescendants() : [];
+            $descendants = ArrayUtils::merge($descendants, ArrayUtils::merge([$child], $childDescendants));
+        }
+        return $descendants;
+    }
+
+    /**
      * Set Children.
      *
-     * @param array $children
+     * @param EnvironmentInterface[] $children
      * @return Environment
      */
     public function setChildren($children)
@@ -181,7 +196,7 @@ class Environment implements EnvironmentInterface
     /**
      * Get Children.
      *
-     * @return array
+     * @return EnvironmentInterface[]
      */
     public function getChildren()
     {

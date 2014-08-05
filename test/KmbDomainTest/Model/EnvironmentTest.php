@@ -152,6 +152,23 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($environment->hasUser($user));
     }
 
+    /** @test */
+    public function canGetDescendants()
+    {
+        $stable = $this->createEnvironment(1, 'STABLE');
+        $pf1 = $this->createEnvironment(2, 'PF1');
+        $pf2 = $this->createEnvironment(3, 'PF2');
+        $pf1->addChild($this->createEnvironment(4, 'ITG'));
+        $pf1->addChild($this->createEnvironment(5, 'PRP'));
+        $pf1->addChild($this->createEnvironment(6, 'PROD'));
+        $stable->setChildren([$pf1, $pf2]);
+
+        $descendants = $stable->getDescendants();
+
+        $this->assertEquals(5, count($descendants));
+        $this->assertEquals($pf1, $descendants[0]);
+    }
+
     /**
      * @param $id
      * @param $name

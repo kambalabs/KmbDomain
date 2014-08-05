@@ -38,10 +38,10 @@ class EnvironmentProxy implements EnvironmentInterface, AggregateRootProxyInterf
     /** @var EnvironmentProxy */
     protected $parent;
 
-    /** @var array */
+    /** @var EnvironmentInterface[] */
     protected $children;
 
-    /** @var array */
+    /** @var UserInterface[] */
     protected $users;
 
     /**
@@ -215,9 +215,24 @@ class EnvironmentProxy implements EnvironmentInterface, AggregateRootProxyInterf
     }
 
     /**
+     * Get all descendants.
+     *
+     * @return EnvironmentInterface[]
+     */
+    public function getDescendants()
+    {
+        $descendants = [];
+        foreach ($this->getChildren() as $child) {
+            $childDescendants = $child->hasChildren() ? $child->getDescendants() : [];
+            $descendants = ArrayUtils::merge($descendants, ArrayUtils::merge([$child], $childDescendants));
+        }
+        return $descendants;
+    }
+
+    /**
      * Set Children.
      *
-     * @param array $children
+     * @param EnvironmentInterface[] $children
      * @return EnvironmentProxy
      */
     public function setChildren($children)
@@ -239,7 +254,7 @@ class EnvironmentProxy implements EnvironmentInterface, AggregateRootProxyInterf
     /**
      * Get Children.
      *
-     * @return array
+     * @return EnvironmentInterface[]
      */
     public function getChildren()
     {
@@ -278,7 +293,7 @@ class EnvironmentProxy implements EnvironmentInterface, AggregateRootProxyInterf
     /**
      * Set Users.
      *
-     * @param array $users
+     * @param UserInterface[] $users
      * @return EnvironmentProxy
      */
     public function setUsers($users)
@@ -288,7 +303,7 @@ class EnvironmentProxy implements EnvironmentInterface, AggregateRootProxyInterf
     }
 
     /**
-     * @param array $users
+     * @param UserInterface[] $users
      * @return EnvironmentProxy
      */
     public function addUsers($users)
@@ -321,7 +336,7 @@ class EnvironmentProxy implements EnvironmentInterface, AggregateRootProxyInterf
     /**
      * Get Users.
      *
-     * @return array
+     * @return UserInterface[]
      */
     public function getUsers()
     {

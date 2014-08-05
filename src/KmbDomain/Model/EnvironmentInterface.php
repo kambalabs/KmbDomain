@@ -81,9 +81,16 @@ interface EnvironmentInterface extends AggregateRootInterface
     public function isAncestorOf($environment);
 
     /**
+     * Get all descendants.
+     *
+     * @return EnvironmentInterface[]
+     */
+    public function getDescendants();
+
+    /**
      * Set Children.
      *
-     * @param array $children
+     * @param EnvironmentInterface[] $children
      * @return EnvironmentInterface
      */
     public function setChildren($children);
@@ -97,7 +104,7 @@ interface EnvironmentInterface extends AggregateRootInterface
     /**
      * Get Children.
      *
-     * @return array
+     * @return EnvironmentInterface[]
      */
     public function getChildren();
 
@@ -121,7 +128,7 @@ interface EnvironmentInterface extends AggregateRootInterface
     public function setUsers($users);
 
     /**
-     * @param array $users
+     * @param UserInterface[] $users
      * @return EnvironmentInterface
      */
     public function addUsers($users);
@@ -135,7 +142,7 @@ interface EnvironmentInterface extends AggregateRootInterface
     /**
      * Get Users.
      *
-     * @return array
+     * @return UserInterface[]
      */
     public function getUsers();
 
