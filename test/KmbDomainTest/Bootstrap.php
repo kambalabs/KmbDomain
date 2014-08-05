@@ -37,6 +37,7 @@ class Bootstrap extends AbstractBootstrap
                 'modules' => array(
                     'GtnPersistBase',
                     'KmbDomain',
+                    'KmbMemoryInfrastructure',
                 )
             )
         );
