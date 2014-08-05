@@ -22,7 +22,6 @@
     },
     "require-dev": {
         "phpunit/PHPUnit": "3.7.*",
-        "kambalabs/kmb-memory-infrastructure": "dev-master",
         "satooshi/php-coveralls": "dev-master"
     },
     "minimum-stability": "dev",
