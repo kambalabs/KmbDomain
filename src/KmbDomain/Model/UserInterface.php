@@ -25,9 +25,9 @@ use ZfcRbac\Identity\IdentityInterface;
 
 interface UserInterface extends IdentityInterface, AggregateRootInterface
 {
-    const ROLE_ROOT  = 'root';
+    const ROLE_ROOT = 'root';
     const ROLE_ADMIN = 'admin';
-    const ROLE_USER  = 'user';
+    const ROLE_USER = 'user';
 
     /**
      * Set Id.
@@ -103,27 +103,4 @@ interface UserInterface extends IdentityInterface, AggregateRootInterface
      * @return string
      */
     public function getRole();
-
-    /**
-     * Set Environments.
-     *
-     * @param EnvironmentInterface[] $environments
-     * @return UserInterface
-     */
-    public function setEnvironments($environments);
-
-    /**
-     * Add Environment.
-     *
-     * @param EnvironmentInterface $environment
-     * @return UserInterface
-     */
-    public function addEnvironment($environment);
-
-    /**
-     * Get Environments.
-     *
-     * @return EnvironmentInterface[]
-     */
-    public function getEnvironments();
 }

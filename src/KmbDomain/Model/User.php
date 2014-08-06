@@ -37,9 +37,6 @@ class User implements UserInterface
     /** @var string */
     protected $role;
 
-    /** @var EnvironmentInterface[] */
-    protected $environments;
-
     /**
      * @param string $login
      * @param string $name
@@ -175,36 +172,10 @@ class User implements UserInterface
     }
 
     /**
-     * Set Environments.
-     *
-     * @param EnvironmentInterface[] $environments
-     * @return UserInterface
+     * @return string
      */
-    public function setEnvironments($environments)
+    public function __toString()
     {
-        $this->environments = $environments;
-        return $this;
-    }
-
-    /**
-     * Add Environment.
-     *
-     * @param EnvironmentInterface $environment
-     * @return UserInterface
-     */
-    public function addEnvironment($environment)
-    {
-        $this->environments[] = $environment;
-        return $this;
-    }
-
-    /**
-     * Get Environments.
-     *
-     * @return EnvironmentInterface[]
-     */
-    public function getEnvironments()
-    {
-        return $this->environments;
+        return $this->getLogin();
     }
 }

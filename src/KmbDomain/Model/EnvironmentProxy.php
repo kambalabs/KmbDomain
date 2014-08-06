@@ -311,8 +311,7 @@ class EnvironmentProxy implements EnvironmentInterface, AggregateRootProxyInterf
     public function addUsers($users)
     {
         $this->users = ArrayUtils::merge($this->getUsers(), $users);
-        $this->users = array_map("unserialize", array_unique(array_map("serialize", $this->users)));
-        $this->users = array_values($this->users);
+        $this->users = array_values(array_unique($this->users));
         return $this;
     }
 
