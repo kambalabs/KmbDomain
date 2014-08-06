@@ -169,6 +169,16 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($pf1, $descendants[0]);
     }
 
+    /** @test */
+    public function canGetEmptyDescendants()
+    {
+        $stable = $this->createEnvironment(1, 'STABLE');
+
+        $descendants = $stable->getDescendants();
+
+        $this->assertEquals([], $descendants);
+    }
+
     /**
      * @param $id
      * @param $name

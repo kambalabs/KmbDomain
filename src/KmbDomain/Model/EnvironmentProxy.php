@@ -222,9 +222,11 @@ class EnvironmentProxy implements EnvironmentInterface, AggregateRootProxyInterf
     public function getDescendants()
     {
         $descendants = [];
-        foreach ($this->getChildren() as $child) {
-            $childDescendants = $child->hasChildren() ? $child->getDescendants() : [];
-            $descendants = ArrayUtils::merge($descendants, ArrayUtils::merge([$child], $childDescendants));
+        if ($this->hasChildren()) {
+            foreach ($this->getChildren() as $child) {
+                $childDescendants = $child->hasChildren() ? $child->getDescendants() : [];
+                $descendants = ArrayUtils::merge($descendants, ArrayUtils::merge([$child], $childDescendants));
+            }
         }
         return $descendants;
     }
@@ -387,5 +389,13 @@ class EnvironmentProxy implements EnvironmentInterface, AggregateRootProxyInterf
     public function isDefault()
     {
         return $this->aggregateRoot->isDefault();
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getNormalizedName();
     }
 }

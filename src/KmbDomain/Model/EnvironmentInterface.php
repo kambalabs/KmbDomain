@@ -167,4 +167,9 @@ interface EnvironmentInterface extends AggregateRootInterface
      * @return bool
      */
     public function isDefault();
+
+    /**
+     * @return string
+     */
+    public function __toString();
 }

@@ -164,9 +164,11 @@ class Environment implements EnvironmentInterface
     public function getDescendants()
     {
         $descendants = [];
-        foreach ($this->getChildren() as $child) {
-            $childDescendants = $child->hasChildren() ? $child->getDescendants() : [];
-            $descendants = ArrayUtils::merge($descendants, ArrayUtils::merge([$child], $childDescendants));
+        if ($this->hasChildren()) {
+            foreach ($this->getChildren() as $child) {
+                $childDescendants = $child->hasChildren() ? $child->getDescendants() : [];
+                $descendants = ArrayUtils::merge($descendants, ArrayUtils::merge([$child], $childDescendants));
+            }
         }
         return $descendants;
     }
@@ -323,5 +325,13 @@ class Environment implements EnvironmentInterface
     public function isDefault()
     {
         return $this->default;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getNormalizedName();
     }
 }

@@ -103,4 +103,27 @@ interface UserInterface extends IdentityInterface, AggregateRootInterface
      * @return string
      */
     public function getRole();
+
+    /**
+     * Set Environments.
+     *
+     * @param EnvironmentInterface[] $environments
+     * @return UserInterface
+     */
+    public function setEnvironments($environments);
+
+    /**
+     * Add Environment.
+     *
+     * @param EnvironmentInterface $environment
+     * @return UserInterface
+     */
+    public function addEnvironment($environment);
+
+    /**
+     * Get Environments.
+     *
+     * @return EnvironmentInterface[]
+     */
+    public function getEnvironments();
 }

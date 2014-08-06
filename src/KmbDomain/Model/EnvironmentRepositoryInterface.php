@@ -25,7 +25,7 @@ use GtnPersistBase\Model\RepositoryInterface;
 interface EnvironmentRepositoryInterface extends RepositoryInterface
 {
     /**
-     * @return array
+     * @return EnvironmentInterface[]
      */
     public function getAllRoots();
 
@@ -42,7 +42,7 @@ interface EnvironmentRepositoryInterface extends RepositoryInterface
 
     /**
      * @param EnvironmentInterface $environment
-     * @return array
+     * @return EnvironmentInterface[]
      */
     public function getAllChildren(EnvironmentInterface $environment);
 
@@ -51,4 +51,10 @@ interface EnvironmentRepositoryInterface extends RepositoryInterface
      * @return EnvironmentInterface
      */
     public function getParent(EnvironmentInterface $environment);
+
+    /**
+     * @param UserInterface $user
+     * @return EnvironmentInterface[]
+     */
+    public function getAllForUser(UserInterface $user);
 }

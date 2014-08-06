@@ -20,49 +20,69 @@
  */
 namespace KmbDomain\Model;
 
-class User implements UserInterface
+use GtnPersistBase\Model\AggregateRootInterface;
+use GtnPersistZendDb\Model\AggregateRootProxyInterface;
+
+class UserProxy implements UserInterface, AggregateRootProxyInterface
 {
-    /** @var int */
-    protected $id;
+    /** @var User */
+    protected $aggregateRoot;
 
-    /** @var string */
-    protected $login;
-
-    /** @var string */
-    protected $name;
-
-    /** @var string */
-    protected $email;
-
-    /** @var string */
-    protected $role;
+    /** @var EnvironmentRepositoryInterface */
+    protected $environmentRepository;
 
     /** @var EnvironmentInterface[] */
     protected $environments;
 
     /**
-     * @param string $login
-     * @param string $name
-     * @param string $email
-     * @param string $role
+     * @param AggregateRootInterface $aggregateRoot
+     * @return AggregateRootProxyInterface
      */
-    public function __construct($login = null, $name = null, $email = null, $role = null)
+    public function setAggregateRoot(AggregateRootInterface $aggregateRoot)
     {
-        $this->setLogin($login);
-        $this->setName($name);
-        $this->setEmail($email);
-        $this->setRole($role);
+        $this->aggregateRoot = $aggregateRoot;
+        return $this;
+    }
+
+    /**
+     * return AggregateRootInterface
+     */
+    public function getAggregateRoot()
+    {
+        return $this->aggregateRoot;
+    }
+
+    /**
+     * Set EnvironmentRepository.
+     *
+     * @param EnvironmentRepositoryInterface $environmentRepository
+     * @return UserProxy
+     */
+    public function setEnvironmentRepository($environmentRepository)
+    {
+        $this->environmentRepository = $environmentRepository;
+        return $this;
+    }
+
+    /**
+     * Get EnvironmentRepository.
+     *
+     * @return EnvironmentRepositoryInterface
+     */
+    public function getEnvironmentRepository()
+    {
+        return $this->environmentRepository;
     }
 
     /**
      * Set Id.
      *
      * @param int $id
-     * @return User
+     * @return UserInterface
      */
     public function setId($id)
     {
-        $this->id = $id;
+        $this->aggregateRoot->setId($id);
         return $this;
     }
 
@@ -73,18 +93,18 @@ class User implements UserInterface
      */
     public function getId()
     {
-        return $this->id;
+        return $this->aggregateRoot->getId();
     }
 
     /**
      * Set Login.
      *
      * @param string $login
-     * @return User
+     * @return UserInterface
      */
     public function setLogin($login)
     {
-        $this->login = $login;
+        $this->aggregateRoot->setLogin($login);
         return $this;
     }
 
@@ -95,18 +115,18 @@ class User implements UserInterface
      */
     public function getLogin()
     {
-        return $this->login;
+        return $this->aggregateRoot->getLogin();
     }
 
     /**
      * Set Name.
      *
      * @param string $name
-     * @return User
+     * @return UserInterface
      */
     public function setName($name)
     {
-        $this->name = $name;
+        $this->aggregateRoot->setName($name);
         return $this;
     }
 
@@ -117,18 +137,18 @@ class User implements UserInterface
      */
     public function getName()
     {
-        return $this->name;
+        return $this->aggregateRoot->getName();
     }
 
     /**
      * Set Email.
      *
      * @param string $email
-     * @return User
+     * @return UserInterface
      */
     public function setEmail($email)
     {
-        $this->email = $email;
+        $this->aggregateRoot->setEmail($email);
         return $this;
     }
 
@@ -139,18 +159,18 @@ class User implements UserInterface
      */
     public function getEmail()
     {
-        return $this->email;
+        return $this->aggregateRoot->getEmail();
     }
 
     /**
      * Set Role.
      *
      * @param string $role
-     * @return User
+     * @return UserInterface
      */
     public function setRole($role)
     {
-        $this->role = $role;
+        $this->aggregateRoot->setRole($role);
         return $this;
     }
 
@@ -161,7 +181,7 @@ class User implements UserInterface
      */
     public function getRole()
     {
-        return $this->role;
+        return $this->aggregateRoot->getRole();
     }
 
     /**
@@ -171,7 +191,7 @@ class User implements UserInterface
      */
     public function getRoles()
     {
-        return [$this->role];
+        return $this->aggregateRoot->getRoles();
     }
 
     /**
@@ -205,6 +225,9 @@ class User implements UserInterface
      */
     public function getEnvironments()
     {
+        if ($this->environments === null) {
+            $this->setEnvironments($this->getEnvironmentRepository()->getAllForUser($this));
+        }
         return $this->environments;
     }
 }
