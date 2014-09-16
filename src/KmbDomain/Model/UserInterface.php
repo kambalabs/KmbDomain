@@ -30,21 +30,6 @@ interface UserInterface extends IdentityInterface, AggregateRootInterface
     const ROLE_USER = 'user';
 
     /**
-     * Set Id.
-     *
-     * @param int $id
-     * @return UserInterface
-     */
-    public function setId($id);
-
-    /**
-     * Get Id.
-     *
-     * @return int
-     */
-    public function getId();
-
-    /**
      * Set Login.
      *
      * @param string $login

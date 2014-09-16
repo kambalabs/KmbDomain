@@ -25,21 +25,6 @@ use GtnPersistBase\Model\AggregateRootInterface;
 interface RevisionInterface extends AggregateRootInterface
 {
     /**
-     * Set Id.
-     *
-     * @param int $id
-     * @return Revision
-     */
-    public function setId($id);
-
-    /**
-     * Get Id.
-     *
-     * @return int
-     */
-    public function getId();
-
-    /**
      * Set Environment.
      *
      * @param \KmbDomain\Model\Environment $environment

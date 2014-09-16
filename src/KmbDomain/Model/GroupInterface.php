@@ -25,21 +25,6 @@ use GtnPersistBase\Model\AggregateRootInterface;
 interface GroupInterface extends AggregateRootInterface
 {
     /**
-     * Set Id.
-     *
-     * @param int $id
-     * @return Group
-     */
-    public function setId($id);
-
-    /**
-     * Get Id.
-     *
-     * @return int
-     */
-    public function getId();
-
-    /**
      * Set Revision.
      *
      * @param \KmbDomain\Model\Revision $revision
