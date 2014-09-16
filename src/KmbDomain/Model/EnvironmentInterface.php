@@ -169,6 +169,51 @@ interface EnvironmentInterface extends AggregateRootInterface
     public function isDefault();
 
     /**
+     * Set CurrentRevision.
+     *
+     * @param \KmbDomain\Model\RevisionInterface $currentRevision
+     * @return Environment
+     */
+    public function setCurrentRevision($currentRevision);
+
+    /**
+     * Get CurrentRevision.
+     *
+     * @return \KmbDomain\Model\RevisionInterface
+     */
+    public function getCurrentRevision();
+
+    /**
+     * Set LastReleasedRevision.
+     *
+     * @param \KmbDomain\Model\RevisionInterface $lastReleasedRevision
+     * @return Environment
+     */
+    public function setLastReleasedRevision($lastReleasedRevision);
+
+    /**
+     * Get LastReleasedRevision.
+     *
+     * @return \KmbDomain\Model\RevisionInterface
+     */
+    public function getLastReleasedRevision();
+
+    /**
+     * Set ReleasedRevisions.
+     *
+     * @param \KmbDomain\Model\RevisionInterface[] $releasedRevisions
+     * @return Environment
+     */
+    public function setReleasedRevisions($releasedRevisions);
+
+    /**
+     * Get ReleasedRevisions.
+     *
+     * @return \KmbDomain\Model\RevisionInterface[]
+     */
+    public function getReleasedRevisions();
+
+    /**
      * @return string
      */
     public function __toString();

@@ -20,7 +20,7 @@
  */
 namespace KmbDomain\Model;
 
-class Group implements GroupInterface, GroupInterface
+class Group implements GroupInterface
 {
     /** @var int */
     protected $id;

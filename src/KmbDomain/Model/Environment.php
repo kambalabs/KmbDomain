@@ -45,6 +45,15 @@ class Environment implements EnvironmentInterface
     /** @var bool */
     protected $default;
 
+    /** @var RevisionInterface */
+    protected $currentRevision;
+
+    /** @var RevisionInterface */
+    protected $lastReleasedRevision;
+
+    /** @var RevisionInterface[] */
+    protected $releasedRevisions;
+
     /**
      * @param int $id
      * @return Environment
@@ -324,6 +333,72 @@ class Environment implements EnvironmentInterface
     public function isDefault()
     {
         return $this->default;
+    }
+
+    /**
+     * Set CurrentRevision.
+     *
+     * @param \KmbDomain\Model\RevisionInterface $currentRevision
+     * @return Environment
+     */
+    public function setCurrentRevision($currentRevision)
+    {
+        $this->currentRevision = $currentRevision;
+        return $this;
+    }
+
+    /**
+     * Get CurrentRevision.
+     *
+     * @return \KmbDomain\Model\RevisionInterface
+     */
+    public function getCurrentRevision()
+    {
+        return $this->currentRevision;
+    }
+
+    /**
+     * Set LastReleasedRevision.
+     *
+     * @param \KmbDomain\Model\RevisionInterface $lastReleasedRevision
+     * @return Environment
+     */
+    public function setLastReleasedRevision($lastReleasedRevision)
+    {
+        $this->lastReleasedRevision = $lastReleasedRevision;
+        return $this;
+    }
+
+    /**
+     * Get LastReleasedRevision.
+     *
+     * @return \KmbDomain\Model\RevisionInterface
+     */
+    public function getLastReleasedRevision()
+    {
+        return $this->lastReleasedRevision;
+    }
+
+    /**
+     * Set ReleasedRevisions.
+     *
+     * @param \KmbDomain\Model\RevisionInterface[] $releasedRevisions
+     * @return Environment
+     */
+    public function setReleasedRevisions($releasedRevisions)
+    {
+        $this->releasedRevisions = $releasedRevisions;
+        return $this;
+    }
+
+    /**
+     * Get ReleasedRevisions.
+     *
+     * @return \KmbDomain\Model\RevisionInterface[]
+     */
+    public function getReleasedRevisions()
+    {
+        return $this->releasedRevisions;
     }
 
     /**
