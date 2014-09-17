@@ -27,7 +27,7 @@ interface RevisionInterface extends AggregateRootInterface
     /**
      * Set Environment.
      *
-     * @param \KmbDomain\Model\Environment $environment
+     * @param \KmbDomain\Model\EnvironmentInterface $environment
      * @return Revision
      */
     public function setEnvironment($environment);
@@ -35,7 +35,7 @@ interface RevisionInterface extends AggregateRootInterface
     /**
      * Get Environment.
      *
-     * @return \KmbDomain\Model\Environment
+     * @return \KmbDomain\Model\EnvironmentInterface
      */
     public function getEnvironment();
 

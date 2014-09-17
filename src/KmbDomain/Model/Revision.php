@@ -25,7 +25,7 @@ class Revision implements RevisionInterface
     /** @var int */
     protected $id;
 
-    /** @var Environment */
+    /** @var EnvironmentInterface */
     protected $environment;
 
     /** @var \DateTime */
@@ -44,7 +44,7 @@ class Revision implements RevisionInterface
     protected $comment;
 
     /**
-     * @param Environment $environment
+     * @param EnvironmentInterface $environment
      */
     public function __construct($environment = null)
     {
@@ -76,7 +76,7 @@ class Revision implements RevisionInterface
     /**
      * Set Environment.
      *
-     * @param \KmbDomain\Model\Environment $environment
+     * @param \KmbDomain\Model\EnvironmentInterface $environment
      * @return Revision
      */
     public function setEnvironment($environment)
@@ -88,7 +88,7 @@ class Revision implements RevisionInterface
     /**
      * Get Environment.
      *
-     * @return \KmbDomain\Model\Environment
+     * @return \KmbDomain\Model\EnvironmentInterface
      */
     public function getEnvironment()
     {
