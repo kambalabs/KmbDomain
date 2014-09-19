@@ -28,7 +28,7 @@ interface ValueInterface extends AggregateRootInterface
      * Set Name.
      *
      * @param string $name
-     * @return Value
+     * @return ValueInterface
      */
     public function setName($name);
 
@@ -43,7 +43,7 @@ interface ValueInterface extends AggregateRootInterface
      * Set Parameter.
      *
      * @param \KmbDomain\Model\ParameterInterface $parameter
-     * @return Value
+     * @return ValueInterface
      */
     public function setParameter($parameter);
 

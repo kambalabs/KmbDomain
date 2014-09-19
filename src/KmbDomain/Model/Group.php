@@ -25,10 +25,10 @@ class Group implements GroupInterface
     /** @var int */
     protected $id;
 
-    /** @var Revision */
+    /** @var RevisionInterface */
     protected $revision;
 
-    /** @var Environment */
+    /** @var EnvironmentInterface */
     protected $environment;
 
     /** @var string */
@@ -43,7 +43,7 @@ class Group implements GroupInterface
     /** @var int */
     protected $ordering;
 
-    /** @var PuppetClass[] */
+    /** @var PuppetClassInterface[] */
     protected $classes;
 
     /**
@@ -79,7 +79,7 @@ class Group implements GroupInterface
     /**
      * Set Revision.
      *
-     * @param \KmbDomain\Model\Revision $revision
+     * @param \KmbDomain\Model\RevisionInterface $revision
      * @return Group
      */
     public function setRevision($revision)
@@ -91,7 +91,7 @@ class Group implements GroupInterface
     /**
      * Get Revision.
      *
-     * @return \KmbDomain\Model\Revision
+     * @return \KmbDomain\Model\RevisionInterface
      */
     public function getRevision()
     {
@@ -101,7 +101,7 @@ class Group implements GroupInterface
     /**
      * Set Environment.
      *
-     * @param \KmbDomain\Model\Environment $environment
+     * @param \KmbDomain\Model\EnvironmentInterface $environment
      * @return Group
      */
     public function setEnvironment($environment)
@@ -113,7 +113,7 @@ class Group implements GroupInterface
     /**
      * Get Environment.
      *
-     * @return \KmbDomain\Model\Environment
+     * @return \KmbDomain\Model\EnvironmentInterface
      */
     public function getEnvironment()
     {
@@ -211,7 +211,7 @@ class Group implements GroupInterface
     /**
      * Set Classes.
      *
-     * @param \KmbDomain\Model\PuppetClass[] $classes
+     * @param \KmbDomain\Model\PuppetClassInterface[] $classes
      * @return Group
      */
     public function setClasses($classes)
@@ -223,7 +223,7 @@ class Group implements GroupInterface
     /**
      * Get Classes.
      *
-     * @return \KmbDomain\Model\PuppetClass[]
+     * @return \KmbDomain\Model\PuppetClassInterface[]
      */
     public function getClasses()
     {

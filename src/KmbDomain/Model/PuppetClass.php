@@ -28,10 +28,10 @@ class PuppetClass implements PuppetClassInterface
     /** @var string */
     protected $name;
 
-    /** @var Group */
+    /** @var GroupInterface */
     protected $group;
 
-    /** @var Parameter[] */
+    /** @var ParameterInterface[] */
     protected $parameters;
 
     /**
@@ -81,7 +81,7 @@ class PuppetClass implements PuppetClassInterface
     /**
      * Set Group.
      *
-     * @param \KmbDomain\Model\Group $group
+     * @param \KmbDomain\Model\GroupInterface $group
      * @return PuppetClass
      */
     public function setGroup($group)
@@ -93,7 +93,7 @@ class PuppetClass implements PuppetClassInterface
     /**
      * Get Group.
      *
-     * @return \KmbDomain\Model\Group
+     * @return \KmbDomain\Model\GroupInterface
      */
     public function getGroup()
     {
@@ -103,7 +103,7 @@ class PuppetClass implements PuppetClassInterface
     /**
      * Set Parameters.
      *
-     * @param \KmbDomain\Model\Parameter[] $parameters
+     * @param \KmbDomain\Model\ParameterInterface[] $parameters
      * @return PuppetClass
      */
     public function setParameters($parameters)
@@ -115,7 +115,7 @@ class PuppetClass implements PuppetClassInterface
     /**
      * Get Parameters.
      *
-     * @return \KmbDomain\Model\Parameter[]
+     * @return \KmbDomain\Model\ParameterInterface[]
      */
     public function getParameters()
     {

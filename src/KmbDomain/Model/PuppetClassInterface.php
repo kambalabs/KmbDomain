@@ -28,7 +28,7 @@ interface PuppetClassInterface extends AggregateRootInterface
      * Set Name.
      *
      * @param string $name
-     * @return PuppetClass
+     * @return PuppetClassInterface
      */
     public function setName($name);
 
@@ -42,30 +42,30 @@ interface PuppetClassInterface extends AggregateRootInterface
     /**
      * Set Group.
      *
-     * @param \KmbDomain\Model\Group $group
-     * @return PuppetClass
+     * @param \KmbDomain\Model\GroupInterface $group
+     * @return PuppetClassInterface
      */
     public function setGroup($group);
 
     /**
      * Get Group.
      *
-     * @return \KmbDomain\Model\Group
+     * @return \KmbDomain\Model\GroupInterface
      */
     public function getGroup();
 
     /**
      * Set Parameters.
      *
-     * @param \KmbDomain\Model\Parameter[] $parameters
-     * @return PuppetClass
+     * @param \KmbDomain\Model\ParameterInterface[] $parameters
+     * @return PuppetClassInterface
      */
     public function setParameters($parameters);
 
     /**
      * Get Parameters.
      *
-     * @return \KmbDomain\Model\Parameter[]
+     * @return \KmbDomain\Model\ParameterInterface[]
      */
     public function getParameters();
 }

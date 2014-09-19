@@ -27,7 +27,7 @@ interface GroupInterface extends AggregateRootInterface
     /**
      * Set Revision.
      *
-     * @param \KmbDomain\Model\Revision $revision
+     * @param \KmbDomain\Model\RevisionInterface $revision
      * @return Group
      */
     public function setRevision($revision);
@@ -35,14 +35,14 @@ interface GroupInterface extends AggregateRootInterface
     /**
      * Get Revision.
      *
-     * @return \KmbDomain\Model\Revision
+     * @return \KmbDomain\Model\RevisionInterface
      */
     public function getRevision();
 
     /**
      * Set Environment.
      *
-     * @param \KmbDomain\Model\Environment $environment
+     * @param \KmbDomain\Model\EnvironmentInterface $environment
      * @return Group
      */
     public function setEnvironment($environment);
@@ -50,7 +50,7 @@ interface GroupInterface extends AggregateRootInterface
     /**
      * Get Environment.
      *
-     * @return \KmbDomain\Model\Environment
+     * @return \KmbDomain\Model\EnvironmentInterface
      */
     public function getEnvironment();
 
@@ -117,7 +117,7 @@ interface GroupInterface extends AggregateRootInterface
     /**
      * Set Classes.
      *
-     * @param \KmbDomain\Model\PuppetClass[] $classes
+     * @param \KmbDomain\Model\PuppetClassInterface[] $classes
      * @return Group
      */
     public function setClasses($classes);
@@ -125,7 +125,7 @@ interface GroupInterface extends AggregateRootInterface
     /**
      * Get Classes.
      *
-     * @return \KmbDomain\Model\PuppetClass[]
+     * @return \KmbDomain\Model\PuppetClassInterface[]
      */
     public function getClasses();
 }
