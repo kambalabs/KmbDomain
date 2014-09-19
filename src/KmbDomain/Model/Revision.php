@@ -229,4 +229,28 @@ class Revision implements RevisionInterface
     {
         return $this->groups;
     }
+
+    /**
+     * @return bool
+     */
+    public function hasGroups()
+    {
+        return count($this->groups) > 0;
+    }
+
+    /**
+     * @param string $name
+     * @return bool
+     */
+    public function hasGroupWithName($name)
+    {
+        if ($this->hasGroups()) {
+            foreach ($this->groups as $group) {
+                if ($group->getName() === $name) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }

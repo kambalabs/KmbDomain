@@ -128,4 +128,15 @@ interface RevisionInterface extends AggregateRootInterface
      * @return \KmbDomain\Model\GroupInterface[]
      */
     public function getGroups();
+
+    /**
+     * @return bool
+     */
+    public function hasGroups();
+
+    /**
+     * @param string $name
+     * @return bool
+     */
+    public function hasGroupWithName($name);
 }
