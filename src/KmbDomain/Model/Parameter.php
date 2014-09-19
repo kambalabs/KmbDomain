@@ -20,13 +20,10 @@
  */
 namespace KmbDomain\Model;
 
-class Parameter
+class Parameter implements ParameterInterface
 {
     /** @var int */
     protected $id;
-
-    /** @var PuppetClass */
-    protected $class;
 
     /** @var string */
     protected $name;
@@ -34,13 +31,169 @@ class Parameter
     /** @var int */
     protected $ordering = 0;
 
-    /** @var Parameter */
-    protected $parent;
+    /** @var PuppetClassInterface */
+    protected $class;
 
-    /** @var Value[] */
+    /** @var ValueInterface[] */
     protected $values;
 
-    /** @var Parameter[] */
+    /** @var ParameterInterface */
+    protected $parent;
+
+    /** @var ParameterInterface[] */
     protected $children;
 
+    /**
+     * Set Id.
+     *
+     * @param int $id
+     * @return Parameter
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * Get Id.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set Name.
+     *
+     * @param string $name
+     * @return Parameter
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * Get Name.
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set Ordering.
+     *
+     * @param int $ordering
+     * @return Parameter
+     */
+    public function setOrdering($ordering)
+    {
+        $this->ordering = $ordering;
+        return $this;
+    }
+
+    /**
+     * Get Ordering.
+     *
+     * @return int
+     */
+    public function getOrdering()
+    {
+        return $this->ordering;
+    }
+
+    /**
+     * Set Class.
+     *
+     * @param \KmbDomain\Model\PuppetClassInterface $class
+     * @return Parameter
+     */
+    public function setClass($class)
+    {
+        $this->class = $class;
+        return $this;
+    }
+
+    /**
+     * Get Class.
+     *
+     * @return \KmbDomain\Model\PuppetClassInterface
+     */
+    public function getClass()
+    {
+        return $this->class;
+    }
+
+    /**
+     * Set Values.
+     *
+     * @param \KmbDomain\Model\ValueInterface[] $values
+     * @return Parameter
+     */
+    public function setValues($values)
+    {
+        $this->values = $values;
+        return $this;
+    }
+
+    /**
+     * Get Values.
+     *
+     * @return \KmbDomain\Model\ValueInterface[]
+     */
+    public function getValues()
+    {
+        return $this->values;
+    }
+
+    /**
+     * Set Parent.
+     *
+     * @param \KmbDomain\Model\ParameterInterface $parent
+     * @return Parameter
+     */
+    public function setParent($parent)
+    {
+        $this->parent = $parent;
+        return $this;
+    }
+
+    /**
+     * Get Parent.
+     *
+     * @return \KmbDomain\Model\ParameterInterface
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * Set Children.
+     *
+     * @param \KmbDomain\Model\ParameterInterface[] $children
+     * @return Parameter
+     */
+    public function setChildren($children)
+    {
+        $this->children = $children;
+        return $this;
+    }
+
+    /**
+     * Get Children.
+     *
+     * @return \KmbDomain\Model\ParameterInterface[]
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
 }

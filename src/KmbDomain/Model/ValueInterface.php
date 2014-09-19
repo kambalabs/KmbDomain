@@ -20,60 +20,24 @@
  */
 namespace KmbDomain\Model;
 
-class Value implements ValueInterface
+use GtnPersistBase\Model\AggregateRootInterface;
+
+interface ValueInterface extends AggregateRootInterface
 {
-    /** @var int */
-    protected $id;
-
-    /** @var string */
-    protected $name;
-
-    /** @var ParameterInterface */
-    protected $parameter;
-
-    /**
-     * Set Id.
-     *
-     * @param int $id
-     * @return Value
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
-     * Get Id.
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
     /**
      * Set Name.
      *
      * @param string $name
      * @return Value
      */
-    public function setName($name)
-    {
-        $this->name = $name;
-        return $this;
-    }
+    public function setName($name);
 
     /**
      * Get Name.
      *
      * @return string
      */
-    public function getName()
-    {
-        return $this->name;
-    }
+    public function getName();
 
     /**
      * Set Parameter.
@@ -81,19 +45,12 @@ class Value implements ValueInterface
      * @param \KmbDomain\Model\ParameterInterface $parameter
      * @return Value
      */
-    public function setParameter($parameter)
-    {
-        $this->parameter = $parameter;
-        return $this;
-    }
+    public function setParameter($parameter);
 
     /**
      * Get Parameter.
      *
      * @return \KmbDomain\Model\ParameterInterface
      */
-    public function getParameter()
-    {
-        return $this->parameter;
-    }
+    public function getParameter();
 }

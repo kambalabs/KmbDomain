@@ -47,6 +47,14 @@ class Group implements GroupInterface
     protected $classes;
 
     /**
+     * @param string $name
+     */
+    public function __construct($name = null)
+    {
+        $this->setName($name);
+    }
+
+    /**
      * Set Id.
      *
      * @param int $id

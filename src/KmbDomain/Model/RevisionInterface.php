@@ -113,4 +113,19 @@ interface RevisionInterface extends AggregateRootInterface
      * @return string
      */
     public function getComment();
+
+    /**
+     * Set Groups.
+     *
+     * @param \KmbDomain\Model\GroupInterface[] $groups
+     * @return Revision
+     */
+    public function setGroups($groups);
+
+    /**
+     * Get Groups.
+     *
+     * @return \KmbDomain\Model\GroupInterface[]
+     */
+    public function getGroups();
 }

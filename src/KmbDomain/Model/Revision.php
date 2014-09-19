@@ -43,6 +43,9 @@ class Revision implements RevisionInterface
     /** @var string */
     protected $comment;
 
+    /** @var GroupInterface[] */
+    protected $groups;
+
     /**
      * @param EnvironmentInterface $environment
      */
@@ -203,5 +206,27 @@ class Revision implements RevisionInterface
     public function getComment()
     {
         return $this->comment;
+    }
+
+    /**
+     * Set Groups.
+     *
+     * @param \KmbDomain\Model\GroupInterface[] $groups
+     * @return Revision
+     */
+    public function setGroups($groups)
+    {
+        $this->groups = $groups;
+        return $this;
+    }
+
+    /**
+     * Get Groups.
+     *
+     * @return \KmbDomain\Model\GroupInterface[]
+     */
+    public function getGroups()
+    {
+        return $this->groups;
     }
 }

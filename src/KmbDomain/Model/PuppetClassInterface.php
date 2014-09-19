@@ -20,63 +20,24 @@
  */
 namespace KmbDomain\Model;
 
-class PuppetClass implements PuppetClassInterface
+use GtnPersistBase\Model\AggregateRootInterface;
+
+interface PuppetClassInterface extends AggregateRootInterface
 {
-    /** @var  int */
-    protected $id;
-
-    /** @var string */
-    protected $name;
-
-    /** @var Group */
-    protected $group;
-
-    /** @var Parameter[] */
-    protected $parameters;
-
-    /**
-     * Set Id.
-     *
-     * @param int $id
-     * @return PuppetClass
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
-     * Get Id.
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
     /**
      * Set Name.
      *
      * @param string $name
      * @return PuppetClass
      */
-    public function setName($name)
-    {
-        $this->name = $name;
-        return $this;
-    }
+    public function setName($name);
 
     /**
      * Get Name.
      *
      * @return string
      */
-    public function getName()
-    {
-        return $this->name;
-    }
+    public function getName();
 
     /**
      * Set Group.
@@ -84,21 +45,14 @@ class PuppetClass implements PuppetClassInterface
      * @param \KmbDomain\Model\Group $group
      * @return PuppetClass
      */
-    public function setGroup($group)
-    {
-        $this->group = $group;
-        return $this;
-    }
+    public function setGroup($group);
 
     /**
      * Get Group.
      *
      * @return \KmbDomain\Model\Group
      */
-    public function getGroup()
-    {
-        return $this->group;
-    }
+    public function getGroup();
 
     /**
      * Set Parameters.
@@ -106,19 +60,12 @@ class PuppetClass implements PuppetClassInterface
      * @param \KmbDomain\Model\Parameter[] $parameters
      * @return PuppetClass
      */
-    public function setParameters($parameters)
-    {
-        $this->parameters = $parameters;
-        return $this;
-    }
+    public function setParameters($parameters);
 
     /**
      * Get Parameters.
      *
      * @return \KmbDomain\Model\Parameter[]
      */
-    public function getParameters()
-    {
-        return $this->parameters;
-    }
+    public function getParameters();
 }
