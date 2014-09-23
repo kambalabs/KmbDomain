@@ -40,21 +40,6 @@ interface ParameterInterface extends AggregateRootInterface
     public function getName();
 
     /**
-     * Set Ordering.
-     *
-     * @param int $ordering
-     * @return ParameterInterface
-     */
-    public function setOrdering($ordering);
-
-    /**
-     * Get Ordering.
-     *
-     * @return int
-     */
-    public function getOrdering();
-
-    /**
      * Set Class.
      *
      * @param \KmbDomain\Model\PuppetClassInterface $class
@@ -100,6 +85,11 @@ interface ParameterInterface extends AggregateRootInterface
     public function getParent();
 
     /**
+     * @return bool
+     */
+    public function hasParent();
+
+    /**
      * Set Children.
      *
      * @param \KmbDomain\Model\ParameterInterface[] $children
@@ -113,4 +103,9 @@ interface ParameterInterface extends AggregateRootInterface
      * @return \KmbDomain\Model\ParameterInterface[]
      */
     public function getChildren();
+
+    /**
+     * @return bool
+     */
+    public function hasChildren();
 }

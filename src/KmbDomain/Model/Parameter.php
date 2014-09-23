@@ -28,9 +28,6 @@ class Parameter implements ParameterInterface
     /** @var string */
     protected $name;
 
-    /** @var int */
-    protected $ordering = 0;
-
     /** @var PuppetClassInterface */
     protected $class;
 
@@ -85,28 +82,6 @@ class Parameter implements ParameterInterface
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set Ordering.
-     *
-     * @param int $ordering
-     * @return Parameter
-     */
-    public function setOrdering($ordering)
-    {
-        $this->ordering = $ordering;
-        return $this;
-    }
-
-    /**
-     * Get Ordering.
-     *
-     * @return int
-     */
-    public function getOrdering()
-    {
-        return $this->ordering;
     }
 
     /**
@@ -176,6 +151,14 @@ class Parameter implements ParameterInterface
     }
 
     /**
+     * @return bool
+     */
+    public function hasParent()
+    {
+        return $this->parent !== null;
+    }
+
+    /**
      * Set Children.
      *
      * @param \KmbDomain\Model\ParameterInterface[] $children
@@ -195,5 +178,13 @@ class Parameter implements ParameterInterface
     public function getChildren()
     {
         return $this->children;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasChildren()
+    {
+        return !empty($this->children);
     }
 }
