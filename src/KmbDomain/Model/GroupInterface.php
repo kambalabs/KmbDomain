@@ -28,7 +28,7 @@ interface GroupInterface extends AggregateRootInterface
      * Set Revision.
      *
      * @param \KmbDomain\Model\RevisionInterface $revision
-     * @return Group
+     * @return GroupInterface
      */
     public function setRevision($revision);
 
@@ -43,7 +43,7 @@ interface GroupInterface extends AggregateRootInterface
      * Set Environment.
      *
      * @param \KmbDomain\Model\EnvironmentInterface $environment
-     * @return Group
+     * @return GroupInterface
      */
     public function setEnvironment($environment);
 
@@ -58,7 +58,7 @@ interface GroupInterface extends AggregateRootInterface
      * Set Name.
      *
      * @param string $name
-     * @return Group
+     * @return GroupInterface
      */
     public function setName($name);
 
@@ -73,7 +73,7 @@ interface GroupInterface extends AggregateRootInterface
      * Set IncludePattern.
      *
      * @param string $includePattern
-     * @return Group
+     * @return GroupInterface
      */
     public function setIncludePattern($includePattern);
 
@@ -88,7 +88,7 @@ interface GroupInterface extends AggregateRootInterface
      * Set ExcludePattern.
      *
      * @param string $excludePattern
-     * @return Group
+     * @return GroupInterface
      */
     public function setExcludePattern($excludePattern);
 
@@ -103,7 +103,7 @@ interface GroupInterface extends AggregateRootInterface
      * Set Ordering.
      *
      * @param int $ordering
-     * @return Group
+     * @return GroupInterface
      */
     public function setOrdering($ordering);
 
@@ -118,9 +118,17 @@ interface GroupInterface extends AggregateRootInterface
      * Set Classes.
      *
      * @param \KmbDomain\Model\PuppetClassInterface[] $classes
-     * @return Group
+     * @return GroupInterface
      */
     public function setClasses($classes);
+
+    /**
+     * Add specified class.
+     *
+     * @param PuppetClassInterface $class
+     * @return GroupInterface
+     */
+    public function addClass($class);
 
     /**
      * Get Classes.
@@ -128,4 +136,21 @@ interface GroupInterface extends AggregateRootInterface
      * @return \KmbDomain\Model\PuppetClassInterface[]
      */
     public function getClasses();
+
+    /**
+     * @return bool
+     */
+    public function hasClasses();
+
+    /**
+     * @param string $name
+     * @return PuppetClassInterface
+     */
+    public function getClassByName($name);
+
+    /**
+     * @param string $name
+     * @return bool
+     */
+    public function hasClassWithName($name);
 }

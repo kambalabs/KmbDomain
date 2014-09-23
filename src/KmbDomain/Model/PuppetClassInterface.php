@@ -63,9 +63,34 @@ interface PuppetClassInterface extends AggregateRootInterface
     public function setParameters($parameters);
 
     /**
+     * Add specified parameter.
+     *
+     * @param \KmbDomain\Model\ParameterInterface
+     * @return PuppetClassInterface
+     */
+    public function addParameter($parameter);
+
+    /**
      * Get Parameters.
      *
      * @return \KmbDomain\Model\ParameterInterface[]
      */
     public function getParameters();
+
+    /**
+     * @return bool
+     */
+    public function hasParameters();
+
+    /**
+     * @param string $name
+     * @return \KmbDomain\Model\ParameterInterface
+     */
+    public function getParameterByName($name);
+
+    /**
+     * @param string $name
+     * @return bool
+     */
+    public function hasParameterWithName($name);
 }

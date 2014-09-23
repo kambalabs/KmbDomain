@@ -221,6 +221,18 @@ class Group implements GroupInterface
     }
 
     /**
+     * Add specified class.
+     *
+     * @param PuppetClassInterface $class
+     * @return Group
+     */
+    public function addClass($class)
+    {
+        $this->classes[] = $class;
+        return $this;
+    }
+
+    /**
      * Get Classes.
      *
      * @return \KmbDomain\Model\PuppetClassInterface[]
@@ -228,5 +240,37 @@ class Group implements GroupInterface
     public function getClasses()
     {
         return $this->classes;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasClasses()
+    {
+        return count($this->classes) > 0;
+    }
+
+    /**
+     * @param string $name
+     * @return PuppetClassInterface
+     */
+    public function getClassByName($name)
+    {
+        if ($this->hasClasses()) {
+            foreach ($this->classes as $class) {
+                if ($class->getName() === $name) {
+                    return $class;
+                }
+            }
+        }
+    }
+
+    /**
+     * @param string $name
+     * @return bool
+     */
+    public function hasClassWithName($name)
+    {
+        return $this->getClassByName($name) !== null;
     }
 }

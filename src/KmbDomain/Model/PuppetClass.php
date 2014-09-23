@@ -113,6 +113,18 @@ class PuppetClass implements PuppetClassInterface
     }
 
     /**
+     * Add specified parameter.
+     *
+     * @param \KmbDomain\Model\ParameterInterface
+     * @return PuppetClass
+     */
+    public function addParameter($parameter)
+    {
+        $this->parameters[] = $parameter;
+        return $this;
+    }
+
+    /**
      * Get Parameters.
      *
      * @return \KmbDomain\Model\ParameterInterface[]
@@ -120,5 +132,37 @@ class PuppetClass implements PuppetClassInterface
     public function getParameters()
     {
         return $this->parameters;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasParameters()
+    {
+        return count($this->parameters) > 0;
+    }
+
+    /**
+     * @param string $name
+     * @return \KmbDomain\Model\ParameterInterface
+     */
+    public function getParameterByName($name)
+    {
+        if ($this->hasParameters()) {
+            foreach ($this->parameters as $parameter) {
+                if ($parameter->getName() === $name) {
+                    return $parameter;
+                }
+            }
+        }
+    }
+
+    /**
+     * @param string $name
+     * @return bool
+     */
+    public function hasParameterWithName($name)
+    {
+        return $this->getParameterByName($name) !== null;
     }
 }

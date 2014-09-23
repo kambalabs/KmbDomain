@@ -119,6 +119,18 @@ class Parameter implements ParameterInterface
     }
 
     /**
+     * Add specified value.
+     *
+     * @param \KmbDomain\Model\ValueInterface $value
+     * @return Parameter
+     */
+    public function addValue($value)
+    {
+        $this->values[] = $value;
+        return $this;
+    }
+
+    /**
      * Get Values.
      *
      * @return \KmbDomain\Model\ValueInterface[]
@@ -126,6 +138,38 @@ class Parameter implements ParameterInterface
     public function getValues()
     {
         return $this->values;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasValues()
+    {
+        return count($this->values) > 0;
+    }
+
+    /**
+     * @param string $name
+     * @return \KmbDomain\Model\ValueInterface
+     */
+    public function getValueByName($name)
+    {
+        if ($this->hasValues()) {
+            foreach ($this->values as $value) {
+                if ($value->getName() === $name) {
+                    return $value;
+                }
+            }
+        }
+    }
+
+    /**
+     * @param string $name
+     * @return bool
+     */
+    public function hasValueWithName($name)
+    {
+        return $this->getValueByName($name) !== null;
     }
 
     /**
@@ -171,6 +215,18 @@ class Parameter implements ParameterInterface
     }
 
     /**
+     * Add specified child.
+     *
+     * @param \KmbDomain\Model\ParameterInterface $child
+     * @return Parameter
+     */
+    public function addChild($child)
+    {
+        $this->children[] = $child;
+        return $this;
+    }
+
+    /**
      * Get Children.
      *
      * @return \KmbDomain\Model\ParameterInterface[]
@@ -186,5 +242,29 @@ class Parameter implements ParameterInterface
     public function hasChildren()
     {
         return !empty($this->children);
+    }
+
+    /**
+     * @param string $name
+     * @return \KmbDomain\Model\ParameterInterface
+     */
+    public function getChildByName($name)
+    {
+        if ($this->hasChildren()) {
+            foreach ($this->children as $child) {
+                if ($child->getName() === $name) {
+                    return $child;
+                }
+            }
+        }
+    }
+
+    /**
+     * @param string $name
+     * @return bool
+     */
+    public function hasChildWithName($name)
+    {
+        return $this->getChildByName($name) !== null;
     }
 }
