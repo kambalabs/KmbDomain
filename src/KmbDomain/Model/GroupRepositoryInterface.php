@@ -25,6 +25,12 @@ use GtnPersistBase\Model\RepositoryInterface;
 interface GroupRepositoryInterface extends RepositoryInterface
 {
     /**
+     * @param int[] ids
+     * @return GroupInterface[]
+     */
+    public function getAllByIds(array $ids);
+
+    /**
      * @param RevisionInterface $revision
      * @return GroupInterface
      */
