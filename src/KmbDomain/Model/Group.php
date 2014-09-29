@@ -35,10 +35,10 @@ class Group implements GroupInterface
     protected $name;
 
     /** @var string */
-    protected $includePattern;
+    protected $includePattern = '';
 
     /** @var string */
-    protected $excludePattern;
+    protected $excludePattern = '';
 
     /** @var int */
     protected $ordering;
