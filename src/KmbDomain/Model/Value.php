@@ -32,6 +32,16 @@ class Value implements ValueInterface
     protected $parameter;
 
     /**
+     * @param string             $name
+     * @param ParameterInterface $parameter
+     */
+    public function __construct($name = null, $parameter = null)
+    {
+        $this->name = $name;
+        $this->parameter = $parameter;
+    }
+
+    /**
      * Set Id.
      *
      * @param int $id
