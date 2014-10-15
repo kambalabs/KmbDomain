@@ -49,10 +49,14 @@ class PuppetClassFactory implements PuppetClassFactoryInterface
                 if ($parameterTemplate->required) {
                     $parameter = new Parameter();
                     $parameter->setName($parameterTemplate->name);
-                    if (($parameterTemplate->type == ParameterType::HASHTABLE || $parameterTemplate->type == ParameterType::EDITABLE_HASHTABLE) && isset($parameterTemplate->entries)) {
+                    if ($parameterTemplate->type == ParameterType::HASHTABLE && isset($parameterTemplate->entries)) {
                         $parameter->setChildren($this->createParameters($parameterTemplate->entries));
                     } elseif (!$parameterTemplate->multiple_values && $parameterTemplate->type != ParameterType::HASHTABLE && $parameterTemplate->type != ParameterType::EDITABLE_HASHTABLE) {
-                        $value = empty($parameterTemplate->values) ? '' : $parameterTemplate->values[0];
+                        if ($parameterTemplate->type == ParameterType::BOOLEAN) {
+                            $value = true;
+                        } else {
+                            $value = empty($parameterTemplate->values) ? '' : $parameterTemplate->values[0];
+                        }
                         $parameter->addValue(new Value($value));
                     }
                     $parameters[] = $parameter;

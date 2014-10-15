@@ -2,7 +2,9 @@
 namespace KmbDomainTest\Model;
 
 use KmbDomain\Model\Parameter;
+use KmbDomain\Model\ParameterType;
 use KmbDomain\Model\Value;
+use Zend\Json\Json;
 
 class ParameterTest extends \PHPUnit_Framework_TestCase
 {
@@ -34,6 +36,7 @@ class ParameterTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($child, $parameter->getChildByName('DocumentRoot'));
     }
+
     /** @test */
     public function canAddValue()
     {

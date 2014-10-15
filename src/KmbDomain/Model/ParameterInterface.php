@@ -153,4 +153,56 @@ interface ParameterInterface extends AggregateRootInterface
      * @return bool
      */
     public function hasChildWithName($name);
+
+    /**
+     * Set Template.
+     *
+     * @param \stdClass $template
+     * @return ParameterInterface
+     */
+    public function setTemplate($template);
+
+    /**
+     * Get Template.
+     *
+     * @return \stdClass
+     */
+    public function getTemplate();
+
+    /**
+     * Check if template is set.
+     *
+     * @return bool
+     */
+    public function hasTemplate();
+
+    /**
+     * Set available siblings.
+     *
+     * @param \stdClass[] $availableSiblings
+     * @return ParameterInterface
+     */
+    public function setAvailableSiblings($availableSiblings);
+
+    /**
+     * Get available siblings.
+     *
+     * @return \stdClass[]
+     */
+    public function getAvailableSiblings();
+
+    /**
+     * Set AvailableValues.
+     *
+     * @param array $availableValues
+     * @return ParameterInterface
+     */
+    public function setAvailableValues($availableValues);
+
+    /**
+     * Get AvailableValues.
+     *
+     * @return array
+     */
+    public function getAvailableValues();
 }

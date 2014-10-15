@@ -2,7 +2,9 @@
 namespace KmbDomainTest\Model;
 
 use KmbDomain\Model\Parameter;
+use KmbDomain\Model\ParameterType;
 use KmbDomain\Model\PuppetClass;
+use Zend\Json\Json;
 
 class PuppetClassTest extends \PHPUnit_Framework_TestCase
 {

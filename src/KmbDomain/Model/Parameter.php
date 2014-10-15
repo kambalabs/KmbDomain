@@ -40,6 +40,15 @@ class Parameter implements ParameterInterface
     /** @var ParameterInterface[] */
     protected $children;
 
+    /** @var  \stdClass */
+    protected $template;
+
+    /** @var  \stdClass[] */
+    protected $availableSiblings;
+
+    /** @var  array */
+    protected $availableValues = [];
+
     /**
      * Set Id.
      *
@@ -266,5 +275,81 @@ class Parameter implements ParameterInterface
     public function hasChildWithName($name)
     {
         return $this->getChildByName($name) !== null;
+    }
+
+    /**
+     * Set Template.
+     *
+     * @param \stdClass $template
+     * @return Parameter
+     */
+    public function setTemplate($template)
+    {
+        $this->template = $template;
+        return $this;
+    }
+
+    /**
+     * Get Template.
+     *
+     * @return \stdClass
+     */
+    public function getTemplate()
+    {
+        return $this->template;
+    }
+
+    /**
+     * Check if template is set.
+     *
+     * @return bool
+     */
+    public function hasTemplate()
+    {
+        return $this->template !== null;
+    }
+
+    /**
+     * Set AvailableTemplates.
+     *
+     * @param \stdClass[] $availableSiblings
+     * @return Parameter
+     */
+    public function setAvailableSiblings($availableSiblings)
+    {
+        $this->availableSiblings = $availableSiblings;
+        return $this;
+    }
+
+    /**
+     * Get AvailableTemplates.
+     *
+     * @return \stdClass[]
+     */
+    public function getAvailableSiblings()
+    {
+        return $this->availableSiblings;
+    }
+
+    /**
+     * Set AvailableValues.
+     *
+     * @param array $availableValues
+     * @return Parameter
+     */
+    public function setAvailableValues($availableValues)
+    {
+        $this->availableValues = $availableValues;
+        return $this;
+    }
+
+    /**
+     * Get AvailableValues.
+     *
+     * @return array
+     */
+    public function getAvailableValues()
+    {
+        return $this->availableValues;
     }
 }
