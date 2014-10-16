@@ -41,7 +41,7 @@ class ClassTemplatesHydrator implements ClassTemplatesHydratorInterface
             $parameter = $class->getParameterByName($template->name);
             if ($parameter != null) {
                 $this->parameterTemplateHydrator->hydrate($template, $parameter);
-                $parameter->setAvailableSiblings(array_values($availableParameters));
+                $parameter->setAvailableChildren(array_values($availableParameters));
             }
         }
     }

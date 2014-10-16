@@ -44,7 +44,7 @@ class Parameter implements ParameterInterface
     protected $template;
 
     /** @var  \stdClass[] */
-    protected $availableSiblings = [];
+    protected $availableChildren = [];
 
     /** @var  array */
     protected $availableValues = [];
@@ -295,25 +295,33 @@ class Parameter implements ParameterInterface
     }
 
     /**
-     * Set AvailableTemplates.
+     * Set Available Children.
      *
-     * @param \stdClass[] $availableSiblings
+     * @param \stdClass[] $availableChildren
      * @return Parameter
      */
-    public function setAvailableSiblings($availableSiblings)
+    public function setAvailableChildren($availableChildren)
     {
-        $this->availableSiblings = $availableSiblings;
+        $this->availableChildren = $availableChildren;
         return $this;
     }
 
     /**
-     * Get AvailableTemplates.
+     * Get Available Children.
      *
      * @return \stdClass[]
      */
-    public function getAvailableSiblings()
+    public function getAvailableChildren()
     {
-        return $this->availableSiblings;
+        return $this->availableChildren;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasAvailableChildren()
+    {
+        return !empty($this->availableChildren);
     }
 
     /**
@@ -336,5 +344,13 @@ class Parameter implements ParameterInterface
     public function getAvailableValues()
     {
         return $this->availableValues;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasAvailableValues()
+    {
+        return !empty($this->availableValues);
     }
 }

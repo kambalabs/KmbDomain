@@ -50,9 +50,9 @@ class ParameterTemplatesHydratorTest extends \PHPUnit_Framework_TestCase
         $child1Template = $child1->getTemplate();
         $this->assertNotNull($child1Template);
         $this->assertEquals('user', $child1Template->name);
-        $availableSiblings = $child1->getAvailableSiblings();
-        $this->assertEquals(1, count($availableSiblings));
-        $this->assertEquals('group', $availableSiblings[0]->name);
+        $availableChildren = $parameter->getAvailableChildren();
+        $this->assertEquals(1, count($availableChildren));
+        $this->assertEquals('group', $availableChildren[0]->name);
     }
 
     /** @test */
@@ -81,9 +81,9 @@ class ParameterTemplatesHydratorTest extends \PHPUnit_Framework_TestCase
         $granchild1Template = $granchild1->getTemplate();
         $this->assertNotNull($granchild1Template);
         $this->assertEquals('user', $granchild1Template->name);
-        $availableSiblings = $granchild1->getAvailableSiblings();
-        $this->assertEquals(3, count($availableSiblings));
-        $this->assertEquals('group', $availableSiblings[0]->name);
+        $availableChildren = $child->getAvailableChildren();
+        $this->assertEquals(3, count($availableChildren));
+        $this->assertEquals('group', $availableChildren[0]->name);
         $this->assertEquals(['jmiller', 'psmith'], $granchild1->getAvailableValues());
     }
 

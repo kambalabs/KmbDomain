@@ -54,11 +54,11 @@ class ParameterTemplateHydrator implements ParameterTemplateHydratorInterface
             $availableChildren = array_filter($template->entries, function ($entry) use ($parameter) {
                 return !$parameter->hasChildWithName($entry->name);
             });
+            $parameter->setAvailableChildren(array_values($availableChildren));
             foreach ($template->entries as $entry) {
                 $child = $parameter->getChildByName($entry->name);
                 if ($child != null) {
                     $this->hydrate($entry, $child);
-                    $child->setAvailableSiblings(array_values($availableChildren));
                 }
             }
         } elseif (!empty($template->values) && ($template->type == ParameterType::PREDEFINED_LIST || $template->type == ParameterType::EDITABLE_LIST)) {
