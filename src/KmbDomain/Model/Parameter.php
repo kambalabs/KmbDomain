@@ -44,7 +44,7 @@ class Parameter implements ParameterInterface
     protected $template;
 
     /** @var  \stdClass[] */
-    protected $availableSiblings;
+    protected $availableSiblings = [];
 
     /** @var  array */
     protected $availableValues = [];
