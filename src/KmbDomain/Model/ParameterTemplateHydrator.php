@@ -63,7 +63,7 @@ class ParameterTemplateHydrator implements ParameterTemplateHydratorInterface
             }
         } elseif (!empty($template->values) && ($template->type == ParameterType::PREDEFINED_LIST || $template->type == ParameterType::EDITABLE_LIST)) {
             $availableValues = array_filter($template->values, function ($value) use ($parameter) {
-                return !$parameter->hasValueWithName($value);
+                return !$parameter->hasValue($value);
             });
             $parameter->setAvailableValues(array_values($availableValues));
         }

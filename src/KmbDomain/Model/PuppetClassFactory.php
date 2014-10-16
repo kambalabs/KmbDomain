@@ -57,7 +57,7 @@ class PuppetClassFactory implements PuppetClassFactoryInterface
                         } else {
                             $value = empty($parameterTemplate->values) ? '' : $parameterTemplate->values[0];
                         }
-                        $parameter->addValue(new Value($value));
+                        $parameter->addValue($value);
                     }
                     $parameters[] = $parameter;
                 }

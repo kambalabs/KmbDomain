@@ -2,9 +2,6 @@
 namespace KmbDomainTest\Model;
 
 use KmbDomain\Model\Parameter;
-use KmbDomain\Model\ParameterType;
-use KmbDomain\Model\Value;
-use Zend\Json\Json;
 
 class ParameterTest extends \PHPUnit_Framework_TestCase
 {
@@ -42,27 +39,25 @@ class ParameterTest extends \PHPUnit_Framework_TestCase
     {
         $parameter = new Parameter();
 
-        $parameter->addValue(new Value());
+        $parameter->addValue('test');
 
-        $this->assertEquals([new Value()], $parameter->getValues());
+        $this->assertEquals(['test'], $parameter->getValues());
     }
 
     /** @test */
-    public function cannotGetValueWithUnknownName()
+    public function canCheckIfHasValue()
     {
         $parameter = new Parameter();
+        $parameter->setValues(['test', '/srv/http/node1.local', 'other']);
 
-        $this->assertNull($parameter->getValueByName('unknown'));
+        $this->assertTrue($parameter->hasValue('/srv/http/node1.local'));
     }
 
     /** @test */
-    public function canGetValueWithName()
+    public function canCheckIfHasNotValue()
     {
-        $value = new Value();
-        $value->setName('/srv/http/node1.local');
         $parameter = new Parameter();
-        $parameter->setValues([new Value(), $value, new Value()]);
 
-        $this->assertEquals($value, $parameter->getValueByName('/srv/http/node1.local'));
+        $this->assertFalse($parameter->hasValue('unknown'));
     }
 }

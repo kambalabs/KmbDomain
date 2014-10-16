@@ -57,7 +57,7 @@ interface ParameterInterface extends AggregateRootInterface
     /**
      * Set Values.
      *
-     * @param \KmbDomain\Model\ValueInterface[] $values
+     * @param array $values
      * @return ParameterInterface
      */
     public function setValues($values);
@@ -65,7 +65,7 @@ interface ParameterInterface extends AggregateRootInterface
     /**
      * Add specified value.
      *
-     * @param \KmbDomain\Model\ValueInterface $value
+     * @param array $value
      * @return ParameterInterface
      */
     public function addValue($value);
@@ -73,7 +73,7 @@ interface ParameterInterface extends AggregateRootInterface
     /**
      * Get Values.
      *
-     * @return \KmbDomain\Model\ValueInterface[]
+     * @return array
      */
     public function getValues();
 
@@ -83,16 +83,10 @@ interface ParameterInterface extends AggregateRootInterface
     public function hasValues();
 
     /**
-     * @param string $name
-     * @return \KmbDomain\Model\ValueInterface
-     */
-    public function getValueByName($name);
-
-    /**
-     * @param string $name
+     * @param string $value
      * @return bool
      */
-    public function hasValueWithName($name);
+    public function hasValue($value);
 
     /**
      * Set Parent.

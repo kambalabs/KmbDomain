@@ -31,7 +31,7 @@ class Parameter implements ParameterInterface
     /** @var PuppetClassInterface */
     protected $class;
 
-    /** @var ValueInterface[] */
+    /** @var array */
     protected $values;
 
     /** @var ParameterInterface */
@@ -118,7 +118,7 @@ class Parameter implements ParameterInterface
     /**
      * Set Values.
      *
-     * @param \KmbDomain\Model\ValueInterface[] $values
+     * @param array $values
      * @return Parameter
      */
     public function setValues($values)
@@ -130,7 +130,7 @@ class Parameter implements ParameterInterface
     /**
      * Add specified value.
      *
-     * @param \KmbDomain\Model\ValueInterface $value
+     * @param mixed $value
      * @return Parameter
      */
     public function addValue($value)
@@ -142,7 +142,7 @@ class Parameter implements ParameterInterface
     /**
      * Get Values.
      *
-     * @return \KmbDomain\Model\ValueInterface[]
+     * @return array
      */
     public function getValues()
     {
@@ -158,27 +158,12 @@ class Parameter implements ParameterInterface
     }
 
     /**
-     * @param string $name
-     * @return \KmbDomain\Model\ValueInterface
-     */
-    public function getValueByName($name)
-    {
-        if ($this->hasValues()) {
-            foreach ($this->values as $value) {
-                if ($value->getName() === $name) {
-                    return $value;
-                }
-            }
-        }
-    }
-
-    /**
-     * @param string $name
+     * @param string $value
      * @return bool
      */
-    public function hasValueWithName($name)
+    public function hasValue($value)
     {
-        return $this->getValueByName($name) !== null;
+        return $this->hasValues() && in_array($value, $this->values);
     }
 
     /**

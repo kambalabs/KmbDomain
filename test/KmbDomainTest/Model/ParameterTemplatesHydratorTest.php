@@ -4,7 +4,6 @@ namespace KmbDomainTest\Model;
 use KmbDomain\Model\Parameter;
 use KmbDomain\Model\ParameterTemplateHydrator;
 use KmbDomain\Model\ParameterType;
-use KmbDomain\Model\Value;
 use Zend\Json\Json;
 
 class ParameterTemplatesHydratorTest extends \PHPUnit_Framework_TestCase
@@ -22,7 +21,7 @@ class ParameterTemplatesHydratorTest extends \PHPUnit_Framework_TestCase
     {
         $parameter = new Parameter();
         $parameter->setName('ports');
-        $parameter->setValues([new Value('80'), new Value('443')]);
+        $parameter->setValues(['80', '443']);
         $template = $this->createPredefinedListTemplate();
 
         $this->hydrator->hydrate($template, $parameter);
@@ -36,10 +35,10 @@ class ParameterTemplatesHydratorTest extends \PHPUnit_Framework_TestCase
     {
         $child1 = new Parameter();
         $child1->setName('user');
-        $child1->setValues([new Value('jdoe')]);
+        $child1->setValues(['jdoe']);
         $child2 = new Parameter();
         $child2->setName('homedir');
-        $child2->setValues([new Value('/home/jdoe')]);
+        $child2->setValues(['/home/jdoe']);
         $parameter = new Parameter();
         $parameter->setName('admin');
         $parameter->setChildren([$child1, $child2]);
@@ -61,10 +60,10 @@ class ParameterTemplatesHydratorTest extends \PHPUnit_Framework_TestCase
     {
         $granchild1 = new Parameter();
         $granchild1->setName('user');
-        $granchild1->setValues([new Value('jdoe')]);
+        $granchild1->setValues(['jdoe']);
         $granchild2 = new Parameter();
         $granchild2->setName('homedir');
-        $granchild2->setValues([new Value('/home/jdoe')]);
+        $granchild2->setValues(['/home/jdoe']);
         $child = new Parameter();
         $child->setName('root');
         $child->setChildren([$granchild1, $granchild2]);
