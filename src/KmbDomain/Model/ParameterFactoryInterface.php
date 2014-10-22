@@ -20,13 +20,21 @@
  */
 namespace KmbDomain\Model;
 
-interface PuppetClassFactoryInterface
+interface ParameterFactoryInterface
 {
     /**
-     * @param string         $name
-     * @param GroupInterface $group
-     * @param \stdClass[]    $parametersTemplates
-     * @return PuppetClassInterface
+     * Create Parameters instances from all given required templates.
+     *
+     * @param \stdClass[] $templates
+     * @return ParameterInterface[]
      */
-    public function create($name, $group, $parametersTemplates = null);
+    public function createRequiredFromTemplates($templates);
+
+    /**
+     * Create Parameter instance from given template.
+     *
+     * @param \stdClass $template
+     * @return ParameterInterface
+     */
+    public function createFromTemplate($template);
 }
