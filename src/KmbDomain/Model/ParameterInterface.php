@@ -109,6 +109,14 @@ interface ParameterInterface extends AggregateRootInterface
     public function hasParent();
 
     /**
+     * Get all ancestors names.
+     * It includes the name of the object itself.
+     *
+     * @return array
+     */
+    public function getAncestorsNames();
+
+    /**
      * Set Children.
      *
      * @param \KmbDomain\Model\ParameterInterface[] $children

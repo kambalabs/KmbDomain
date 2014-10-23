@@ -54,7 +54,7 @@ class ParameterFactory implements ParameterFactoryInterface
         $parameter->setTemplate($template);
         if ($template->type == ParameterType::HASHTABLE && isset($template->entries)) {
             $parameter->setChildren($this->createRequiredFromTemplates($template->entries));
-        } elseif (!$template->multiple_values && $template->type != ParameterType::HASHTABLE && $template->type != ParameterType::EDITABLE_HASHTABLE) {
+        } elseif ($template->type != ParameterType::HASHTABLE && $template->type != ParameterType::EDITABLE_HASHTABLE) {
             if ($template->type == ParameterType::BOOLEAN) {
                 $value = true;
             } else {

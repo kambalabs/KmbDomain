@@ -39,16 +39,6 @@ class ParameterFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
-    public function canCreateMultipleValuesParameter()
-    {
-        $template = $this->createTemplate('paths', true, ParameterType::PREDEFINED_LIST, true, ['/tmp', '/root']);
-
-        $parameter = $this->factory->createFromTemplate($template);
-
-        $this->assertEmpty($parameter->getValues());
-    }
-
-    /** @test */
     public function canCreateRequiredFromTemplates()
     {
         $template = $this->createTemplate('force', true, ParameterType::BOOLEAN);

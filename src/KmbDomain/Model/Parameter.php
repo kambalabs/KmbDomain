@@ -197,6 +197,22 @@ class Parameter implements ParameterInterface
     }
 
     /**
+     * Get all ancestors names.
+     * It includes the name of the object itself.
+     *
+     * @return array
+     */
+    public function getAncestorsNames()
+    {
+        $names = [];
+        if ($this->hasParent()) {
+            $names = $this->getParent()->getAncestorsNames();
+        }
+        $names[] = $this->getName();
+        return $names;
+    }
+
+    /**
      * Set Children.
      *
      * @param \KmbDomain\Model\ParameterInterface[] $children
