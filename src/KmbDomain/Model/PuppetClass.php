@@ -34,6 +34,9 @@ class PuppetClass implements PuppetClassInterface
     /** @var ParameterInterface[] */
     protected $parameters;
 
+    /** @var  \stdClass[] */
+    protected $availableParameters;
+
     /**
      * Set Id.
      *
@@ -164,5 +167,35 @@ class PuppetClass implements PuppetClassInterface
     public function hasParameterWithName($name)
     {
         return $this->getParameterByName($name) !== null;
+    }
+
+    /**
+     * Set AvailableParameters.
+     *
+     * @param \stdClass[] $availableParameters
+     * @return PuppetClass
+     */
+    public function setAvailableParameters($availableParameters)
+    {
+        $this->availableParameters = $availableParameters;
+        return $this;
+    }
+
+    /**
+     * Get AvailableParameters.
+     *
+     * @return \stdClass[]
+     */
+    public function getAvailableParameters()
+    {
+        return $this->availableParameters;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasAvailableParameters()
+    {
+        return !empty($this->availableParameters);
     }
 }

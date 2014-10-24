@@ -34,14 +34,13 @@ class ClassTemplatesHydrator implements ClassTemplatesHydratorInterface
      */
     public function hydrate($templates, $class)
     {
-        $availableParameters = array_filter($templates, function ($template) use ($class) {
+        $class->setAvailableParameters(array_values(array_filter($templates, function ($template) use ($class) {
             return !$class->hasParameterWithName($template->name);
-        });
+        })));
         foreach ($templates as $template) {
             $parameter = $class->getParameterByName($template->name);
             if ($parameter != null) {
                 $this->parameterTemplateHydrator->hydrate($template, $parameter);
-                $parameter->setAvailableChildren(array_values($availableParameters));
             }
         }
     }

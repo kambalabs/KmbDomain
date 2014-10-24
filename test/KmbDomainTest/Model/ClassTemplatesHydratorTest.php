@@ -25,7 +25,7 @@ class ClassTemplatesHydratorTest extends \PHPUnit_Framework_TestCase
         $hydrator->hydrate([$template, $otherTemplate], $class);
 
         $this->assertEquals($template, $parameter->getTemplate());
-        $this->assertEquals([$otherTemplate], $parameter->getAvailableChildren());
+        $this->assertEquals([$otherTemplate], $class->getAvailableParameters());
     }
 
     /**

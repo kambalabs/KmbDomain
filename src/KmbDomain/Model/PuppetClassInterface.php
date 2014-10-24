@@ -93,4 +93,24 @@ interface PuppetClassInterface extends AggregateRootInterface
      * @return bool
      */
     public function hasParameterWithName($name);
+
+    /**
+     * Set AvailableParameters.
+     *
+     * @param \stdClass[] $availableParameters
+     * @return PuppetClassInterface
+     */
+    public function setAvailableParameters($availableParameters);
+
+    /**
+     * Get AvailableParameters.
+     *
+     * @return \stdClass[]
+     */
+    public function getAvailableParameters();
+
+    /**
+     * @return bool
+     */
+    public function hasAvailableParameters();
 }
