@@ -20,13 +20,22 @@
  */
 namespace KmbDomain\Model;
 
-use GtnPersistBase\Model\RepositoryInterface;
-
-interface PuppetClassRepositoryInterface extends RepositoryInterface
+class GroupParameterType
 {
-    /**
-     * @param ParameterInterface $parameter
-     * @return PuppetClassInterface
-     */
-    public function getByParameter($parameter);
+    const STRING = 'string';
+
+    /** @deprecated */
+    const FREE_ENTRY = 'free-entry';
+
+    const TEXT = 'text';
+
+    const BOOLEAN = 'boolean';
+
+    const PREDEFINED_LIST = 'predefined-list';
+
+    const EDITABLE_LIST = 'editable-list';
+
+    const HASHTABLE = 'hashtable';
+
+    const EDITABLE_HASHTABLE = 'editable-hashtable';
 }

@@ -50,8 +50,8 @@ interface GroupRepositoryInterface extends RepositoryInterface
     public function getByNameAndRevision($name, RevisionInterface $revision);
 
     /**
-     * @param PuppetClassInterface $class
+     * @param GroupClassInterface $class
      * @return GroupInterface
      */
-    public function getByClass(PuppetClassInterface $class);
+    public function getByClass(GroupClassInterface $class);
 }

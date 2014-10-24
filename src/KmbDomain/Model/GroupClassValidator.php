@@ -23,7 +23,7 @@ namespace KmbDomain\Model;
 use Zend\Validator\AbstractValidator;
 use Zend\Validator\Exception;
 
-class PuppetClassValidator extends AbstractValidator
+class GroupClassValidator extends AbstractValidator
 {
     const MSG_MISSING_REQUIRED_PARAMETER = 'missingRequiredParameter';
 

@@ -26,8 +26,8 @@ interface ClassTemplatesHydratorInterface
      * Hydrate $class with the provided $templates.
      *
      * @param  \stdClass[]          $templates
-     * @param  PuppetClassInterface $class
-     * @return PuppetClassInterface
+     * @param  GroupClassInterface $class
+     * @return GroupClassInterface
      */
     public function hydrate($templates, $class);
 }

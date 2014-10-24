@@ -20,13 +20,13 @@
  */
 namespace KmbDomain\Model;
 
-class ParameterFactory implements ParameterFactoryInterface
+class GroupParameterFactory implements GroupParameterFactoryInterface
 {
     /**
      * Create Parameters instances from all given required templates.
      *
      * @param \stdClass[] $templates
-     * @return Parameter[]
+     * @return GroupParameter[]
      */
     public function createRequiredFromTemplates($templates)
     {
@@ -42,20 +42,20 @@ class ParameterFactory implements ParameterFactoryInterface
     }
 
     /**
-     * Create Parameter instance from given template.
+     * Create GroupParameter instance from given template.
      *
      * @param \stdClass $template
-     * @return Parameter
+     * @return GroupParameter
      */
     public function createFromTemplate($template)
     {
-        $parameter = new Parameter();
+        $parameter = new GroupParameter();
         $parameter->setName($template->name);
         $parameter->setTemplate($template);
-        if ($template->type == ParameterType::HASHTABLE && isset($template->entries)) {
+        if ($template->type == GroupParameterType::HASHTABLE && isset($template->entries)) {
             $parameter->setChildren($this->createRequiredFromTemplates($template->entries));
-        } elseif ($template->type != ParameterType::HASHTABLE && $template->type != ParameterType::EDITABLE_HASHTABLE) {
-            if ($template->type == ParameterType::BOOLEAN) {
+        } elseif ($template->type != GroupParameterType::HASHTABLE && $template->type != GroupParameterType::EDITABLE_HASHTABLE) {
+            if ($template->type == GroupParameterType::BOOLEAN) {
                 $value = true;
             } else {
                 $value = empty($template->values) ? '' : $template->values[0];

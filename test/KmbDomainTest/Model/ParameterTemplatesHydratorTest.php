@@ -1,9 +1,9 @@
 <?php
 namespace KmbDomainTest\Model;
 
-use KmbDomain\Model\Parameter;
+use KmbDomain\Model\GroupParameter;
 use KmbDomain\Model\ParameterTemplateHydrator;
-use KmbDomain\Model\ParameterType;
+use KmbDomain\Model\GroupParameterType;
 use Zend\Json\Json;
 
 class ParameterTemplatesHydratorTest extends \PHPUnit_Framework_TestCase
@@ -19,7 +19,7 @@ class ParameterTemplatesHydratorTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function canSetRecursiveStringTemplate()
     {
-        $parameter = new Parameter();
+        $parameter = new GroupParameter();
         $parameter->setName('ports');
         $parameter->setValues(['80', '443']);
         $template = $this->createPredefinedListTemplate();
@@ -33,13 +33,13 @@ class ParameterTemplatesHydratorTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function canSetRecursiveHashtableTemplate()
     {
-        $child1 = new Parameter();
+        $child1 = new GroupParameter();
         $child1->setName('user');
         $child1->setValues(['jdoe']);
-        $child2 = new Parameter();
+        $child2 = new GroupParameter();
         $child2->setName('homedir');
         $child2->setValues(['/home/jdoe']);
-        $parameter = new Parameter();
+        $parameter = new GroupParameter();
         $parameter->setName('admin');
         $parameter->setChildren([$child1, $child2]);
         $template = $this->createHashtableTemplate();
@@ -58,16 +58,16 @@ class ParameterTemplatesHydratorTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function canSetRecursiveEditableHashtableTemplate()
     {
-        $granchild1 = new Parameter();
+        $granchild1 = new GroupParameter();
         $granchild1->setName('user');
         $granchild1->setValues(['jdoe']);
-        $granchild2 = new Parameter();
+        $granchild2 = new GroupParameter();
         $granchild2->setName('homedir');
         $granchild2->setValues(['/home/jdoe']);
-        $child = new Parameter();
+        $child = new GroupParameter();
         $child->setName('root');
         $child->setChildren([$granchild1, $granchild2]);
-        $parameter = new Parameter();
+        $parameter = new GroupParameter();
         $parameter->setName('sshusers');
         $parameter->setChildren([$child]);
         $template = $this->createEditableHashtableTemplate();
@@ -93,7 +93,7 @@ class ParameterTemplatesHydratorTest extends \PHPUnit_Framework_TestCase
             'name' => 'ports',
             'required' => true,
             'multiple_values' => true,
-            'type' => ParameterType::PREDEFINED_LIST,
+            'type' => GroupParameterType::PREDEFINED_LIST,
             'values' => [ '80', '443', '8080', '9090' ],
         ]));
     }
@@ -104,25 +104,25 @@ class ParameterTemplatesHydratorTest extends \PHPUnit_Framework_TestCase
             'name' => 'admin',
             'required' => true,
             'multiple_values' => false,
-            'type' => ParameterType::HASHTABLE,
+            'type' => GroupParameterType::HASHTABLE,
             'entries' => [
                 [
                     'name' => 'homedir',
                     'required' => true,
                     'multiple_values' => false,
-                    'type' => ParameterType::STRING,
+                    'type' => GroupParameterType::STRING,
                 ],
                 [
                     'name' => 'user',
                     'required' => false,
                     'multiple_values' => false,
-                    'type' => ParameterType::STRING,
+                    'type' => GroupParameterType::STRING,
                 ],
                 [
                     'name' => 'group',
                     'required' => false,
                     'multiple_values' => true,
-                    'type' => ParameterType::STRING,
+                    'type' => GroupParameterType::STRING,
                 ],
             ]
         ]));
@@ -134,13 +134,13 @@ class ParameterTemplatesHydratorTest extends \PHPUnit_Framework_TestCase
             'name' => 'sshusers',
             'required' => true,
             'multiple_values' => false,
-            'type' => ParameterType::EDITABLE_HASHTABLE,
+            'type' => GroupParameterType::EDITABLE_HASHTABLE,
             'entries' => [
                 [
                     'name' => 'user',
                     'required' => true,
                     'multiple_values' => false,
-                    'type' => ParameterType::PREDEFINED_LIST,
+                    'type' => GroupParameterType::PREDEFINED_LIST,
                     'values' => [
                         'jdoe',
                         'jmiller',
@@ -151,25 +151,25 @@ class ParameterTemplatesHydratorTest extends \PHPUnit_Framework_TestCase
                     'name' => 'homedir',
                     'required' => true,
                     'multiple_values' => false,
-                    'type' => ParameterType::STRING,
+                    'type' => GroupParameterType::STRING,
                 ],
                 [
                     'name' => 'group',
                     'required' => false,
                     'multiple_values' => true,
-                    'type' => ParameterType::STRING,
+                    'type' => GroupParameterType::STRING,
                 ],
                 [
                     'name' => 'keypath',
                     'required' => false,
                     'multiple_values' => false,
-                    'type' => ParameterType::STRING,
+                    'type' => GroupParameterType::STRING,
                 ],
                 [
                     'name' => 'keygroup',
                     'required' => false,
                     'multiple_values' => false,
-                    'type' => ParameterType::STRING,
+                    'type' => GroupParameterType::STRING,
 
                 ],
             ]

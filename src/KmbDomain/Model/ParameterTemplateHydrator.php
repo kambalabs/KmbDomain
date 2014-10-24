@@ -26,12 +26,12 @@ class ParameterTemplateHydrator implements ParameterTemplateHydratorInterface
      * Hydrate $parameter with the provided $template.
      *
      * @param  \stdClass          $template
-     * @param  ParameterInterface $parameter
-     * @return ParameterInterface
+     * @param  GroupParameterInterface $parameter
+     * @return GroupParameterInterface
      */
     public function hydrate($template, $parameter)
     {
-        if ($template->type == ParameterType::EDITABLE_HASHTABLE) {
+        if ($template->type == GroupParameterType::EDITABLE_HASHTABLE) {
             $parameter->setTemplate($template);
             if ($parameter->hasChildren()) {
                 foreach ($parameter->getChildren() as $child) {
@@ -45,12 +45,12 @@ class ParameterTemplateHydrator implements ParameterTemplateHydratorInterface
 
     /**
      * @param \stdClass          $template
-     * @param ParameterInterface $parameter
+     * @param GroupParameterInterface $parameter
      */
     protected function hydrateRecursively($template, $parameter)
     {
         $parameter->setTemplate($template);
-        if (!empty($template->entries) && ($template->type == ParameterType::EDITABLE_HASHTABLE || $template->type == ParameterType::HASHTABLE)) {
+        if (!empty($template->entries) && ($template->type == GroupParameterType::EDITABLE_HASHTABLE || $template->type == GroupParameterType::HASHTABLE)) {
             $availableChildren = array_filter($template->entries, function ($entry) use ($parameter) {
                 return !$parameter->hasChildWithName($entry->name);
             });
@@ -61,7 +61,7 @@ class ParameterTemplateHydrator implements ParameterTemplateHydratorInterface
                     $this->hydrate($entry, $child);
                 }
             }
-        } elseif (!empty($template->values) && ($template->type == ParameterType::PREDEFINED_LIST || $template->type == ParameterType::EDITABLE_LIST)) {
+        } elseif (!empty($template->values) && ($template->type == GroupParameterType::PREDEFINED_LIST || $template->type == GroupParameterType::EDITABLE_LIST)) {
             $availableValues = array_filter($template->values, function ($value) use ($parameter) {
                 return !$parameter->hasValue($value);
             });

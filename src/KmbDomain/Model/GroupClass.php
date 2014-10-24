@@ -20,7 +20,7 @@
  */
 namespace KmbDomain\Model;
 
-class PuppetClass implements PuppetClassInterface
+class GroupClass implements GroupClassInterface
 {
     /** @var  int */
     protected $id;
@@ -31,7 +31,7 @@ class PuppetClass implements PuppetClassInterface
     /** @var GroupInterface */
     protected $group;
 
-    /** @var ParameterInterface[] */
+    /** @var GroupParameterInterface[] */
     protected $parameters;
 
     /** @var  \stdClass[] */
@@ -41,7 +41,7 @@ class PuppetClass implements PuppetClassInterface
      * Set Id.
      *
      * @param int $id
-     * @return PuppetClass
+     * @return GroupClass
      */
     public function setId($id)
     {
@@ -63,7 +63,7 @@ class PuppetClass implements PuppetClassInterface
      * Set Name.
      *
      * @param string $name
-     * @return PuppetClass
+     * @return GroupClass
      */
     public function setName($name)
     {
@@ -85,7 +85,7 @@ class PuppetClass implements PuppetClassInterface
      * Set Group.
      *
      * @param \KmbDomain\Model\GroupInterface $group
-     * @return PuppetClass
+     * @return GroupClass
      */
     public function setGroup($group)
     {
@@ -106,8 +106,8 @@ class PuppetClass implements PuppetClassInterface
     /**
      * Set Parameters.
      *
-     * @param \KmbDomain\Model\ParameterInterface[] $parameters
-     * @return PuppetClass
+     * @param \KmbDomain\Model\GroupParameterInterface[] $parameters
+     * @return GroupClass
      */
     public function setParameters($parameters)
     {
@@ -118,8 +118,8 @@ class PuppetClass implements PuppetClassInterface
     /**
      * Add specified parameter.
      *
-     * @param \KmbDomain\Model\ParameterInterface
-     * @return PuppetClass
+     * @param \KmbDomain\Model\GroupParameterInterface
+     * @return GroupClass
      */
     public function addParameter($parameter)
     {
@@ -130,7 +130,7 @@ class PuppetClass implements PuppetClassInterface
     /**
      * Get Parameters.
      *
-     * @return \KmbDomain\Model\ParameterInterface[]
+     * @return \KmbDomain\Model\GroupParameterInterface[]
      */
     public function getParameters()
     {
@@ -147,7 +147,7 @@ class PuppetClass implements PuppetClassInterface
 
     /**
      * @param string $name
-     * @return \KmbDomain\Model\ParameterInterface
+     * @return \KmbDomain\Model\GroupParameterInterface
      */
     public function getParameterByName($name)
     {
@@ -173,7 +173,7 @@ class PuppetClass implements PuppetClassInterface
      * Set AvailableParameters.
      *
      * @param \stdClass[] $availableParameters
-     * @return PuppetClass
+     * @return GroupClass
      */
     public function setAvailableParameters($availableParameters)
     {

@@ -20,7 +20,7 @@
  */
 namespace KmbDomain\Model;
 
-class Parameter implements ParameterInterface
+class GroupParameter implements GroupParameterInterface
 {
     /** @var int */
     protected $id;
@@ -28,16 +28,16 @@ class Parameter implements ParameterInterface
     /** @var string */
     protected $name;
 
-    /** @var PuppetClassInterface */
+    /** @var GroupClassInterface */
     protected $class;
 
     /** @var array */
     protected $values;
 
-    /** @var ParameterInterface */
+    /** @var GroupParameterInterface */
     protected $parent;
 
-    /** @var ParameterInterface[] */
+    /** @var GroupParameterInterface[] */
     protected $children;
 
     /** @var  \stdClass */
@@ -53,7 +53,7 @@ class Parameter implements ParameterInterface
      * Set Id.
      *
      * @param int $id
-     * @return Parameter
+     * @return GroupParameter
      */
     public function setId($id)
     {
@@ -75,7 +75,7 @@ class Parameter implements ParameterInterface
      * Set Name.
      *
      * @param string $name
-     * @return Parameter
+     * @return GroupParameter
      */
     public function setName($name)
     {
@@ -96,8 +96,8 @@ class Parameter implements ParameterInterface
     /**
      * Set Class.
      *
-     * @param \KmbDomain\Model\PuppetClassInterface $class
-     * @return Parameter
+     * @param \KmbDomain\Model\GroupClassInterface $class
+     * @return GroupParameter
      */
     public function setClass($class)
     {
@@ -108,7 +108,7 @@ class Parameter implements ParameterInterface
     /**
      * Get Class.
      *
-     * @return \KmbDomain\Model\PuppetClassInterface
+     * @return \KmbDomain\Model\GroupClassInterface
      */
     public function getClass()
     {
@@ -119,7 +119,7 @@ class Parameter implements ParameterInterface
      * Set Values.
      *
      * @param array $values
-     * @return Parameter
+     * @return GroupParameter
      */
     public function setValues($values)
     {
@@ -131,7 +131,7 @@ class Parameter implements ParameterInterface
      * Add specified value.
      *
      * @param mixed $value
-     * @return Parameter
+     * @return GroupParameter
      */
     public function addValue($value)
     {
@@ -169,8 +169,8 @@ class Parameter implements ParameterInterface
     /**
      * Set Parent.
      *
-     * @param \KmbDomain\Model\ParameterInterface $parent
-     * @return Parameter
+     * @param \KmbDomain\Model\GroupParameterInterface $parent
+     * @return GroupParameter
      */
     public function setParent($parent)
     {
@@ -181,7 +181,7 @@ class Parameter implements ParameterInterface
     /**
      * Get Parent.
      *
-     * @return \KmbDomain\Model\ParameterInterface
+     * @return \KmbDomain\Model\GroupParameterInterface
      */
     public function getParent()
     {
@@ -215,8 +215,8 @@ class Parameter implements ParameterInterface
     /**
      * Set Children.
      *
-     * @param \KmbDomain\Model\ParameterInterface[] $children
-     * @return Parameter
+     * @param \KmbDomain\Model\GroupParameterInterface[] $children
+     * @return GroupParameter
      */
     public function setChildren($children)
     {
@@ -227,8 +227,8 @@ class Parameter implements ParameterInterface
     /**
      * Add specified child.
      *
-     * @param \KmbDomain\Model\ParameterInterface $child
-     * @return Parameter
+     * @param \KmbDomain\Model\GroupParameterInterface $child
+     * @return GroupParameter
      */
     public function addChild($child)
     {
@@ -239,7 +239,7 @@ class Parameter implements ParameterInterface
     /**
      * Get Children.
      *
-     * @return \KmbDomain\Model\ParameterInterface[]
+     * @return \KmbDomain\Model\GroupParameterInterface[]
      */
     public function getChildren()
     {
@@ -256,7 +256,7 @@ class Parameter implements ParameterInterface
 
     /**
      * @param string $name
-     * @return \KmbDomain\Model\ParameterInterface
+     * @return \KmbDomain\Model\GroupParameterInterface
      */
     public function getChildByName($name)
     {
@@ -282,7 +282,7 @@ class Parameter implements ParameterInterface
      * Set Template.
      *
      * @param \stdClass $template
-     * @return Parameter
+     * @return GroupParameter
      */
     public function setTemplate($template)
     {
@@ -314,7 +314,7 @@ class Parameter implements ParameterInterface
      * Set Available Children.
      *
      * @param \stdClass[] $availableChildren
-     * @return Parameter
+     * @return GroupParameter
      */
     public function setAvailableChildren($availableChildren)
     {
@@ -344,7 +344,7 @@ class Parameter implements ParameterInterface
      * Set AvailableValues.
      *
      * @param array $availableValues
-     * @return Parameter
+     * @return GroupParameter
      */
     public function setAvailableValues($availableValues)
     {

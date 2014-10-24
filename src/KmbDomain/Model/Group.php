@@ -43,7 +43,7 @@ class Group implements GroupInterface
     /** @var int */
     protected $ordering;
 
-    /** @var PuppetClassInterface[] */
+    /** @var GroupClassInterface[] */
     protected $classes;
 
     /**
@@ -211,7 +211,7 @@ class Group implements GroupInterface
     /**
      * Set Classes.
      *
-     * @param \KmbDomain\Model\PuppetClassInterface[] $classes
+     * @param \KmbDomain\Model\GroupClassInterface[] $classes
      * @return Group
      */
     public function setClasses($classes)
@@ -223,7 +223,7 @@ class Group implements GroupInterface
     /**
      * Add specified class.
      *
-     * @param PuppetClassInterface $class
+     * @param GroupClassInterface $class
      * @return Group
      */
     public function addClass($class)
@@ -235,7 +235,7 @@ class Group implements GroupInterface
     /**
      * Get Classes.
      *
-     * @return \KmbDomain\Model\PuppetClassInterface[]
+     * @return \KmbDomain\Model\GroupClassInterface[]
      */
     public function getClasses()
     {
@@ -252,7 +252,7 @@ class Group implements GroupInterface
 
     /**
      * @param string $name
-     * @return PuppetClassInterface
+     * @return GroupClassInterface
      */
     public function getClassByName($name)
     {

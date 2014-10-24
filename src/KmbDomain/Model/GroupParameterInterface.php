@@ -22,13 +22,13 @@ namespace KmbDomain\Model;
 
 use GtnPersistBase\Model\AggregateRootInterface;
 
-interface ParameterInterface extends AggregateRootInterface
+interface GroupParameterInterface extends AggregateRootInterface
 {
     /**
      * Set Name.
      *
      * @param string $name
-     * @return ParameterInterface
+     * @return GroupParameterInterface
      */
     public function setName($name);
 
@@ -42,15 +42,15 @@ interface ParameterInterface extends AggregateRootInterface
     /**
      * Set Class.
      *
-     * @param \KmbDomain\Model\PuppetClassInterface $class
-     * @return ParameterInterface
+     * @param \KmbDomain\Model\GroupClassInterface $class
+     * @return GroupParameterInterface
      */
     public function setClass($class);
 
     /**
      * Get Class.
      *
-     * @return \KmbDomain\Model\PuppetClassInterface
+     * @return \KmbDomain\Model\GroupClassInterface
      */
     public function getClass();
 
@@ -58,7 +58,7 @@ interface ParameterInterface extends AggregateRootInterface
      * Set Values.
      *
      * @param array $values
-     * @return ParameterInterface
+     * @return GroupParameterInterface
      */
     public function setValues($values);
 
@@ -66,7 +66,7 @@ interface ParameterInterface extends AggregateRootInterface
      * Add specified value.
      *
      * @param array $value
-     * @return ParameterInterface
+     * @return GroupParameterInterface
      */
     public function addValue($value);
 
@@ -91,15 +91,15 @@ interface ParameterInterface extends AggregateRootInterface
     /**
      * Set Parent.
      *
-     * @param \KmbDomain\Model\ParameterInterface $parent
-     * @return ParameterInterface
+     * @param \KmbDomain\Model\GroupParameterInterface $parent
+     * @return GroupParameterInterface
      */
     public function setParent($parent);
 
     /**
      * Get Parent.
      *
-     * @return \KmbDomain\Model\ParameterInterface
+     * @return \KmbDomain\Model\GroupParameterInterface
      */
     public function getParent();
 
@@ -119,23 +119,23 @@ interface ParameterInterface extends AggregateRootInterface
     /**
      * Set Children.
      *
-     * @param \KmbDomain\Model\ParameterInterface[] $children
-     * @return ParameterInterface
+     * @param \KmbDomain\Model\GroupParameterInterface[] $children
+     * @return GroupParameterInterface
      */
     public function setChildren($children);
 
     /**
      * Add specified child.
      *
-     * @param \KmbDomain\Model\ParameterInterface $child
-     * @return ParameterInterface
+     * @param \KmbDomain\Model\GroupParameterInterface $child
+     * @return GroupParameterInterface
      */
     public function addChild($child);
 
     /**
      * Get Children.
      *
-     * @return \KmbDomain\Model\ParameterInterface[]
+     * @return \KmbDomain\Model\GroupParameterInterface[]
      */
     public function getChildren();
 
@@ -146,7 +146,7 @@ interface ParameterInterface extends AggregateRootInterface
 
     /**
      * @param string $name
-     * @return \KmbDomain\Model\ParameterInterface
+     * @return \KmbDomain\Model\GroupParameterInterface
      */
     public function getChildByName($name);
 
@@ -160,7 +160,7 @@ interface ParameterInterface extends AggregateRootInterface
      * Set Template.
      *
      * @param \stdClass $template
-     * @return ParameterInterface
+     * @return GroupParameterInterface
      */
     public function setTemplate($template);
 
@@ -182,7 +182,7 @@ interface ParameterInterface extends AggregateRootInterface
      * Set available children.
      *
      * @param \stdClass[] $availableChildren
-     * @return ParameterInterface
+     * @return GroupParameterInterface
      */
     public function setAvailableChildren($availableChildren);
 
@@ -202,7 +202,7 @@ interface ParameterInterface extends AggregateRootInterface
      * Set AvailableValues.
      *
      * @param array $availableValues
-     * @return ParameterInterface
+     * @return GroupParameterInterface
      */
     public function setAvailableValues($availableValues);
 

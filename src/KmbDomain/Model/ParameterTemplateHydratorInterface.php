@@ -26,8 +26,8 @@ interface ParameterTemplateHydratorInterface
      * Hydrate $object with the provided $data.
      *
      * @param  \stdClass          $template
-     * @param  ParameterInterface $parameter
-     * @return ParameterInterface
+     * @param  GroupParameterInterface $parameter
+     * @return GroupParameterInterface
      */
     public function hydrate($template, $parameter);
 }

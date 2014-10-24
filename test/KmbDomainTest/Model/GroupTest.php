@@ -2,7 +2,7 @@
 namespace KmbDomainTest\Model;
 
 use KmbDomain\Model\Group;
-use KmbDomain\Model\PuppetClass;
+use KmbDomain\Model\GroupClass;
 
 class GroupTest extends \PHPUnit_Framework_TestCase
 {
@@ -11,9 +11,9 @@ class GroupTest extends \PHPUnit_Framework_TestCase
     {
         $group = new Group();
 
-        $group->addClass(new PuppetClass());
+        $group->addClass(new GroupClass());
 
-        $this->assertEquals([new PuppetClass()], $group->getClasses());
+        $this->assertEquals([new GroupClass()], $group->getClasses());
     }
 
     /** @test */
@@ -27,10 +27,10 @@ class GroupTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function canGetClassByName()
     {
-        $class = new PuppetClass();
+        $class = new GroupClass();
         $class->setName('dns');
         $group = new Group();
-        $group->setClasses([new PuppetClass(), $class, new PuppetClass()]);
+        $group->setClasses([new GroupClass(), $class, new GroupClass()]);
 
         $this->assertEquals($class, $group->getClassByName('dns'));
     }
@@ -46,10 +46,10 @@ class GroupTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function canCheckIfHasClassWithName()
     {
-        $class = new PuppetClass();
+        $class = new GroupClass();
         $class->setName('dns');
         $group = new Group();
-        $group->setClasses([new PuppetClass(), $class, new PuppetClass()]);
+        $group->setClasses([new GroupClass(), $class, new GroupClass()]);
 
         $this->assertTrue($group->hasClassWithName('dns'));
     }

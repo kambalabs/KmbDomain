@@ -20,21 +20,13 @@
  */
 namespace KmbDomain\Model;
 
-interface ParameterFactoryInterface
+use GtnPersistBase\Model\RepositoryInterface;
+
+interface GroupClassRepositoryInterface extends RepositoryInterface
 {
     /**
-     * Create Parameters instances from all given required templates.
-     *
-     * @param \stdClass[] $templates
-     * @return ParameterInterface[]
+     * @param GroupParameterInterface $parameter
+     * @return GroupClassInterface
      */
-    public function createRequiredFromTemplates($templates);
-
-    /**
-     * Create Parameter instance from given template.
-     *
-     * @param \stdClass $template
-     * @return ParameterInterface
-     */
-    public function createFromTemplate($template);
+    public function getByParameter($groupParameter);
 }

@@ -20,22 +20,21 @@
  */
 namespace KmbDomain\Model;
 
-class ParameterType
+interface GroupParameterFactoryInterface
 {
-    const STRING = 'string';
+    /**
+     * Create Parameters instances from all given required templates.
+     *
+     * @param \stdClass[] $templates
+     * @return GroupParameterInterface[]
+     */
+    public function createRequiredFromTemplates($templates);
 
-    /** @deprecated */
-    const FREE_ENTRY = 'free-entry';
-
-    const TEXT = 'text';
-
-    const BOOLEAN = 'boolean';
-
-    const PREDEFINED_LIST = 'predefined-list';
-
-    const EDITABLE_LIST = 'editable-list';
-
-    const HASHTABLE = 'hashtable';
-
-    const EDITABLE_HASHTABLE = 'editable-hashtable';
+    /**
+     * Create GroupParameter instance from given template.
+     *
+     * @param \stdClass $template
+     * @return GroupParameterInterface
+     */
+    public function createFromTemplate($template);
 }

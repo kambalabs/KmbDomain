@@ -1,24 +1,24 @@
 <?php
 namespace KmbDomainTest\Model;
 
-use KmbDomain\Model\Parameter;
+use KmbDomain\Model\GroupParameter;
 
-class ParameterTest extends \PHPUnit_Framework_TestCase
+class GroupParameterTest extends \PHPUnit_Framework_TestCase
 {
     /** @test */
     public function canAddChild()
     {
-        $parameter = new Parameter();
+        $parameter = new GroupParameter();
 
-        $parameter->addChild(new Parameter());
+        $parameter->addChild(new GroupParameter());
 
-        $this->assertEquals([new Parameter()], $parameter->getChildren());
+        $this->assertEquals([new GroupParameter()], $parameter->getChildren());
     }
 
     /** @test */
     public function cannotGetChildWithUnknownName()
     {
-        $parameter = new Parameter();
+        $parameter = new GroupParameter();
 
         $this->assertNull($parameter->getChildByName('unknown'));
     }
@@ -26,10 +26,10 @@ class ParameterTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function canGetChildWithName()
     {
-        $child = new Parameter();
+        $child = new GroupParameter();
         $child->setName('DocumentRoot');
-        $parameter = new Parameter();
-        $parameter->setChildren([new Parameter(), $child, new Parameter()]);
+        $parameter = new GroupParameter();
+        $parameter->setChildren([new GroupParameter(), $child, new GroupParameter()]);
 
         $this->assertEquals($child, $parameter->getChildByName('DocumentRoot'));
     }
@@ -37,7 +37,7 @@ class ParameterTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function canAddValue()
     {
-        $parameter = new Parameter();
+        $parameter = new GroupParameter();
 
         $parameter->addValue('test');
 
@@ -47,7 +47,7 @@ class ParameterTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function canCheckIfHasValue()
     {
-        $parameter = new Parameter();
+        $parameter = new GroupParameter();
         $parameter->setValues(['test', '/srv/http/node1.local', 'other']);
 
         $this->assertTrue($parameter->hasValue('/srv/http/node1.local'));
@@ -56,7 +56,7 @@ class ParameterTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function canCheckIfHasNotValue()
     {
-        $parameter = new Parameter();
+        $parameter = new GroupParameter();
 
         $this->assertFalse($parameter->hasValue('unknown'));
     }

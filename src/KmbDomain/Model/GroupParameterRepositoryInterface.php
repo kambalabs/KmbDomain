@@ -22,23 +22,23 @@ namespace KmbDomain\Model;
 
 use GtnPersistBase\Model\RepositoryInterface;
 
-interface ParameterRepositoryInterface extends RepositoryInterface
+interface GroupParameterRepositoryInterface extends RepositoryInterface
 {
     /**
-     * @param PuppetClassInterface $class
-     * @return ParameterInterface[]
+     * @param GroupClassInterface $class
+     * @return GroupParameterInterface[]
      */
     public function getAllByClass($class);
 
     /**
-     * @param ParameterInterface $parent
-     * @return ParameterInterface[]
+     * @param GroupParameterInterface $parent
+     * @return GroupParameterInterface[]
      */
     public function getAllByParent($parent);
 
     /**
-     * @param ParameterInterface $child
-     * @return ParameterInterface
+     * @param GroupParameterInterface $child
+     * @return GroupParameterInterface
      */
     public function getByChild($child);
 }

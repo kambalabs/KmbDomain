@@ -2,10 +2,10 @@
 namespace KmbDomainTest\Model;
 
 use KmbDomain\Model\ClassTemplatesHydrator;
-use KmbDomain\Model\Parameter;
+use KmbDomain\Model\GroupParameter;
 use KmbDomain\Model\ParameterTemplateHydrator;
-use KmbDomain\Model\ParameterType;
-use KmbDomain\Model\PuppetClass;
+use KmbDomain\Model\GroupParameterType;
+use KmbDomain\Model\GroupClass;
 use Zend\Json\Json;
 
 class ClassTemplatesHydratorTest extends \PHPUnit_Framework_TestCase
@@ -15,10 +15,10 @@ class ClassTemplatesHydratorTest extends \PHPUnit_Framework_TestCase
     {
         $hydrator = new ClassTemplatesHydrator();
         $hydrator->setParameterTemplateHydrator(new ParameterTemplateHydrator());
-        $parameter = new Parameter();
+        $parameter = new GroupParameter();
         $parameter->setName('nameserver');
-        $class = new PuppetClass();
-        $class->setParameters([new Parameter(), $parameter, new Parameter()]);
+        $class = new GroupClass();
+        $class->setParameters([new GroupParameter(), $parameter, new GroupParameter()]);
         $template = $this->createTemplate('nameserver');
         $otherTemplate = $this->createTemplate('other');
 
@@ -35,7 +35,7 @@ class ClassTemplatesHydratorTest extends \PHPUnit_Framework_TestCase
      * @param $type
      * @return mixed
      */
-    protected function createTemplate($name, $required = true, $multipleValues = false, $type = ParameterType::STRING)
+    protected function createTemplate($name, $required = true, $multipleValues = false, $type = GroupParameterType::STRING)
     {
         return Json::decode(Json::encode([
             'name' => $name,

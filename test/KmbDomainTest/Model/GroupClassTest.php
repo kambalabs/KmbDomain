@@ -1,27 +1,25 @@
 <?php
 namespace KmbDomainTest\Model;
 
-use KmbDomain\Model\Parameter;
-use KmbDomain\Model\ParameterType;
-use KmbDomain\Model\PuppetClass;
-use Zend\Json\Json;
+use KmbDomain\Model\GroupClass;
+use KmbDomain\Model\GroupParameter;
 
-class PuppetClassTest extends \PHPUnit_Framework_TestCase
+class GroupClassTest extends \PHPUnit_Framework_TestCase
 {
     /** @test */
     public function canAddParameter()
     {
-        $class = new PuppetClass();
+        $class = new GroupClass();
 
-        $class->addParameter(new Parameter());
+        $class->addParameter(new GroupParameter());
 
-        $this->assertEquals([new Parameter()], $class->getParameters());
+        $this->assertEquals([new GroupParameter()], $class->getParameters());
     }
 
     /** @test */
     public function cannotGetParameterByUnknownName()
     {
-        $class = new PuppetClass();
+        $class = new GroupClass();
 
         $this->assertNull($class->getParameterByName('unknown'));
     }
@@ -29,10 +27,10 @@ class PuppetClassTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function canGetParameterByName()
     {
-        $parameter = new Parameter();
+        $parameter = new GroupParameter();
         $parameter->setName('nameserver');
-        $class = new PuppetClass();
-        $class->setParameters([new Parameter(), $parameter, new Parameter()]);
+        $class = new GroupClass();
+        $class->setParameters([new GroupParameter(), $parameter, new GroupParameter()]);
 
         $this->assertEquals($parameter, $class->getParameterByName('nameserver'));
     }
@@ -40,7 +38,7 @@ class PuppetClassTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function canCheckIfHasNotParameterWithName()
     {
-        $class = new PuppetClass();
+        $class = new GroupClass();
 
         $this->assertFalse($class->hasParameterWithName('unknown'));
     }
@@ -48,10 +46,10 @@ class PuppetClassTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function canCheckIfHasParameterWithName()
     {
-        $parameter = new Parameter();
+        $parameter = new GroupParameter();
         $parameter->setName('nameserver');
-        $class = new PuppetClass();
-        $class->setParameters([new Parameter(), $parameter, new Parameter()]);
+        $class = new GroupClass();
+        $class->setParameters([new GroupParameter(), $parameter, new GroupParameter()]);
 
         $this->assertTrue($class->hasParameterWithName('nameserver'));
     }

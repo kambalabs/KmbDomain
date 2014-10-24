@@ -1,18 +1,18 @@
 <?php
 namespace KmbDomainTest\Model;
 
-use KmbDomain\Model\Parameter;
-use KmbDomain\Model\ParameterFactory;
-use KmbDomain\Model\ParameterType;
+use KmbDomain\Model\GroupParameter;
+use KmbDomain\Model\GroupParameterFactory;
+use KmbDomain\Model\GroupParameterType;
 
-class ParameterFactoryTest extends \PHPUnit_Framework_TestCase
+class GroupParameterFactoryTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var  ParameterFactory */
+    /** @var  GroupParameterFactory */
     protected $factory;
 
     protected function setUp()
     {
-        $this->factory = new ParameterFactory();
+        $this->factory = new GroupParameterFactory();
     }
 
     /** @test */
@@ -22,7 +22,7 @@ class ParameterFactoryTest extends \PHPUnit_Framework_TestCase
 
         $parameter = $this->factory->createFromTemplate($template);
 
-        $this->assertInstanceOf('KmbDomain\Model\Parameter', $parameter);
+        $this->assertInstanceOf('KmbDomain\Model\GroupParameter', $parameter);
         $this->assertEquals('path', $parameter->getName());
         $this->assertEquals($template, $parameter->getTemplate());
         $this->assertEquals([''], $parameter->getValues());
@@ -31,7 +31,7 @@ class ParameterFactoryTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function canCreateBooleanParameter()
     {
-        $template = $this->createTemplate('force', true, ParameterType::BOOLEAN);
+        $template = $this->createTemplate('force', true, GroupParameterType::BOOLEAN);
 
         $parameter = $this->factory->createFromTemplate($template);
 
@@ -41,8 +41,8 @@ class ParameterFactoryTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function canCreateRequiredFromTemplates()
     {
-        $template = $this->createTemplate('force', true, ParameterType::BOOLEAN);
-        $expectedParameter = new Parameter();
+        $template = $this->createTemplate('force', true, GroupParameterType::BOOLEAN);
+        $expectedParameter = new GroupParameter();
         $expectedParameter->setName('force');
         $expectedParameter->setTemplate($template);
         $expectedParameter->setValues([true]);
@@ -52,7 +52,7 @@ class ParameterFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals([$expectedParameter], $parameters);
     }
 
-    protected function createTemplate($name, $required = false, $type = ParameterType::STRING, $multipleValues = false, $values = null, $entries = null)
+    protected function createTemplate($name, $required = false, $type = GroupParameterType::STRING, $multipleValues = false, $values = null, $entries = null)
     {
         $template = new \stdClass();
         $template->name = $name;

@@ -22,13 +22,13 @@ namespace KmbDomain\Model;
 
 use GtnPersistBase\Model\AggregateRootInterface;
 
-interface PuppetClassInterface extends AggregateRootInterface
+interface GroupClassInterface extends AggregateRootInterface
 {
     /**
      * Set Name.
      *
      * @param string $name
-     * @return PuppetClassInterface
+     * @return GroupClassInterface
      */
     public function setName($name);
 
@@ -43,7 +43,7 @@ interface PuppetClassInterface extends AggregateRootInterface
      * Set Group.
      *
      * @param \KmbDomain\Model\GroupInterface $group
-     * @return PuppetClassInterface
+     * @return GroupClassInterface
      */
     public function setGroup($group);
 
@@ -57,23 +57,23 @@ interface PuppetClassInterface extends AggregateRootInterface
     /**
      * Set Parameters.
      *
-     * @param \KmbDomain\Model\ParameterInterface[] $parameters
-     * @return PuppetClassInterface
+     * @param \KmbDomain\Model\GroupParameterInterface[] $parameters
+     * @return GroupClassInterface
      */
     public function setParameters($parameters);
 
     /**
      * Add specified parameter.
      *
-     * @param \KmbDomain\Model\ParameterInterface
-     * @return PuppetClassInterface
+     * @param \KmbDomain\Model\GroupParameterInterface
+     * @return GroupClassInterface
      */
     public function addParameter($parameter);
 
     /**
      * Get Parameters.
      *
-     * @return \KmbDomain\Model\ParameterInterface[]
+     * @return \KmbDomain\Model\GroupParameterInterface[]
      */
     public function getParameters();
 
@@ -84,7 +84,7 @@ interface PuppetClassInterface extends AggregateRootInterface
 
     /**
      * @param string $name
-     * @return \KmbDomain\Model\ParameterInterface
+     * @return \KmbDomain\Model\GroupParameterInterface
      */
     public function getParameterByName($name);
 
@@ -98,7 +98,7 @@ interface PuppetClassInterface extends AggregateRootInterface
      * Set AvailableParameters.
      *
      * @param \stdClass[] $availableParameters
-     * @return PuppetClassInterface
+     * @return GroupClassInterface
      */
     public function setAvailableParameters($availableParameters);
 
