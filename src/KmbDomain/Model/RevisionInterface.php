@@ -85,6 +85,11 @@ interface RevisionInterface extends AggregateRootInterface
     public function getReleasedAt();
 
     /**
+     * @return bool
+     */
+    public function isReleased();
+
+    /**
      * Set ReleasedBy.
      *
      * @param string $releasedBy

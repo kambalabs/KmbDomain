@@ -165,6 +165,14 @@ class Revision implements RevisionInterface
     }
 
     /**
+     * @return bool
+     */
+    public function isReleased()
+    {
+        return $this->releasedAt !== null;
+    }
+
+    /**
      * Set ReleasedBy.
      *
      * @param string $releasedBy
