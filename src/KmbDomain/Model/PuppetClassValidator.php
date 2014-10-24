@@ -25,7 +25,7 @@ use Zend\Validator\Exception;
 
 class PuppetClassValidator extends AbstractValidator
 {
-    const MSG_MISSING_REQUIRED_PARAMETER = 'missignRequiredParameter';
+    const MSG_MISSING_REQUIRED_PARAMETER = 'missingRequiredParameter';
 
     protected $messageTemplates;
 
@@ -50,6 +50,7 @@ class PuppetClassValidator extends AbstractValidator
      */
     public function isValid($value)
     {
+        return true;
     }
 
     /**
