@@ -29,11 +29,11 @@ class GroupParameterType
 
     const TEXT = 'text';
 
+    const PASSWORD = 'password';
+
     const BOOLEAN = 'boolean';
 
     const PREDEFINED_LIST = 'predefined-list';
-
-    const EDITABLE_LIST = 'editable-list';
 
     const HASHTABLE = 'hashtable';
 
