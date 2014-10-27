@@ -135,6 +135,12 @@ interface RevisionInterface extends AggregateRootInterface
     public function getGroups();
 
     /**
+     * @param string $name
+     * @return GroupInterface
+     */
+    public function getGroupByName($name);
+
+    /**
      * @return bool
      */
     public function hasGroups();

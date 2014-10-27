@@ -239,6 +239,21 @@ class Revision implements RevisionInterface
     }
 
     /**
+     * @param string $name
+     * @return GroupInterface
+     */
+    public function getGroupByName($name)
+    {
+        if ($this->hasGroups()) {
+            foreach ($this->groups as $group) {
+                if ($group->getName() === $name) {
+                    return $group;
+                }
+            }
+        }
+    }
+
+    /**
      * @return bool
      */
     public function hasGroups()
@@ -252,13 +267,6 @@ class Revision implements RevisionInterface
      */
     public function hasGroupWithName($name)
     {
-        if ($this->hasGroups()) {
-            foreach ($this->groups as $group) {
-                if ($group->getName() === $name) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return $this->getGroupByName($name) !== null;
     }
 }
