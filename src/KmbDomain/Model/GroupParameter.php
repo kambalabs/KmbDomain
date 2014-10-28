@@ -50,6 +50,16 @@ class GroupParameter implements GroupParameterInterface
     protected $availableValues = [];
 
     /**
+     * @param string $name
+     * @param array $values
+     */
+    public function __construct($name = null, array $values = null)
+    {
+        $this->name = $name;
+        $this->values = $values;
+    }
+
+    /**
      * Set Id.
      *
      * @param int $id

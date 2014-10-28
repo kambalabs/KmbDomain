@@ -38,6 +38,14 @@ class GroupClass implements GroupClassInterface
     protected $availableParameters;
 
     /**
+     * @param string $name
+     */
+    public function __construct($name = null)
+    {
+        $this->name = $name;
+    }
+
+    /**
      * Set Id.
      *
      * @param int $id

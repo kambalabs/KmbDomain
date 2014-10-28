@@ -55,6 +55,14 @@ class Environment implements EnvironmentInterface
     protected $releasedRevisions;
 
     /**
+     * @param string $name
+     */
+    public function __construct($name = null)
+    {
+        $this->name = $name;
+    }
+
+    /**
      * @param int $id
      * @return Environment
      */
