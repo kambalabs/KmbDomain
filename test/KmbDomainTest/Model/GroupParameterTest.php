@@ -1,6 +1,7 @@
 <?php
 namespace KmbDomainTest\Model;
 
+use KmbDomain\Model\GroupClass;
 use KmbDomain\Model\GroupParameter;
 
 class GroupParameterTest extends \PHPUnit_Framework_TestCase
@@ -59,5 +60,22 @@ class GroupParameterTest extends \PHPUnit_Framework_TestCase
         $parameter = new GroupParameter();
 
         $this->assertFalse($parameter->hasValue('unknown'));
+    }
+
+    /** @test */
+    public function canClone()
+    {
+        $child = new GroupParameter('DocumentRoot', ['/srv/node1.local']);
+        $child->setId(2);
+        $parameter = new GroupParameter('vhost');
+        $parameter->setId(1);
+        $parameter->setChildren([$child]);
+        $parameter->setClass(new GroupClass('apache::vhost'));
+
+        $newParameter = clone $parameter;
+
+        $this->assertNull($newParameter->getId());
+        $this->assertEquals([new GroupParameter('DocumentRoot', ['/srv/node1.local'])], $newParameter->getChildren());
+        $this->assertNull($newParameter->getClass());
     }
 }

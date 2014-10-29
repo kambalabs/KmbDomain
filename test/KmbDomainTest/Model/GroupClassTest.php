@@ -53,4 +53,20 @@ class GroupClassTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($class->hasParameterWithName('nameserver'));
     }
+
+    /** @test */
+    public function canClone()
+    {
+        $parameter = new GroupParameter('DocumentRoot', ['/srv/node1.local']);
+        $parameter->setId(1);
+        $class = new GroupClass('apache::vhost');
+        $class->setId(1);
+        $class->setParameters([$parameter]);
+
+        $newClass = clone $class;
+
+        $this->assertNull($newClass->getId());
+        $this->assertEquals([new GroupParameter('DocumentRoot', ['/srv/node1.local'])], $newClass->getParameters());
+        $this->assertNull($newClass->getGroup());
+    }
 }

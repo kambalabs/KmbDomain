@@ -379,4 +379,15 @@ class GroupParameter implements GroupParameterInterface
     {
         return !empty($this->availableValues);
     }
+
+    public function __clone()
+    {
+        if ($this->hasChildren()) {
+            $this->setChildren(array_map(function ($child) {
+                return clone $child;
+            }, $this->getChildren()));
+        }
+        $this->setId(null);
+        $this->setClass(null);
+    }
 }

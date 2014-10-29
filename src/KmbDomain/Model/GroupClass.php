@@ -206,4 +206,15 @@ class GroupClass implements GroupClassInterface
     {
         return !empty($this->availableParameters);
     }
+
+    public function __clone()
+    {
+        if ($this->hasParameters()) {
+            $this->setParameters(array_map(function($parameter) {
+                return clone $parameter;
+            }, $this->getParameters()));
+        }
+        $this->setId(null);
+        $this->setGroup(null);
+    }
 }

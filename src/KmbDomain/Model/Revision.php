@@ -269,4 +269,20 @@ class Revision implements RevisionInterface
     {
         return $this->getGroupByName($name) !== null;
     }
+
+    public function __clone()
+    {
+        if ($this->hasGroups()) {
+            $this->setGroups(array_map(function($group) {
+                return clone $group;
+            }, $this->getGroups()));
+        }
+        $this->setId(null);
+        $this->setEnvironment(null);
+        $this->setComment(null);
+        $this->setReleasedAt(null);
+        $this->setReleasedBy(null);
+        $this->setUpdatedAt(null);
+        $this->setUpdatedBy(null);
+    }
 }

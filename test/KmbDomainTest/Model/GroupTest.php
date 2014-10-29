@@ -53,4 +53,22 @@ class GroupTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($group->hasClassWithName('dns'));
     }
+
+    /** @test */
+    public function canClone()
+    {
+        $class = new GroupClass('apache::vhost');
+        $class->setId(1);
+        $group = new Group('web');
+        $group->setId(1);
+        $group->setClasses([$class]);
+
+        $newGroup = clone $group;
+
+        $this->assertNull($newGroup->getId());
+        $this->assertEquals([new GroupClass('apache::vhost')], $newGroup->getClasses());
+        $this->assertNull($newGroup->getOrdering());
+        $this->assertNull($newGroup->getEnvironment());
+        $this->assertNull($newGroup->getRevision());
+    }
 }

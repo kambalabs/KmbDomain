@@ -273,4 +273,17 @@ class Group implements GroupInterface
     {
         return $this->getClassByName($name) !== null;
     }
+
+    public function __clone()
+    {
+        if ($this->hasClasses()) {
+            $this->setClasses(array_map(function($class) {
+                return clone $class;
+            }, $this->getClasses()));
+        }
+        $this->setId(null);
+        $this->setOrdering(null);
+        $this->setEnvironment(null);
+        $this->setRevision(null);
+    }
 }

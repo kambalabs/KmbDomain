@@ -40,4 +40,25 @@ class RevisionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse($revision->hasGroupWithName('unknown'));
     }
+
+    /** @test */
+    public function canClone()
+    {
+        $group = new Group('web');
+        $group->setId(1);
+        $revision = new Revision();
+        $revision->setId(1);
+        $revision->setGroups([$group]);
+
+        $newRevision = clone $revision;
+
+        $this->assertNull($newRevision->getId());
+        $this->assertEquals([new Group('web')], $newRevision->getGroups());
+        $this->assertNull($newRevision->getEnvironment());
+        $this->assertNull($newRevision->getComment());
+        $this->assertNull($newRevision->getReleasedAt());
+        $this->assertNull($newRevision->getReleasedBy());
+        $this->assertNull($newRevision->getUpdatedAt());
+        $this->assertNull($newRevision->getUpdatedBy());
+    }
 }
