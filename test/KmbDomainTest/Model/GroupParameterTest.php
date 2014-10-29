@@ -77,5 +77,6 @@ class GroupParameterTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($newParameter->getId());
         $this->assertEquals([new GroupParameter('DocumentRoot', ['/srv/node1.local'])], $newParameter->getChildren());
         $this->assertNull($newParameter->getClass());
+        $this->assertNull($newParameter->getParent());
     }
 }

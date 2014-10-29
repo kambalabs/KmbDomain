@@ -389,5 +389,6 @@ class GroupParameter implements GroupParameterInterface
         }
         $this->setId(null);
         $this->setClass(null);
+        $this->setParent(null);
     }
 }
