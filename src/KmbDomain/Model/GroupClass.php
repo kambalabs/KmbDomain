@@ -210,7 +210,7 @@ class GroupClass implements GroupClassInterface
     public function __clone()
     {
         if ($this->hasParameters()) {
-            $this->setParameters(array_map(function($parameter) {
+            $this->setParameters(array_map(function ($parameter) {
                 return clone $parameter;
             }, $this->getParameters()));
         }

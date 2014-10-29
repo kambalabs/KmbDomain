@@ -51,7 +51,7 @@ class GroupParameter implements GroupParameterInterface
 
     /**
      * @param string $name
-     * @param array $values
+     * @param array  $values
      */
     public function __construct($name = null, array $values = null)
     {

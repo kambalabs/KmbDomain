@@ -273,7 +273,7 @@ class Revision implements RevisionInterface
     public function __clone()
     {
         if ($this->hasGroups()) {
-            $this->setGroups(array_map(function($group) {
+            $this->setGroups(array_map(function ($group) {
                 return clone $group;
             }, $this->getGroups()));
         }

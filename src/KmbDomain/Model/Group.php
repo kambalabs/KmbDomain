@@ -277,7 +277,7 @@ class Group implements GroupInterface
     public function __clone()
     {
         if ($this->hasClasses()) {
-            $this->setClasses(array_map(function($class) {
+            $this->setClasses(array_map(function ($class) {
                 return clone $class;
             }, $this->getClasses()));
         }
