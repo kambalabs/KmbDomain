@@ -58,7 +58,6 @@ class RevisionTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($newRevision->getComment());
         $this->assertNull($newRevision->getReleasedAt());
         $this->assertNull($newRevision->getReleasedBy());
-        $this->assertNull($newRevision->getUpdatedAt());
-        $this->assertNull($newRevision->getUpdatedBy());
+        $this->assertEmpty($newRevision->getLogs());
     }
 }

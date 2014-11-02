@@ -29,16 +29,13 @@ class Revision implements RevisionInterface
     protected $environment;
 
     /** @var \DateTime */
-    protected $updatedAt;
-
-    /** @var string */
-    protected $updatedBy;
-
-    /** @var \DateTime */
     protected $releasedAt;
 
     /** @var  string */
     protected $releasedBy;
+
+    /** @var  RevisionLogInterface[] */
+    protected $logs;
 
     /** @var string */
     protected $comment;
@@ -96,50 +93,6 @@ class Revision implements RevisionInterface
     public function getEnvironment()
     {
         return $this->environment;
-    }
-
-    /**
-     * Set UpdatedAt.
-     *
-     * @param \DateTime $updatedAt
-     * @return Revision
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-        return $this;
-    }
-
-    /**
-     * Get UpdatedAt.
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * Set UpdatedBy.
-     *
-     * @param string $updatedBy
-     * @return Revision
-     */
-    public function setUpdatedBy($updatedBy)
-    {
-        $this->updatedBy = $updatedBy;
-        return $this;
-    }
-
-    /**
-     * Get UpdatedBy.
-     *
-     * @return string
-     */
-    public function getUpdatedBy()
-    {
-        return $this->updatedBy;
     }
 
     /**
@@ -217,6 +170,60 @@ class Revision implements RevisionInterface
     }
 
     /**
+     * Set Logs.
+     *
+     * @param \KmbDomain\Model\RevisionLogInterface[] $logs
+     * @return Revision
+     */
+    public function setLogs($logs)
+    {
+        $this->logs = $logs;
+        return $this;
+    }
+
+    /**
+     * Add specified log.
+     *
+     * @param \KmbDomain\Model\RevisionLogInterface $log
+     * @return Revision
+     */
+    public function addLog($log)
+    {
+        $this->logs[] = $log;
+        return $this;
+    }
+
+    /**
+     * Get Logs.
+     *
+     * @return \KmbDomain\Model\RevisionLogInterface[]
+     */
+    public function getLogs()
+    {
+        return $this->logs;
+    }
+
+    /**
+     * Get most recent log.
+     *
+     * @return RevisionLogInterface
+     */
+    public function getLastLog()
+    {
+        if ($this->hasLogs()) {
+            return $this->logs[0];
+        }
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasLogs()
+    {
+        return !empty($this->logs);
+    }
+
+    /**
      * Set Groups.
      *
      * @param \KmbDomain\Model\GroupInterface[] $groups
@@ -282,7 +289,6 @@ class Revision implements RevisionInterface
         $this->setComment(null);
         $this->setReleasedAt(null);
         $this->setReleasedBy(null);
-        $this->setUpdatedAt(null);
-        $this->setUpdatedBy(null);
+        $this->setLogs([]);
     }
 }

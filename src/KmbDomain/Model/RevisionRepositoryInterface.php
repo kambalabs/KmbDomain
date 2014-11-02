@@ -41,4 +41,10 @@ interface RevisionRepositoryInterface extends RepositoryInterface
      * @return RevisionInterface
      */
     public function getLastReleasedByEnvironment(EnvironmentInterface $environment);
+
+    /**
+     * @param GroupInterface $group
+     * @return RevisionInterface
+     */
+    public function getByGroup(GroupInterface $group);
 }

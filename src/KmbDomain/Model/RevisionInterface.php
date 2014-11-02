@@ -40,36 +40,6 @@ interface RevisionInterface extends AggregateRootInterface
     public function getEnvironment();
 
     /**
-     * Set UpdatedAt.
-     *
-     * @param \DateTime $updatedAt
-     * @return Revision
-     */
-    public function setUpdatedAt($updatedAt);
-
-    /**
-     * Get UpdatedAt.
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt();
-
-    /**
-     * Set UpdatedBy.
-     *
-     * @param string $updatedBy
-     * @return Revision
-     */
-    public function setUpdatedBy($updatedBy);
-
-    /**
-     * Get UpdatedBy.
-     *
-     * @return string
-     */
-    public function getUpdatedBy();
-
-    /**
      * Set ReleasedAt.
      *
      * @param \DateTime $releasedAt
@@ -118,6 +88,41 @@ interface RevisionInterface extends AggregateRootInterface
      * @return string
      */
     public function getComment();
+
+    /**
+     * Set Logs.
+     *
+     * @param \KmbDomain\Model\RevisionLogInterface[] $logs
+     * @return RevisionInterface
+     */
+    public function setLogs($logs);
+
+    /**
+     * Add specified log.
+     *
+     * @param \KmbDomain\Model\RevisionLogInterface $log
+     * @return Revision
+     */
+    public function addLog($log);
+
+    /**
+     * Get Logs.
+     *
+     * @return \KmbDomain\Model\RevisionLogInterface[]
+     */
+    public function getLogs();
+
+    /**
+     * Get most recent log.
+     *
+     * @return RevisionLogInterface
+     */
+    public function getLastLog();
+
+    /**
+     * @return bool
+     */
+    public function hasLogs();
 
     /**
      * Set Groups.
