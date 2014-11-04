@@ -65,7 +65,10 @@ class GroupParameterTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function canClone()
     {
-        $child = new GroupParameter('DocumentRoot', ['/srv/node1.local']);
+        $granchild = new GroupParameter('DocumentRoot', ['/srv/node1.local']);
+        $granchild->setId(3);
+        $child = new GroupParameter('node1.local');
+        $child->setChildren([$granchild]);
         $child->setId(2);
         $parameter = new GroupParameter('vhost');
         $parameter->setId(1);
@@ -75,8 +78,15 @@ class GroupParameterTest extends \PHPUnit_Framework_TestCase
         $newParameter = clone $parameter;
 
         $this->assertNull($newParameter->getId());
-        $this->assertEquals([new GroupParameter('DocumentRoot', ['/srv/node1.local'])], $newParameter->getChildren());
         $this->assertNull($newParameter->getClass());
         $this->assertNull($newParameter->getParent());
+        $children = $newParameter->getChildren();
+        $this->assertEquals(1, count($children));
+        $this->assertNull($children[0]->getId());
+        $this->assertEquals('node1.local', $children[0]->getName());
+        $granchildren = $children[0]->getChildren();
+        $this->assertEquals(1, count($granchildren));
+        $this->assertNull($granchildren[0]->getId());
+        $this->assertEquals('DocumentRoot', $granchildren[0]->getName());
     }
 }

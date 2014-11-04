@@ -20,32 +20,25 @@
  */
 namespace KmbDomain\Model;
 
-use GtnPersistBase\Model\RepositoryInterface;
-
-interface GroupRepositoryInterface extends RepositoryInterface
+interface RevisionServiceInterface
 {
     /**
-     * @param int[] ids
-     * @return GroupInterface[]
-     */
-    public function getAllByIds(array $ids);
-
-    /**
+     * Release specified revision.
+     * If the revision had already been released, the current revision should be removed first.
+     *
      * @param RevisionInterface $revision
-     * @return GroupInterface[]
+     * @param UserInterface     $user
+     * @param string            $comment
+     * @return RevisionServiceInterface
      */
-    public function getAllByRevision(RevisionInterface $revision);
+    public function release(RevisionInterface $revision, UserInterface $user, $comment);
 
     /**
-     * @param string            $name
+     * Remove specified revision.
+     * If it's the current revision, another current revision should be recreate from last released revision.
+     *
      * @param RevisionInterface $revision
-     * @return GroupInterface
+     * @return RevisionServiceInterface
      */
-    public function getByNameAndRevision($name, RevisionInterface $revision);
-
-    /**
-     * @param GroupClassInterface $class
-     * @return GroupInterface
-     */
-    public function getByClass(GroupClassInterface $class);
+    public function remove(RevisionInterface $revision);
 }

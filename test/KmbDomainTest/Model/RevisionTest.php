@@ -54,7 +54,6 @@ class RevisionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($newRevision->getId());
         $this->assertEquals([new Group('web')], $newRevision->getGroups());
-        $this->assertNull($newRevision->getEnvironment());
         $this->assertNull($newRevision->getComment());
         $this->assertNull($newRevision->getReleasedAt());
         $this->assertNull($newRevision->getReleasedBy());

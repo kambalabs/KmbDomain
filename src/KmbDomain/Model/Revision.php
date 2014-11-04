@@ -285,7 +285,6 @@ class Revision implements RevisionInterface
             }, $this->getGroups()));
         }
         $this->setId(null);
-        $this->setEnvironment(null);
         $this->setComment(null);
         $this->setReleasedAt(null);
         $this->setReleasedBy(null);

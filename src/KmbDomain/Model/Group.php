@@ -283,7 +283,5 @@ class Group implements GroupInterface
         }
         $this->setId(null);
         $this->setOrdering(null);
-        $this->setEnvironment(null);
-        $this->setRevision(null);
     }
 }

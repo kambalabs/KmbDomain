@@ -387,8 +387,8 @@ class GroupParameter implements GroupParameterInterface
                 return clone $child;
             }, $this->getChildren()));
         }
-        $this->setId(null);
-        $this->setClass(null);
-        $this->setParent(null);
+        $this->id  = null;
+        $this->class = null;
+        $this->parent = null;
     }
 }
