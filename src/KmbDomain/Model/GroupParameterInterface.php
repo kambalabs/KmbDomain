@@ -217,4 +217,11 @@ interface GroupParameterInterface extends AggregateRootInterface
      * @return bool
      */
     public function hasAvailableValues();
+
+    /**
+     * Dump children or value(s).
+     *
+     * @return array
+     */
+    public function dump();
 }

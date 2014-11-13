@@ -387,8 +387,28 @@ class GroupParameter implements GroupParameterInterface
                 return clone $child;
             }, $this->getChildren()));
         }
-        $this->id  = null;
+        $this->id = null;
         $this->class = null;
         $this->parent = null;
+    }
+
+    /**
+     * Dump children or value(s).
+     *
+     * @return array
+     */
+    public function dump()
+    {
+        if ($this->hasChildren()) {
+            $dump = [];
+            foreach ($this->children as $child) {
+                $dump[$child->getName()] = $child->dump();
+            }
+        } elseif (count($this->getValues()) === 1 && (!$this->hasTemplate() || !$this->getTemplate()->multiple_values)) {
+            $dump = $this->values[0];
+        } else {
+            $dump = $this->values;
+        }
+        return $dump;
     }
 }

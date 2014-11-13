@@ -70,7 +70,7 @@ class GroupParameterTest extends \PHPUnit_Framework_TestCase
         $child = new GroupParameter('node1.local');
         $child->setChildren([$granchild]);
         $child->setId(2);
-        $parameter = new GroupParameter('vhost');
+        $parameter = new GroupParameter('vhosts');
         $parameter->setId(1);
         $parameter->setChildren([$child]);
         $parameter->setClass(new GroupClass('apache::vhost'));
@@ -88,5 +88,51 @@ class GroupParameterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1, count($granchildren));
         $this->assertNull($granchildren[0]->getId());
         $this->assertEquals('DocumentRoot', $granchildren[0]->getName());
+    }
+
+    /** @test */
+    public function canDump()
+    {
+        $parameter = new GroupParameter('login');
+        $parameter->setValues(['jdoe']);
+
+        $this->assertEquals('jdoe', $parameter->dump());
+    }
+
+    /** @test */
+    public function canDumpWithMultipleValues()
+    {
+        $parameter = new GroupParameter('logins');
+        $parameter->setValues(['jdoe', 'jmiller']);
+
+        $this->assertEquals(['jdoe', 'jmiller'], $parameter->dump());
+    }
+
+    /** @test */
+    public function canDumpWithSingleValueAndMultipleValuesTemplate()
+    {
+        $parameter = new GroupParameter('logins');
+        $parameter->setTemplate((object)['multiple_values' => true]);
+        $parameter->setValues(['jdoe']);
+
+        $this->assertEquals(['jdoe'], $parameter->dump());
+    }
+
+    /** @test */
+    public function canDumpEditableHashtable()
+    {
+        $granchild1 = new GroupParameter('DocumentRoot', ['/srv/node1.local']);
+        $granchild2 = new GroupParameter('Ports', ['80', '443']);
+        $child = new GroupParameter('node1.local');
+        $child->setChildren([$granchild1, $granchild2]);
+        $parameter = new GroupParameter('vhosts');
+        $parameter->setChildren([$child]);
+
+        $this->assertEquals([
+            'node1.local' => [
+                'DocumentRoot' => '/srv/node1.local',
+                'Ports' => ['80', '443']
+            ],
+        ], $parameter->dump());
     }
 }
