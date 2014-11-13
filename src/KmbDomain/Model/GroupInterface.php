@@ -153,4 +153,11 @@ interface GroupInterface extends AggregateRootInterface
      * @return bool
      */
     public function hasClassWithName($name);
+
+    /**
+     * Dump group classes.
+     *
+     * @return array
+     */
+    public function dump();
 }

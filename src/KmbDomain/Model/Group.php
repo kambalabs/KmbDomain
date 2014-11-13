@@ -284,4 +284,20 @@ class Group implements GroupInterface
         $this->setId(null);
         $this->setOrdering(null);
     }
+
+    /**
+     * Dump group classes.
+     *
+     * @return array
+     */
+    public function dump()
+    {
+        $dump = [];
+        if ($this->hasClasses()) {
+            foreach ($this->classes as $class) {
+                $dump[$class->getName()] = $class->dump();
+            }
+        }
+        return $dump;
+    }
 }

@@ -71,4 +71,21 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($newGroup->getEnvironment());
         $this->assertNull($newGroup->getRevision());
     }
+
+    /** @test */
+    public function canDumpEmptyGroup()
+    {
+        $group = new Group('empty');
+
+        $this->assertEquals([], $group->dump());
+    }
+
+    /** @test */
+    public function canDump()
+    {
+        $group = new Group('web');
+        $group->setClasses([new GroupClass('apache::vhost'), new GroupClass('dns')]);
+
+        $this->assertEquals(['apache::vhost' => [], 'dns' => []], $group->dump());
+    }
 }
