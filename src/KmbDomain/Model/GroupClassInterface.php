@@ -113,4 +113,11 @@ interface GroupClassInterface extends AggregateRootInterface
      * @return bool
      */
     public function hasAvailableParameters();
+
+    /**
+     * Dump parameters.
+     *
+     * @return array
+     */
+    public function dump();
 }

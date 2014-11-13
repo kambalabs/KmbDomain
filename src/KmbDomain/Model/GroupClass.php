@@ -217,4 +217,20 @@ class GroupClass implements GroupClassInterface
         $this->setId(null);
         $this->setGroup(null);
     }
+
+    /**
+     * Dump parameters.
+     *
+     * @return array
+     */
+    public function dump()
+    {
+        $dump = [];
+        if ($this->hasParameters()) {
+            foreach ($this->parameters as $parameter) {
+                $dump[$parameter->getName()] = $parameter->dump();
+            }
+        }
+        return $dump;
+    }
 }
