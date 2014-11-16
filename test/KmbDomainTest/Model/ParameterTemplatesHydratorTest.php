@@ -17,7 +17,21 @@ class ParameterTemplatesHydratorTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
-    public function canSetRecursiveStringTemplate()
+    public function canHydrateBooleanTemplate()
+    {
+        $parameter = new GroupParameter();
+        $parameter->setName('present');
+        $parameter->setValues(['0']);
+        $template = $this->createBooleanTemplate();
+
+        $this->hydrator->hydrate($template, $parameter);
+
+        $this->assertEquals($template, $parameter->getTemplate());
+        $this->assertEquals([false], $parameter->getValues());
+    }
+
+    /** @test */
+    public function canHydrateStringTemplate()
     {
         $parameter = new GroupParameter();
         $parameter->setName('ports');
@@ -31,7 +45,7 @@ class ParameterTemplatesHydratorTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
-    public function canSetRecursiveHashtableTemplate()
+    public function canHydrateHashtableTemplate()
     {
         $child1 = new GroupParameter();
         $child1->setName('user');
@@ -56,7 +70,7 @@ class ParameterTemplatesHydratorTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
-    public function canSetRecursiveEditableHashtableTemplate()
+    public function canHydrateEditableHashtableTemplate()
     {
         $granchild1 = new GroupParameter();
         $granchild1->setName('user');
@@ -85,6 +99,16 @@ class ParameterTemplatesHydratorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(3, count($availableChildren));
         $this->assertEquals('group', $availableChildren[0]->name);
         $this->assertEquals(['jmiller', 'psmith'], $granchild1->getAvailableValues());
+    }
+
+    protected function createBooleanTemplate()
+    {
+        return Json::decode(Json::encode([
+            'name' => 'present',
+            'required' => true,
+            'multiple_values' => false,
+            'type' => GroupParameterType::BOOLEAN,
+        ]));
     }
 
     protected function createPredefinedListTemplate()

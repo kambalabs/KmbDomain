@@ -66,6 +66,12 @@ class ParameterTemplateHydrator implements ParameterTemplateHydratorInterface
                 return !$parameter->hasValue($value);
             });
             $parameter->setAvailableValues(array_values($availableValues));
+        } elseif ($template->type == GroupParameterType::BOOLEAN && $parameter->hasValues()) {
+            $values = [];
+            foreach ($parameter->getValues() as $value) {
+                $values[] = (bool)$value;
+            }
+            $parameter->setValues($values);
         }
     }
 }
