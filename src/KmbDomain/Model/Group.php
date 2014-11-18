@@ -46,6 +46,9 @@ class Group implements GroupInterface
     /** @var GroupClassInterface[] */
     protected $classes;
 
+    /** @var  array */
+    protected $availableClasses;
+
     /**
      * @param string $name
      */
@@ -272,6 +275,36 @@ class Group implements GroupInterface
     public function hasClassWithName($name)
     {
         return $this->getClassByName($name) !== null;
+    }
+
+    /**
+     * Set AvailableClasses.
+     *
+     * @param array $availableClasses
+     * @return Group
+     */
+    public function setAvailableClasses($availableClasses)
+    {
+        $this->availableClasses = $availableClasses;
+        return $this;
+    }
+
+    /**
+     * Get AvailableClasses.
+     *
+     * @return array
+     */
+    public function getAvailableClasses()
+    {
+        return $this->availableClasses;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasAvailableClasses()
+    {
+        return !empty($this->availableClasses);
     }
 
     public function __clone()

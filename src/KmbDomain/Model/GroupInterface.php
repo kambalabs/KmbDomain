@@ -160,4 +160,24 @@ interface GroupInterface extends AggregateRootInterface
      * @return array
      */
     public function dump();
+
+    /**
+     * Set AvailableClasses.
+     *
+     * @param array $availableClasses
+     * @return Group
+     */
+    public function setAvailableClasses($availableClasses);
+
+    /**
+     * Get AvailableClasses.
+     *
+     * @return array
+     */
+    public function getAvailableClasses();
+
+    /**
+     * @return bool
+     */
+    public function hasAvailableClasses();
 }
