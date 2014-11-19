@@ -307,6 +307,17 @@ class Group implements GroupInterface
         return !empty($this->availableClasses);
     }
 
+    /**
+     * @param string $hostname
+     * @return bool
+     */
+    public function matchesForHostname($hostname)
+    {
+        return
+            trim($this->includePattern) != '' && preg_match('/' . $this->includePattern . '/', $hostname) &&
+            ( trim($this->excludePattern) == '' || ( trim($this->includePattern) != '' && !preg_match('/' . $this->excludePattern . '/', $hostname) ) );
+    }
+
     public function __clone()
     {
         if ($this->hasClasses()) {

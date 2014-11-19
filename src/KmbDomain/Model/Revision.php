@@ -277,6 +277,23 @@ class Revision implements RevisionInterface
         return $this->getGroupByName($name) !== null;
     }
 
+    /**
+     * @param string $hostname
+     * @return GroupInterface[]
+     */
+    public function getGroupsMatchingHostname($hostname)
+    {
+        $groups = [];
+        if ($this->hasGroups()) {
+            foreach ($this->getGroups() as $group) {
+                if ($group->matchesForHostname($hostname)) {
+                    $groups[] = $group;
+                }
+            }
+        }
+        return $groups;
+    }
+
     public function __clone()
     {
         if ($this->hasGroups()) {

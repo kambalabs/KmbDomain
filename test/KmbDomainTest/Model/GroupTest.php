@@ -55,6 +55,26 @@ class GroupTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
+    public function canMatchWithHostname()
+    {
+        $group = new Group('web');
+        $group->setIncludePattern('.*.local');
+        $group->setExcludePattern('node2');
+
+        $this->assertTrue($group->matchesForHostname('node1.local'));
+    }
+
+    /** @test */
+    public function cannotMatchWithHostname()
+    {
+        $group = new Group('web');
+        $group->setIncludePattern('.*.local');
+        $group->setExcludePattern('node2');
+
+        $this->assertFalse($group->matchesForHostname('node2.local'));
+    }
+
+    /** @test */
     public function canClone()
     {
         $class = new GroupClass('apache::vhost');

@@ -155,4 +155,10 @@ interface RevisionInterface extends AggregateRootInterface
      * @return bool
      */
     public function hasGroupWithName($name);
+
+    /**
+     * @param string $hostname
+     * @return GroupInterface[]
+     */
+    public function getGroupsMatchingHostname($hostname);
 }

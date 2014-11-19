@@ -42,6 +42,29 @@ class RevisionTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
+    public function cannotGetEmptyGroupsMatchingHostname()
+    {
+        $revision = new Revision();
+
+        $this->assertEmpty($revision->getGroupsMatchingHostname('node1.local'));
+    }
+
+    /** @test */
+    public function canGetGroupsMatchingHostname()
+    {
+        $group1 = $this->getMock('KmbDomain\Model\GroupInterface');
+        $group1->expects($this->any())->method('matchesForHostname')->will($this->returnValue(true));
+        $group2 = $this->getMock('KmbDomain\Model\GroupInterface');
+        $group2->expects($this->any())->method('matchesForHostname')->will($this->returnValue(false));
+        $group3 = $this->getMock('KmbDomain\Model\GroupInterface');
+        $group3->expects($this->any())->method('matchesForHostname')->will($this->returnValue(true));
+        $revision = new Revision();
+        $revision->setGroups([$group1, $group2, $group3]);
+
+        $this->assertEquals([$group1, $group3], $revision->getGroupsMatchingHostname('node1.local'));
+    }
+
+    /** @test */
     public function canClone()
     {
         $group = new Group('web');

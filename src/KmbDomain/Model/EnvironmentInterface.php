@@ -88,6 +88,12 @@ interface EnvironmentInterface extends AggregateRootInterface
     public function getDescendants();
 
     /**
+     * @param $name
+     * @return EnvironmentInterface
+     */
+    public function getDescendantByNormalizedName($name);
+
+    /**
      * Set Children.
      *
      * @param EnvironmentInterface[] $children
@@ -112,6 +118,12 @@ interface EnvironmentInterface extends AggregateRootInterface
      * @return bool
      */
     public function hasChildren();
+
+    /**
+     * @param $name
+     * @return EnvironmentInterface
+     */
+    public function getChildByName($name);
 
     /**
      * @param $name

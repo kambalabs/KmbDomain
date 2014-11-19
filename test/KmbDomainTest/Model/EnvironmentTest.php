@@ -179,6 +179,48 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals([], $descendants);
     }
 
+    /** @test */
+    public function cannotGetUnknownDescendantByNormalizedName()
+    {
+        $stable = $this->createEnvironment(1, 'STABLE');
+        $pf1 = $this->createEnvironment(2, 'PF1');
+        $pf2 = $this->createEnvironment(3, 'PF2');
+        $pf1->addChild($this->createEnvironment(4, 'ITG'));
+        $pf1->addChild($this->createEnvironment(5, 'PRP'));
+        $pf1->addChild($this->createEnvironment(6, 'PROD'));
+        $stable->setChildren([$pf1, $pf2]);
+
+        $descendant = $stable->getDescendantByNormalizedName('STABLE_PF1_UNKNOWN');
+
+        $this->assertNull($descendant);
+    }
+
+    /** @test */
+    public function canGetDescendantByNormalizedName()
+    {
+        $stable = $this->createEnvironment(1, 'STABLE');
+        $pf1 = $this->createEnvironment(2, 'PF1');
+        $pf2 = $this->createEnvironment(3, 'PF2');
+        $pf1->addChild($this->createEnvironment(4, 'ITG'));
+        $pf1->addChild($this->createEnvironment(5, 'PRP'));
+        $pf1->addChild($this->createEnvironment(6, 'PROD'));
+        $stable->setChildren([$pf1, $pf2]);
+
+        $descendant = $stable->getDescendantByNormalizedName('STABLE_PF1_PRP');
+
+        $this->assertEquals(5, $descendant->getId());
+    }
+
+    /** @test */
+    public function cannotGetEmptyDescendantByNormalizedName()
+    {
+        $stable = $this->createEnvironment(1, 'STABLE');
+
+        $descendant = $stable->getDescendantByNormalizedName('UNKNOWN');
+
+        $this->assertNull($descendant);
+    }
+
     /**
      * @param $id
      * @param $name

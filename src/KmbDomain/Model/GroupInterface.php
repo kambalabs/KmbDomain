@@ -180,4 +180,10 @@ interface GroupInterface extends AggregateRootInterface
      * @return bool
      */
     public function hasAvailableClasses();
+
+    /**
+     * @param string $hostname
+     * @return bool
+     */
+    public function matchesForHostname($hostname);
 }
