@@ -51,10 +51,14 @@ class Group implements GroupInterface
 
     /**
      * @param string $name
+     * @param string $includePattern
+     * @param string $excludePattern
      */
-    public function __construct($name = null)
+    public function __construct($name = null, $includePattern = '', $excludePattern = '')
     {
         $this->setName($name);
+        $this->setIncludePattern($includePattern);
+        $this->setExcludePattern($excludePattern);
     }
 
     /**
