@@ -23,6 +23,7 @@ class RevisionFactoryTest extends \PHPUnit_Framework_TestCase
             'groups' => [
                 [
                     'name' => 'default',
+                    'ordering' => 0,
                     'include_pattern' => '.*',
                     'exclude_pattern' => '',
                     'classes' => [

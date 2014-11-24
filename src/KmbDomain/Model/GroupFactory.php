@@ -34,6 +34,7 @@ class GroupFactory implements GroupFactoryInterface
     public function createFromImportedData($data)
     {
         $group = new Group($data['name'], $data['include_pattern'], $data['exclude_pattern']);
+        $group->setOrdering($data['ordering']);
         foreach ($data['classes'] as $className => $classData) {
             $group->addClass($this->getGroupClassFactory()->createFromImportedData($className, $classData));
         }

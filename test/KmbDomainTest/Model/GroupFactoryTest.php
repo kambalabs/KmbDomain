@@ -20,6 +20,7 @@ class GroupFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $group = $this->factory->createFromImportedData([
             'name' => 'default',
+            'ordering' => 0,
             'include_pattern' => '.*',
             'exclude_pattern' => '',
             'classes' => [
@@ -33,6 +34,7 @@ class GroupFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('default', $group->getName());
         $this->assertEquals('.*', $group->getIncludePattern());
         $this->assertEquals('', $group->getExcludePattern());
+        $this->assertEquals(0, $group->getOrdering());
         $expectedGroupClass = new GroupClass('dns');
         $expectedGroupClass->setParameters([new GroupParameter('nameserver', ['ns1.local', 'ns2.local'])]);
         $this->assertEquals([$expectedGroupClass], $group->getClasses());
