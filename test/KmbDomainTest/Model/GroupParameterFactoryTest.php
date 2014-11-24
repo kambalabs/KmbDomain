@@ -16,6 +16,36 @@ class GroupParameterFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
+    public function canCreateFromArray()
+    {
+        $parameter = $this->factory->createFromImportedData('ports', [80, 8080, 443]);
+
+        $this->assertInstanceOf('KmbDomain\Model\GroupParameter', $parameter);
+        $this->assertEquals('ports', $parameter->getName());
+        $this->assertEquals([80, 8080, 443], $parameter->getValues());
+    }
+
+    /** @test */
+    public function canCreateEditableHashtableParameterFromArray()
+    {
+        $parameter = $this->factory->createFromImportedData('users', [
+            'root' => [
+                'fullname' => 'Administrator',
+                'home' => '/root',
+                'groups' => ['root', 'adm', 'admin'],
+                'uid' => 1
+            ]
+        ]);
+
+        $this->assertInstanceOf('KmbDomain\Model\GroupParameter', $parameter);
+        $root = $parameter->getChildByName('root');
+        $this->assertInstanceOf('KmbDomain\Model\GroupParameter', $root);
+        $groups = $root->getChildByName('groups');
+        $this->assertInstanceOf('KmbDomain\Model\GroupParameter', $groups);
+        $this->assertEquals(['root', 'adm', 'admin'], $groups->getValues());
+    }
+
+    /** @test */
     public function canCreateStringParameter()
     {
         $template = $this->createTemplate('path');

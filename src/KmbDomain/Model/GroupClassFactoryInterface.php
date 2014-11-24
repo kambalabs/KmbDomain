@@ -20,30 +20,14 @@
  */
 namespace KmbDomain\Model;
 
-interface GroupParameterFactoryInterface
+interface GroupClassFactoryInterface
 {
     /**
-     * Create GroupParameter instance from imported data.
+     * Create GroupClass instance from imported data.
      *
      * @param string $name
-     * @param array $data
-     * @return GroupParameterInterface
+     * @param array  $data
+     * @return GroupClassInterface
      */
     public function createFromImportedData($name, $data);
-
-    /**
-     * Create GroupParameter instances from all given required templates.
-     *
-     * @param \stdClass[] $templates
-     * @return GroupParameterInterface[]
-     */
-    public function createRequiredFromTemplates($templates);
-
-    /**
-     * Create GroupParameter instance from given template.
-     *
-     * @param \stdClass $template
-     * @return GroupParameterInterface
-     */
-    public function createFromTemplate($template);
 }

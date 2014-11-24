@@ -236,6 +236,18 @@ class Revision implements RevisionInterface
     }
 
     /**
+     * Add a group.
+     *
+     * @param \KmbDomain\Model\GroupInterface $group
+     * @return Revision
+     */
+    public function addGroup($group)
+    {
+        $this->groups[] = $group;
+        return $this;
+    }
+
+    /**
      * Get Groups.
      *
      * @return \KmbDomain\Model\GroupInterface[]

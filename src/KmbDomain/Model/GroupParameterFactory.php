@@ -23,7 +23,33 @@ namespace KmbDomain\Model;
 class GroupParameterFactory implements GroupParameterFactoryInterface
 {
     /**
-     * Create Parameters instances from all given required templates.
+     * Create GroupParameter instance from imported data.
+     *
+     * @param string $name
+     * @param array  $data
+     * @return GroupParameter
+     */
+    public function createFromImportedData($name, $data)
+    {
+        if (!is_array($data)) {
+            return new GroupParameter($name, [$data]);
+        } elseif (!$this->isAssociativeArray($data)) {
+            return new GroupParameter($name, $data);
+        }
+        $parameter = new GroupParameter($name);
+        foreach ($data as $childName => $childData) {
+            $parameter->addChild($this->createFromImportedData($childName, $childData));
+        }
+        return $parameter;
+    }
+
+    protected function isAssociativeArray($data)
+    {
+        return array_keys($data) !== range(0, count($data) - 1);
+    }
+
+    /**
+     * Create GroupParameter instances from all given required templates.
      *
      * @param \stdClass[] $templates
      * @return GroupParameter[]

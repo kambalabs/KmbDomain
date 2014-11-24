@@ -28,7 +28,7 @@ interface RevisionInterface extends AggregateRootInterface
      * Set Environment.
      *
      * @param \KmbDomain\Model\EnvironmentInterface $environment
-     * @return Revision
+     * @return RevisionInterface
      */
     public function setEnvironment($environment);
 
@@ -43,7 +43,7 @@ interface RevisionInterface extends AggregateRootInterface
      * Set ReleasedAt.
      *
      * @param \DateTime $releasedAt
-     * @return Revision
+     * @return RevisionInterface
      */
     public function setReleasedAt($releasedAt);
 
@@ -63,7 +63,7 @@ interface RevisionInterface extends AggregateRootInterface
      * Set ReleasedBy.
      *
      * @param string $releasedBy
-     * @return Revision
+     * @return RevisionInterface
      */
     public function setReleasedBy($releasedBy);
 
@@ -78,7 +78,7 @@ interface RevisionInterface extends AggregateRootInterface
      * Set Comment.
      *
      * @param string $comment
-     * @return Revision
+     * @return RevisionInterface
      */
     public function setComment($comment);
 
@@ -101,7 +101,7 @@ interface RevisionInterface extends AggregateRootInterface
      * Add specified log.
      *
      * @param \KmbDomain\Model\RevisionLogInterface $log
-     * @return Revision
+     * @return RevisionInterface
      */
     public function addLog($log);
 
@@ -128,9 +128,17 @@ interface RevisionInterface extends AggregateRootInterface
      * Set Groups.
      *
      * @param \KmbDomain\Model\GroupInterface[] $groups
-     * @return Revision
+     * @return RevisionInterface
      */
     public function setGroups($groups);
+
+    /**
+     * Add a group.
+     *
+     * @param \KmbDomain\Model\GroupInterface $group
+     * @return RevisionInterface
+     */
+    public function addGroup($group);
 
     /**
      * Get Groups.
