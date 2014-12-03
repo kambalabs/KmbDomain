@@ -309,7 +309,7 @@ class Environment implements EnvironmentInterface
         if ($this->hasUsers()) {
             foreach ($this->users as $index => $currentUser) {
                 /** @var UserInterface $currentUser */
-                if ($currentUser->getId() === $userId) {
+                if ($currentUser->getId() == $userId) {
                     unset($this->users[$index]);
                     $this->users = array_values($this->users);
                     break;
@@ -346,7 +346,7 @@ class Environment implements EnvironmentInterface
         if ($this->hasUsers()) {
             foreach ($this->users as $currentUser) {
                 /** @var UserInterface $currentUser */
-                if ($currentUser->getId() === $user->getId()) {
+                if ($currentUser->getId() == $user->getId()) {
                     return true;
                 }
             }
