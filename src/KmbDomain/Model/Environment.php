@@ -134,7 +134,7 @@ class Environment implements EnvironmentInterface
     /**
      * Set Parent.
      *
-     * @param Environment $parent
+     * @param EnvironmentInterface $parent
      * @return Environment
      */
     public function setParent($parent)
@@ -146,7 +146,7 @@ class Environment implements EnvironmentInterface
     /**
      * Get Parent.
      *
-     * @return Environment
+     * @return EnvironmentInterface
      */
     public function getParent()
     {
@@ -162,7 +162,7 @@ class Environment implements EnvironmentInterface
     }
 
     /**
-     * @param Environment $environment
+     * @param EnvironmentInterface $environment
      * @return bool
      */
     public function isAncestorOf($environment)
@@ -444,5 +444,17 @@ class Environment implements EnvironmentInterface
     public function __toString()
     {
         return $this->getNormalizedName();
+    }
+
+    public function __clone()
+    {
+        if ($this->hasChildren()) {
+            $this->setChildren(array_map(function ($child) {
+                return clone $child;
+            }, $this->getChildren()));
+        }
+        $this->setId(null);
+        $this->setParent(null);
+        $this->setDefault(false);
     }
 }
