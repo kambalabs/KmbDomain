@@ -34,6 +34,9 @@ class Group implements GroupInterface
     /** @var string */
     protected $name;
 
+    /** @var  string */
+    protected $type = 'default';
+
     /** @var string */
     protected $includePattern = '';
 
@@ -147,6 +150,28 @@ class Group implements GroupInterface
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set Type.
+     *
+     * @param string $type
+     * @return Group
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+        return $this;
+    }
+
+    /**
+     * Get Type.
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
     /**

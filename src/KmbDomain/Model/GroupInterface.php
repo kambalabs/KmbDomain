@@ -70,6 +70,21 @@ interface GroupInterface extends AggregateRootInterface
     public function getName();
 
     /**
+     * Set Type.
+     *
+     * @param string $type
+     * @return GroupInterface
+     */
+    public function setType($type);
+
+    /**
+     * Get Type.
+     *
+     * @return string
+     */
+    public function getType();
+
+    /**
      * Set IncludePattern.
      *
      * @param string $includePattern
