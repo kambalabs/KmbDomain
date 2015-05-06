@@ -21,6 +21,7 @@ class GroupFactoryTest extends \PHPUnit_Framework_TestCase
         $group = $this->factory->createFromImportedData([
             'name' => 'default',
             'ordering' => 0,
+            'type' => 'dns',
             'include_pattern' => '.*',
             'exclude_pattern' => '',
             'classes' => [
@@ -32,6 +33,7 @@ class GroupFactoryTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('KmbDomain\Model\Group', $group);
         $this->assertEquals('default', $group->getName());
+        $this->assertEquals('dns', $group->getType());
         $this->assertEquals('.*', $group->getIncludePattern());
         $this->assertEquals('', $group->getExcludePattern());
         $this->assertEquals(0, $group->getOrdering());
