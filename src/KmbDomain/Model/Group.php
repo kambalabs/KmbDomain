@@ -175,6 +175,14 @@ class Group implements GroupInterface
     }
 
     /**
+     * @return bool
+     */
+    public function isCustom()
+    {
+        return $this->type != null && $this->type != 'default';
+    }
+
+    /**
      * Set IncludePattern.
      *
      * @param string $includePattern

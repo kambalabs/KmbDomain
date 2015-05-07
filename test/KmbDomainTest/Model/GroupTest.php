@@ -127,4 +127,16 @@ class GroupTest extends \PHPUnit_Framework_TestCase
             ]
         ], $group->extract());
     }
+
+    /** @test */
+    public function canCheckIfCustomGroup()
+    {
+        $group = new Group('web', '.*', 'test');
+
+        $this->assertFalse($group->isCustom());
+
+        $group->setType('haproxy');
+
+        $this->assertTrue($group->isCustom());
+    }
 }

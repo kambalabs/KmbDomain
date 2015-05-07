@@ -85,6 +85,11 @@ interface GroupInterface extends AggregateRootInterface
     public function getType();
 
     /**
+     * @return bool
+     */
+    public function isCustom();
+
+    /**
      * Set IncludePattern.
      *
      * @param string $includePattern
