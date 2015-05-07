@@ -108,4 +108,23 @@ class GroupTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(['apache::vhost' => [], 'dns' => []], $group->dump());
     }
+
+    /** @test */
+    public function canExtract()
+    {
+        $group = new Group('web', '.*', 'test');
+        $group->setClasses([new GroupClass('apache::vhost'), new GroupClass('dns')]);
+
+        $this->assertEquals([
+            'name' => 'web',
+            'ordering' => 0,
+            'type' => 'default',
+            'include_pattern' => '.*',
+            'exclude_pattern' => 'test',
+            'classes' => [
+                'apache::vhost' => [],
+                'dns' => []
+            ]
+        ], $group->extract());
+    }
 }

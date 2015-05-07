@@ -177,6 +177,13 @@ interface GroupInterface extends AggregateRootInterface
     public function dump();
 
     /**
+     * Extract all group's data in array.
+     *
+     * @return array
+     */
+    public function extract();
+
+    /**
      * Set AvailableClasses.
      *
      * @param array $availableClasses

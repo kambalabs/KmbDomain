@@ -373,4 +373,21 @@ class Group implements GroupInterface
         }
         return $dump;
     }
+
+    /**
+     * Extract all group's data in array.
+     *
+     * @return array
+     */
+    public function extract()
+    {
+        return [
+            'name' => $this->getName(),
+            'ordering' => $this->getOrdering(),
+            'type' => $this->getType(),
+            'include_pattern' => $this->getIncludePattern(),
+            'exclude_pattern' => $this->getExcludePattern(),
+            'classes' => $this->dump(),
+        ];
+    }
 }
