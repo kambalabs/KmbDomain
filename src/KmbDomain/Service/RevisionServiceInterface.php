@@ -18,15 +18,30 @@
  * You should have received a copy of the GNU General Public License
  * along with Kamba.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace KmbDomain\Model;
+namespace KmbDomain\Service;
 
-use GtnPersistBase\Model\RepositoryInterface;
+use KmbDomain\Model\RevisionInterface;
+use KmbDomain\Model\UserInterface;
 
-interface GroupClassRepositoryInterface extends RepositoryInterface
+interface RevisionServiceInterface
 {
     /**
-     * @param GroupParameterInterface $parameter
-     * @return GroupClassInterface
+     * Release specified revision.
+     * If the revision had already been released, the current revision should be removed first.
+     *
+     * @param RevisionInterface $revision
+     * @param UserInterface     $user
+     * @param string            $comment
+     * @return RevisionServiceInterface
      */
-    public function getByParameter($groupParameter);
+    public function release(RevisionInterface $revision, UserInterface $user, $comment);
+
+    /**
+     * Remove specified revision.
+     * If it's the current revision, another current revision should be recreate from last released revision.
+     *
+     * @param RevisionInterface $revision
+     * @return RevisionServiceInterface
+     */
+    public function remove(RevisionInterface $revision);
 }

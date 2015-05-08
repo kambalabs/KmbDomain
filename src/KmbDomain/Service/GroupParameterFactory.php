@@ -18,7 +18,10 @@
  * You should have received a copy of the GNU General Public License
  * along with Kamba.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace KmbDomain\Model;
+namespace KmbDomain\Service;
+
+use KmbDomain\Model\GroupParameter;
+use KmbDomain\Model\GroupParameterType;
 
 class GroupParameterFactory implements GroupParameterFactoryInterface
 {

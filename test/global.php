@@ -3,10 +3,10 @@ return [
     'service_manager' => [
         'factories' => [
             'UserRepository' => function () {
-                    return PHPUnit_Framework_MockObject_Generator::getMock('KmbDomain\Model\UserRepositoryInterface');
+                    return PHPUnit_Framework_MockObject_Generator::getMock('KmbDomain\Service\UserRepositoryInterface');
                 },
             'EnvironmentRepository' => function () {
-                    return PHPUnit_Framework_MockObject_Generator::getMock('KmbDomain\Model\EnvironmentRepositoryInterface');
+                    return PHPUnit_Framework_MockObject_Generator::getMock('KmbDomain\Service\EnvironmentRepositoryInterface');
                 },
         ],
     ],

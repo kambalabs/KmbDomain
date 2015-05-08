@@ -18,16 +18,17 @@
  * You should have received a copy of the GNU General Public License
  * along with Kamba.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace KmbDomain\Model;
+namespace KmbDomain\Service;
 
-interface GroupClassFactoryInterface
+use KmbDomain\Model\GroupInterface;
+
+interface GroupFactoryInterface
 {
     /**
-     * Create GroupClass instance from imported data.
+     * Create Group instance from imported data.
      *
-     * @param string $name
      * @param array  $data
-     * @return GroupClassInterface
+     * @return GroupInterface
      */
-    public function createFromImportedData($name, $data);
+    public function createFromImportedData($data);
 }

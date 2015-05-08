@@ -18,43 +18,34 @@
  * You should have received a copy of the GNU General Public License
  * along with Kamba.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace KmbDomain\Model;
+namespace KmbDomain\Service;
 
 use GtnPersistBase\Model\RepositoryInterface;
+use KmbDomain\Model\EnvironmentInterface;
+use KmbDomain\Model\UserInterface;
 
-interface EnvironmentRepositoryInterface extends RepositoryInterface
+interface UserRepositoryInterface extends RepositoryInterface
 {
     /**
-     * @return EnvironmentInterface[]
+     * @param string $login
+     * @return UserInterface
      */
-    public function getAllRoots();
+    public function getByLogin($login);
 
     /**
-     * @return EnvironmentInterface
+     * @return array
      */
-    public function getDefault();
-
-    /**
-     * @param string $name
-     * @return EnvironmentInterface
-     */
-    public function getRootByName($name);
+    public function getAllNonRoot();
 
     /**
      * @param EnvironmentInterface $environment
-     * @return EnvironmentInterface[]
+     * @return array
      */
-    public function getAllChildren(EnvironmentInterface $environment);
+    public function getAllByEnvironment($environment);
 
     /**
      * @param EnvironmentInterface $environment
-     * @return EnvironmentInterface
+     * @return array
      */
-    public function getParent(EnvironmentInterface $environment);
-
-    /**
-     * @param UserInterface $user
-     * @return EnvironmentInterface[]
-     */
-    public function getAllForUser(UserInterface $user);
+    public function getAllAvailableForEnvironment($environment);
 }

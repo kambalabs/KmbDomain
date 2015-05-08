@@ -1,9 +1,9 @@
 <?php
-namespace KmbDomainTest\Model;
+namespace KmbDomainTest\Service;
 
 use KmbDomain\Model\GroupClass;
-use KmbDomain\Model\GroupFactory;
 use KmbDomain\Model\GroupParameter;
+use KmbDomain\Service\GroupFactory;
 
 class GroupFactoryTest extends \PHPUnit_Framework_TestCase
 {

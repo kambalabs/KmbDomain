@@ -18,7 +18,9 @@
  * You should have received a copy of the GNU General Public License
  * along with Kamba.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace KmbDomain\Model;
+namespace KmbDomain\Service;
+
+use KmbDomain\Model\Group;
 
 class GroupFactory implements GroupFactoryInterface
 {
@@ -47,7 +49,7 @@ class GroupFactory implements GroupFactoryInterface
     /**
      * Set GroupClassFactory.
      *
-     * @param \KmbDomain\Model\GroupClassFactory $groupClassFactory
+     * @param \KmbDomain\Service\GroupClassFactory $groupClassFactory
      * @return GroupFactory
      */
     public function setGroupClassFactory($groupClassFactory)
@@ -59,7 +61,7 @@ class GroupFactory implements GroupFactoryInterface
     /**
      * Get GroupClassFactory.
      *
-     * @return \KmbDomain\Model\GroupClassFactory
+     * @return \KmbDomain\Service\GroupClassFactory
      */
     public function getGroupClassFactory()
     {

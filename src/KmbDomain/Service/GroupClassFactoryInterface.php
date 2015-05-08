@@ -18,34 +18,18 @@
  * You should have received a copy of the GNU General Public License
  * along with Kamba.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace KmbDomain\Model;
+namespace KmbDomain\Service;
 
-use GtnPersistBase\Model\RepositoryInterface;
+use KmbDomain\Model\GroupClassInterface;
 
-interface GroupRepositoryInterface extends RepositoryInterface
+interface GroupClassFactoryInterface
 {
     /**
-     * @param int[] ids
-     * @return GroupInterface[]
+     * Create GroupClass instance from imported data.
+     *
+     * @param string $name
+     * @param array  $data
+     * @return GroupClassInterface
      */
-    public function getAllByIds(array $ids);
-
-    /**
-     * @param RevisionInterface $revision
-     * @return GroupInterface[]
-     */
-    public function getAllByRevision(RevisionInterface $revision);
-
-    /**
-     * @param string            $name
-     * @param RevisionInterface $revision
-     * @return GroupInterface
-     */
-    public function getByNameAndRevision($name, RevisionInterface $revision);
-
-    /**
-     * @param GroupClassInterface $class
-     * @return GroupInterface
-     */
-    public function getByClass(GroupClassInterface $class);
+    public function createFromImportedData($name, $data);
 }

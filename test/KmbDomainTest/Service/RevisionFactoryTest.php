@@ -1,11 +1,11 @@
 <?php
-namespace KmbDomainTest\Model;
+namespace KmbDomainTest\Service;
 
-use KmbDomain\Model\RevisionFactory;
+use KmbDomain\Service\RevisionFactory;
 
 class RevisionFactoryTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var  RevisionFactory */
+    /** @var  \KmbDomain\Service\RevisionFactory */
     protected $factory;
 
     protected function setUp()

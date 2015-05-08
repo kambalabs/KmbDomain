@@ -18,27 +18,36 @@
  * You should have received a copy of the GNU General Public License
  * along with Kamba.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace KmbDomain\Model;
+namespace KmbDomain\Service;
 
 use GtnPersistBase\Model\RepositoryInterface;
+use KmbDomain\Model\EnvironmentInterface;
+use KmbDomain\Model\GroupInterface;
+use KmbDomain\Model\RevisionInterface;
 
-interface GroupParameterRepositoryInterface extends RepositoryInterface
+interface RevisionRepositoryInterface extends RepositoryInterface
 {
     /**
-     * @param GroupClassInterface $class
-     * @return GroupParameterInterface[]
+     * @param EnvironmentInterface $environment
+     * @return RevisionInterface[]
      */
-    public function getAllByClass($class);
+    public function getAllReleasedByEnvironment(EnvironmentInterface $environment);
 
     /**
-     * @param GroupParameterInterface $parent
-     * @return GroupParameterInterface[]
+     * @param EnvironmentInterface $environment
+     * @return RevisionInterface
      */
-    public function getAllByParent($parent);
+    public function getCurrentByEnvironment(EnvironmentInterface $environment);
 
     /**
-     * @param GroupParameterInterface $child
-     * @return GroupParameterInterface
+     * @param EnvironmentInterface $environment
+     * @return RevisionInterface
      */
-    public function getByChild($child);
+    public function getLastReleasedByEnvironment(EnvironmentInterface $environment);
+
+    /**
+     * @param GroupInterface $group
+     * @return RevisionInterface
+     */
+    public function getByGroup(GroupInterface $group);
 }

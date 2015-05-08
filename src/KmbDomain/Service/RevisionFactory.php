@@ -18,7 +18,9 @@
  * You should have received a copy of the GNU General Public License
  * along with Kamba.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace KmbDomain\Model;
+namespace KmbDomain\Service;
+
+use KmbDomain\Model\Revision;
 
 class RevisionFactory implements RevisionFactoryInterface
 {
@@ -46,7 +48,7 @@ class RevisionFactory implements RevisionFactoryInterface
     /**
      * Set GroupFactory.
      *
-     * @param \KmbDomain\Model\GroupFactory $groupFactory
+     * @param \KmbDomain\Service\GroupFactory $groupFactory
      * @return RevisionFactory
      */
     public function setGroupFactory($groupFactory)
@@ -58,7 +60,7 @@ class RevisionFactory implements RevisionFactoryInterface
     /**
      * Get GroupFactory.
      *
-     * @return \KmbDomain\Model\GroupFactory
+     * @return \KmbDomain\Service\GroupFactory
      */
     public function getGroupFactory()
     {

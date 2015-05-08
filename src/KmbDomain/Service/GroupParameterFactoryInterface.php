@@ -18,15 +18,34 @@
  * You should have received a copy of the GNU General Public License
  * along with Kamba.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace KmbDomain\Model;
+namespace KmbDomain\Service;
 
-interface RevisionFactoryInterface
+use KmbDomain\Model\GroupParameterInterface;
+
+interface GroupParameterFactoryInterface
 {
     /**
-     * Create Revision instance from imported data.
+     * Create GroupParameter instance from imported data.
      *
+     * @param string $name
      * @param array $data
-     * @return RevisionInterface
+     * @return GroupParameterInterface
      */
-    public function createFromImportedData($data);
+    public function createFromImportedData($name, $data);
+
+    /**
+     * Create GroupParameter instances from all given required templates.
+     *
+     * @param \stdClass[] $templates
+     * @return GroupParameterInterface[]
+     */
+    public function createRequiredFromTemplates($templates);
+
+    /**
+     * Create GroupParameter instance from given template.
+     *
+     * @param \stdClass $template
+     * @return GroupParameterInterface
+     */
+    public function createFromTemplate($template);
 }

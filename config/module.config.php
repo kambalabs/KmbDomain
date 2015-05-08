@@ -2,16 +2,16 @@
 return [
     'service_manager' => [
         'invokables' => [
-            'KmbDomain\Model\GroupParameterFactory' => 'KmbDomain\Model\GroupParameterFactory',
-            'KmbDomain\Model\GroupClassFactory' => 'KmbDomain\Model\GroupClassFactory',
-            'KmbDomain\Model\GroupFactory' => 'KmbDomain\Model\GroupFactory',
-            'KmbDomain\Model\RevisionFactory' => 'KmbDomain\Model\RevisionFactory',
+            'KmbDomain\Service\GroupParameterFactory' => 'KmbDomain\Service\GroupParameterFactory',
+            'KmbDomain\Service\GroupClassFactory' => 'KmbDomain\Service\GroupClassFactory',
+            'KmbDomain\Service\GroupFactory' => 'KmbDomain\Service\GroupFactory',
+            'KmbDomain\Service\RevisionFactory' => 'KmbDomain\Service\RevisionFactory',
         ],
         'aliases' => [
-            'groupParameterFactory' => 'KmbDomain\Model\GroupParameterFactory',
-            'groupClassFactory' => 'KmbDomain\Model\GroupClassFactory',
-            'groupFactory' => 'KmbDomain\Model\GroupFactory',
-            'revisionFactory' => 'KmbDomain\Model\RevisionFactory',
+            'groupParameterFactory' => 'KmbDomain\Service\GroupParameterFactory',
+            'groupClassFactory' => 'KmbDomain\Service\GroupClassFactory',
+            'groupFactory' => 'KmbDomain\Service\GroupFactory',
+            'revisionFactory' => 'KmbDomain\Service\RevisionFactory',
         ],
     ],
 ];
