@@ -221,6 +221,33 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($descendant);
     }
 
+    /** @test */
+    public function canAddAutoUpdatedModule()
+    {
+        $unstable = $this->createEnvironment(2, 'UNSTABLE');
+
+        $unstable->addAutoUpdatedModule('apache', 'unstable');
+
+        $this->assertEquals(['apache' => 'unstable'], $unstable->getAutoUpdatedModules());
+    }
+
+    /** @test */
+    public function canCheckIfModuleIsNotAutoUpdated()
+    {
+        $unstable = $this->createEnvironment(2, 'UNSTABLE');
+
+        $this->assertFalse($unstable->isModuleAutoUpdated('apache', 'unstable'));
+    }
+
+    /** @test */
+    public function canCheckIfModuleIsAutoUpdated()
+    {
+        $unstable = $this->createEnvironment(2, 'UNSTABLE');
+        $unstable->setAutoUpdatedModules(['apache' => 'unstable']);
+
+        $this->assertTrue($unstable->isModuleAutoUpdated('apache', 'unstable'));
+    }
+
     /**
      * @param $id
      * @param $name

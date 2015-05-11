@@ -59,4 +59,11 @@ interface EnvironmentRepositoryInterface extends RepositoryInterface
      * @return EnvironmentInterface[]
      */
     public function getAllForUser(UserInterface $user);
+
+    /**
+     * @param string $moduleName
+     * @param string $branch
+     * @return EnvironmentInterface[]
+     */
+    public function getAllWhereModuleIsAutoUpdated($moduleName, $branch);
 }

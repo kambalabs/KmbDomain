@@ -226,6 +226,46 @@ interface EnvironmentInterface extends AggregateRootInterface
     public function getReleasedRevisions();
 
     /**
+     * Set AutoUpdatedModules.
+     *
+     * @param array $autoUpdatedModules
+     * @return EnvironmentInterface
+     */
+    public function setAutoUpdatedModules($autoUpdatedModules);
+
+    /**
+     * @param string $moduleName
+     * @param string $branch
+     * @return EnvironmentInterface
+     */
+    public function addAutoUpdatedModule($moduleName, $branch);
+
+    /**
+     * @param string $moduleName
+     * @return EnvironmentInterface
+     */
+    public function removeAutoUpdatedModule($moduleName);
+
+    /**
+     * Get AutoUpdatedModules.
+     *
+     * @return array
+     */
+    public function getAutoUpdatedModules();
+
+    /**
+     * @return boolean
+     */
+    public function hasAutoUpdatedModules();
+
+    /**
+     * @param string $moduleName
+     * @param string $branch
+     * @return boolean
+     */
+    public function isModuleAutoUpdated($moduleName, $branch);
+
+    /**
      * @return string
      */
     public function __toString();

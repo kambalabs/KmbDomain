@@ -54,6 +54,9 @@ class Environment implements EnvironmentInterface
     /** @var RevisionInterface[] */
     protected $releasedRevisions;
 
+    /** @var  array */
+    protected $autoUpdatedModules;
+
     /**
      * @param string $name
      */
@@ -436,6 +439,67 @@ class Environment implements EnvironmentInterface
     public function getReleasedRevisions()
     {
         return $this->releasedRevisions;
+    }
+
+    /**
+     * Set AutoUpdatedModules.
+     *
+     * @param array $autoUpdatedModules
+     * @return Environment
+     */
+    public function setAutoUpdatedModules($autoUpdatedModules)
+    {
+        $this->autoUpdatedModules = $autoUpdatedModules;
+        return $this;
+    }
+
+    /**
+     * @param string $moduleName
+     * @param string $branch
+     * @return Environment
+     */
+    public function addAutoUpdatedModule($moduleName, $branch)
+    {
+        $this->autoUpdatedModules[$moduleName] = $branch;
+        return $this;
+    }
+
+    /**
+     * @param string $moduleName
+     * @return Environment
+     */
+    public function removeAutoUpdatedModule($moduleName)
+    {
+        unset($this->autoUpdatedModules[$moduleName]);
+        return $this;
+    }
+
+    /**
+     * Get AutoUpdatedModules.
+     *
+     * @return array
+     */
+    public function getAutoUpdatedModules()
+    {
+        return $this->autoUpdatedModules;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function hasAutoUpdatedModules()
+    {
+        return !empty($this->autoUpdatedModules);
+    }
+
+    /**
+     * @param string $moduleName
+     * @param string $branch
+     * @return boolean
+     */
+    public function isModuleAutoUpdated($moduleName, $branch)
+    {
+        return isset($this->autoUpdatedModules[$moduleName]) && $this->autoUpdatedModules[$moduleName] === $branch;
     }
 
     /**
