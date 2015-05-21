@@ -43,6 +43,12 @@ interface EnvironmentRepositoryInterface extends RepositoryInterface
     public function getRootByName($name);
 
     /**
+     * @param string $name
+     * @return EnvironmentInterface
+     */
+    public function getByNormalizedName($name);
+
+    /**
      * @param EnvironmentInterface $environment
      * @return EnvironmentInterface[]
      */
